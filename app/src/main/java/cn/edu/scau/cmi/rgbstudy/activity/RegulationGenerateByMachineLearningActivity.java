@@ -18,7 +18,7 @@ import cn.edu.scau.cmi.rgbstudy.dao.Service;
 import cn.edu.scau.cmi.rgbstudy.domain.Linear_Rule;
 import cn.edu.scau.cmi.rgbstudy.domain.Rule;
 import cn.edu.scau.cmi.rgbstudy.domain.Sample;
-import cn.edu.scau.cmi.rgbstudy.machine.Regression;
+import cn.edu.scau.cmi.rgbstudy.machineLearning.Regression;
 
 public class RegulationGenerateByMachineLearningActivity extends AppCompatActivity {
     int projectId;
