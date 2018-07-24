@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RGBStudy</string>
+
+    <string name="driver">com.mysql.jdbc.Driver</string>
+    <string name="url">jdbc:mysql://120.79.219.78:3306/color </string>
+    <string name="user">hombio</string>
+    <string name="pass">hombio</string>
+</resources>
