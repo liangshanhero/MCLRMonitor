@@ -271,4 +271,34 @@ public class Service {
         rule.setRange_rules(range_rules);
         addRule(rule);
     }
+
+
+    //定性检查
+    public static String rangeCheck(int r, int g, int  b, int projectId){
+        String subSQL = "select red,green,blue,target.name as tname" +
+                " from sample join target on sample.target_id = target.id" +
+                " where sample.project_id = "+projectId;
+
+        Cursor cursor = DAO.rawQuery("select avg(red),avg(green),avg(blue),tname" +
+                " from ("+subSQL+")"+" group by tname",null);
+
+
+        String result="空";
+        Float distance = null;
+        while(cursor.moveToNext()){
+            Sample sample = new Sample();
+            float average_R =  cursor.getFloat(cursor.getColumnIndex("avg(red)"));
+            float average_G =  cursor.getFloat(cursor.getColumnIndex("avg(green)"));
+            float average_B =  cursor.getFloat(cursor.getColumnIndex("avg(blue)"));
+
+            String name = cursor.getString(cursor.getColumnIndex("tname"));
+
+            float currentDistance = (float) Math.sqrt((average_R-r)*(average_R-r) + (average_G-g)*(average_G-g) + (average_B-b)*(average_B-b));
+            if(distance == null || currentDistance < distance){
+                result = name;
+                distance = currentDistance;
+            }
+        }
+            return result;
+    }
 }

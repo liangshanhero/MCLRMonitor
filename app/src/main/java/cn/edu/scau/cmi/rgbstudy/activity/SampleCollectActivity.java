@@ -326,7 +326,6 @@ public class SampleCollectActivity extends AppCompatActivity implements View.OnT
     }
 
     public void submit(View view) {
-
         Sample sample = new Sample();
         sample.project_id = projectId;
         sample.red = Integer.valueOf(red.getText().toString());

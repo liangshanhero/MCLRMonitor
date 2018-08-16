@@ -60,61 +60,18 @@ public class CheckActivity extends AppCompatActivity {
                 green.setText(g+"");
                 blue.setText(b+"");
                 if(rules.size() ==0 ){
-                    Toast.makeText(CheckActivity.this, "请先创建规则", Toast.LENGTH_SHORT).show();
+                    if(projects.size()>0 && projects.get(project.getSelectedItemPosition()).type_id == 2){
+                        result.setText(Service.rangeCheck(r,g,b,projects.get(project.getSelectedItemPosition()).id));
+                    }else{
+                        Toast.makeText(CheckActivity.this, "请先创建规则", Toast.LENGTH_SHORT).show();
+                    }
+
                 }else{
                     if(rules.get(rule.getSelectedItemPosition()).getLinear_rule() != null){
                         Linear_Rule rul = rules.get(rule.getSelectedItemPosition()).getLinear_rule();
                         float y =  rul.k1*r + rul.k2*g + rul.k3*b + rul.b;
                         result.setText(new BigDecimal(y).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-                    }else{
-                        List<Range_Rule> one = new ArrayList<>();
-                        List<Range_Rule> two = new ArrayList<>();
-                        List<Range_Rule> three = new ArrayList<>();
-                        for(Range_Rule range_rule : rules.get(rule.getSelectedItemPosition()).getRange_rules()){
-                            int count = 0;
-                            if(range_rule.r_start <= r && r <= range_rule.r_end ){
-                                count++;
-                            }
-                            if(range_rule.g_start <= g && g <= range_rule.g_end ){
-                                count++;
-                            }
-                            if(range_rule.b_start <= b && b <= range_rule.b_end ){
-                                count++;
-                            }
-                            if(count == 1){
-                                one.add(range_rule);
-                            }
-                            if(count == 2){
-                                two.add(range_rule);
-                            }
-                            if(color == 3){
-                                three.add(range_rule);
-                            }
-                        }
-                        if(three.size() != 0){
-                            String rs = "";
-                            for(Range_Rule range_rule : three){
-                                rs += range_rule.getResult()+" ";
-                            }
-                            result.setText(rs);
-                        }else if(two.size() != 0){
-                            String rs = "";
-                            for(Range_Rule range_rule : two){
-                                rs += range_rule.getResult()+" ";
-                            }
-                            result.setText(rs);
-                        }else if(one.size()!=0){
-                            String rs = "";
-                            for(Range_Rule range_rule : one){
-                                rs += range_rule.getResult()+" ";
-                            }
-                            result.setText(rs);
-                        }else{
-                            result.setText("无最优解");
-                        }
                     }
-
-
                 }
             }
 
