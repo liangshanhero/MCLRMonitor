@@ -14,7 +14,7 @@ import cn.edu.scau.cmi.colorCheck.dao.Service;
 import cn.edu.scau.cmi.colorCheck.domain.Linear_Rule;
 import cn.edu.scau.cmi.colorCheck.domain.Rule;
 
-public class RegulationGenerateByCustomizationActivity extends AppCompatActivity {
+public class RuleGenerateByCustomActivity extends AppCompatActivity {
 
 
     EditText k1;
@@ -27,7 +27,7 @@ public class RegulationGenerateByCustomizationActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rule_add);
+        setContentView(R.layout.activity_custom_rule_add);
         k1 = findViewById(R.id.add_rule_k1);
         k2 = findViewById(R.id.add_rule_k2);
         k3 = findViewById(R.id.add_rule_k3);

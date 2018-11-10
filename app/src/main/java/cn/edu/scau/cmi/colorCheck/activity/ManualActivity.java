@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import cn.edu.scau.cmi.colorCheck.R;
 
-public class UseageActivity extends AppCompatActivity {
+public class ManualActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

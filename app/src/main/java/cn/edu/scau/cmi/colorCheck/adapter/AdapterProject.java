@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.activity.RegulationGenerateByMachineLearningActivity;
+import cn.edu.scau.cmi.colorCheck.activity.RuleGenerateByMachineLearningActivity;
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.activity.RegulationGenerateByCustomizationActivity;
+import cn.edu.scau.cmi.colorCheck.activity.RuleGenerateByCustomActivity;
 import cn.edu.scau.cmi.colorCheck.activity.SampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
 import cn.edu.scau.cmi.colorCheck.domain.Project;
@@ -117,7 +117,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.ViewHold
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(holder.dataDB.getText().toString().equals("定量")){
-                                    Intent intent = new Intent(context, RegulationGenerateByCustomizationActivity.class);
+                                    Intent intent = new Intent(context, RuleGenerateByCustomActivity.class);
                                     intent.putExtra("projectId", projectList.get(position).id);
                                     context.startActivity(intent);
                                 }
@@ -148,7 +148,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.ViewHold
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context,RegulationGenerateByMachineLearningActivity.class);
+                    Intent intent = new Intent(context,RuleGenerateByMachineLearningActivity.class);
                     intent.putExtra("projectName",project.name);
                     intent.putExtra("projectId",project.id);
                     intent.putExtra("type",Service.getCheckType(project.type_id));

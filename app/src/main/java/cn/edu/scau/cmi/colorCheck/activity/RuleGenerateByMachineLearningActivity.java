@@ -20,14 +20,14 @@ import cn.edu.scau.cmi.colorCheck.domain.Rule;
 import cn.edu.scau.cmi.colorCheck.domain.Sample;
 import cn.edu.scau.cmi.colorCheck.machineLearning.Regression;
 
-public class RegulationGenerateByMachineLearningActivity extends AppCompatActivity {
+public class RuleGenerateByMachineLearningActivity extends AppCompatActivity {
     int projectId;
     String type;
     List<Sample> samples;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_machine_learning);
+        setContentView(R.layout.activity_machineLearning_rule_generate);
 
         RecyclerView recyclerView = findViewById(R.id.collection_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

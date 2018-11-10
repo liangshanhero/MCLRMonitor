@@ -36,9 +36,9 @@
         <activity android:name="cn.edu.scau.cmi.colorCheck.activity.CheckActivity" />
         <activity android:name="cn.edu.scau.cmi.colorCheck.activity.ProjectActivity" />
         <activity android:name="cn.edu.scau.cmi.colorCheck.activity.ProjectAddActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.RegulationGenerateByCustomizationActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.RegulationGenerateByMachineLearningActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.UseageActivity"></activity>
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.RuleGenerateByCustomActivity" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.RuleGenerateByMachineLearningActivity" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.ManualActivity"></activity>
     </application>
 
 </manifest>

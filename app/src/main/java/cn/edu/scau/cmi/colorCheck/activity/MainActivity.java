@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void usage(View view){
-        Intent intent = new Intent(MainActivity.this, UseageActivity.class);
+        Intent intent = new Intent(MainActivity.this, ManualActivity.class);
         startActivity(intent);
     }
     public void seeProject(View view){
