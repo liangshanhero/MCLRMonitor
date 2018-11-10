@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.edu.scau.cmi.rgbstudy">
+    package="cn.edu.scau.cmi.colorCheck">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -24,21 +24,21 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SampleCollectActivity" />
-        <activity android:name=".activity.Main2Activity4Test" />
-        <activity android:name=".activity.CheckActivity" />
-        <activity android:name=".activity.ProjectActivity" />
-        <activity android:name=".activity.ProjectAddActivity" />
-        <activity android:name=".activity.RegulationGenerateByCustomizationActivity" />
-        <activity android:name=".activity.RegulationGenerateByMachineLearningActivity" />
-        <activity android:name=".activity.UseageActivity"></activity>
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.SampleCollectActivity" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.Main2Activity4Test" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.CheckActivity" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.ProjectActivity" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.ProjectAddActivity" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.RegulationGenerateByCustomizationActivity" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.RegulationGenerateByMachineLearningActivity" />
+        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.UseageActivity"></activity>
     </application>
 
 </manifest>

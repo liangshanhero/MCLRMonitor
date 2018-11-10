@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <cn.edu.scau.cmi.rgbstudy.ui.CustomizedSurfaceView
+        <cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView
             android:id="@+id/check_surface"
             android:layout_gravity="center"
             android:layout_width="200dp"
