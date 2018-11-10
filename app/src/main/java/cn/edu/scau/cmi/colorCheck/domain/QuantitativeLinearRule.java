@@ -4,7 +4,7 @@ package cn.edu.scau.cmi.colorCheck.domain;
  * Created by Mr_Chen on 2018/6/7.
  */
 
-public class Linear_Rule {
+public class QuantitativeLinearRule {
 
     public int id;
     public int rule_id;

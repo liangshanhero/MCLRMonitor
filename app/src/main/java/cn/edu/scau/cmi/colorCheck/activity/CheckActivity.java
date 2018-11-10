@@ -18,7 +18,7 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.dao.Service;
 import cn.edu.scau.cmi.colorCheck.domain.Project;
-import cn.edu.scau.cmi.colorCheck.domain.Linear_Rule;
+import cn.edu.scau.cmi.colorCheck.domain.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.Rule;
 import cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
@@ -66,8 +66,8 @@ public class CheckActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    if(rules.get(rule.getSelectedItemPosition()).getLinear_rule() != null){
-                        Linear_Rule rul = rules.get(rule.getSelectedItemPosition()).getLinear_rule();
+                    if(rules.get(rule.getSelectedItemPosition()).getQuantitativeLinear_rule() != null){
+                        QuantitativeLinearRule rul = rules.get(rule.getSelectedItemPosition()).getQuantitativeLinear_rule();
                         float y =  rul.k1*r + rul.k2*g + rul.k3*b + rul.b;
                         result.setText(new BigDecimal(y).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
                     }

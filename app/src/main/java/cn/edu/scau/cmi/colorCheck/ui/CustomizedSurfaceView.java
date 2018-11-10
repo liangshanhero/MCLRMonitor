@@ -109,7 +109,7 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
             int x = (int)(touchX*((float)bitmap.getWidth()/getWidth()));
             int y = (int)(touchY*((float)bitmap.getHeight()/getHeight()));
             int argb = bitmap.getPixel(x, y);
-             rgbTouch.displayRGB(argb);
+            rgbTouch.displayRGB(argb);
 
         }
     };

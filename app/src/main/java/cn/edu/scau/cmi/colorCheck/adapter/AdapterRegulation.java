@@ -61,8 +61,8 @@ public class AdapterRegulation extends RecyclerView.Adapter<AdapterRegulation.Vi
 
         final Rule rule = ruleList.get(position);
         holder.name.setText(rule.name);
-        if (rule.getLinear_rule()!=null){
-            holder.formula.setText(rule.getLinear_rule().toString());
+        if (rule.getQuantitativeLinear_rule()!=null){
+            holder.formula.setText(rule.getQuantitativeLinear_rule().toString());
         }else{
             StringBuilder sb = new StringBuilder();
             for(Range_Rule range_rule : rule.getRange_rules()){

@@ -15,7 +15,7 @@ public class Rule {
     public int project_id;
 
     private List<Range_Rule> range_rules;
-    private Linear_Rule linear_rule;
+    private QuantitativeLinearRule quantitativeLinear_rule;
 
     public List<Range_Rule> getRange_rules() {
         return range_rules;
@@ -25,12 +25,12 @@ public class Rule {
         this.range_rules = range_rules;
     }
 
-    public Linear_Rule getLinear_rule() {
-        return linear_rule;
+    public QuantitativeLinearRule getQuantitativeLinear_rule() {
+        return quantitativeLinear_rule;
     }
 
-    public void setLinear_rule(Linear_Rule linear_rule) {
-        this.linear_rule = linear_rule;
+    public void setQuantitativeLinear_rule(QuantitativeLinearRule quantitativeLinear_rule) {
+        this.quantitativeLinear_rule = quantitativeLinear_rule;
     }
 
     @Override

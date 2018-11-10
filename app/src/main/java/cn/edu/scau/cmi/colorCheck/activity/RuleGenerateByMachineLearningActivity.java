@@ -15,7 +15,7 @@ import java.util.List;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.AdapterSample;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
-import cn.edu.scau.cmi.colorCheck.domain.Linear_Rule;
+import cn.edu.scau.cmi.colorCheck.domain.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.Rule;
 import cn.edu.scau.cmi.colorCheck.domain.Sample;
 import cn.edu.scau.cmi.colorCheck.machineLearning.Regression;
@@ -73,12 +73,12 @@ public class RuleGenerateByMachineLearningActivity extends AppCompatActivity {
                     rule.project_id = projectId;
 
                     rule.name = rule.create_date + " "+ rule.type;
-                    Linear_Rule linear_rule = new Linear_Rule();
-                    linear_rule.k1 = new BigDecimal(K[3]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-                    linear_rule.k2 = new BigDecimal(K[3]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-                    linear_rule.k3 = new BigDecimal(K[1]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-                    linear_rule.b = new BigDecimal(K[0]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-                    rule.setLinear_rule(linear_rule);
+                    QuantitativeLinearRule quantitativeLinear_rule = new QuantitativeLinearRule();
+                    quantitativeLinear_rule.k1 = new BigDecimal(K[3]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+                    quantitativeLinear_rule.k2 = new BigDecimal(K[3]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+                    quantitativeLinear_rule.k3 = new BigDecimal(K[1]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+                    quantitativeLinear_rule.b = new BigDecimal(K[0]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+                    rule.setQuantitativeLinear_rule(quantitativeLinear_rule);
                     Service.addRule(rule);
                 }
                 result = Regression.LineRegression(x, y, K, n, m);
@@ -92,12 +92,12 @@ public class RuleGenerateByMachineLearningActivity extends AppCompatActivity {
                     rule.num = samples.size();
                     rule.name = rule.create_date + "-t "+ rule.type;
                     rule.project_id = projectId;
-                    Linear_Rule linear_rule = new Linear_Rule();
-                    linear_rule.k1 = new BigDecimal(K[3]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-                    linear_rule.k2 = new BigDecimal(K[3]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-                    linear_rule.k3 = new BigDecimal(K[1]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-                    linear_rule.b = new BigDecimal(K[0]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-                    rule.setLinear_rule(linear_rule);
+                    QuantitativeLinearRule quantitativeLinear_rule = new QuantitativeLinearRule();
+                    quantitativeLinear_rule.k1 = new BigDecimal(K[3]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+                    quantitativeLinear_rule.k2 = new BigDecimal(K[3]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+                    quantitativeLinear_rule.k3 = new BigDecimal(K[1]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+                    quantitativeLinear_rule.b = new BigDecimal(K[0]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+                    rule.setQuantitativeLinear_rule(quantitativeLinear_rule);
                     Service.addRule(rule);
                     Toast.makeText(this, "训练成功", Toast.LENGTH_SHORT).show();
                     finish();

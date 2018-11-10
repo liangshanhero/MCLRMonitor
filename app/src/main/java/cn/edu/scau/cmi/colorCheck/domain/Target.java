@@ -6,9 +6,9 @@ package cn.edu.scau.cmi.colorCheck.domain;
  */
 
 public class Target {
-    private int id;
-    private String name;
-    private int project_id;
+    public int id;
+    public String name;
+    public int project_id;
 
     public Target(String name) {
         this.name = name;

@@ -8,11 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.domain.Check_Type;
-import cn.edu.scau.cmi.colorCheck.domain.Linear_Rule;
+import cn.edu.scau.cmi.colorCheck.domain.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.Project;
 import cn.edu.scau.cmi.colorCheck.domain.Range_Rule;
 import cn.edu.scau.cmi.colorCheck.domain.Rule;
 import cn.edu.scau.cmi.colorCheck.domain.Sample;
+
 import cn.edu.scau.cmi.colorCheck.domain.Target;
 
 /**
@@ -84,9 +85,9 @@ public class Service {
         }
         DAO.insert(rule);
         int id = findRuleId(rule);
-        if(rule.getLinear_rule()!=null){
-            rule.getLinear_rule().rule_id = id;
-            DAO.insert(rule.getLinear_rule());
+        if(rule.getQuantitativeLinear_rule()!=null){
+            rule.getQuantitativeLinear_rule().rule_id = id;
+            DAO.insert(rule.getQuantitativeLinear_rule());
         }else{
             for(Range_Rule range_rule : rule.getRange_rules()){
                 range_rule.rule_id = id;
@@ -178,13 +179,13 @@ public class Service {
             rule.num = cursor.getInt(cursor.getColumnIndex("num"));
             Cursor c = DAO.query("linear_rule",null,"rule_id=?",new String[]{rule.id+""});
             while(c.moveToNext()){
-                Linear_Rule linear_rule = new Linear_Rule();
-                linear_rule.id = c.getInt(c.getColumnIndex("id"));
-                linear_rule.k1 = c.getFloat(c.getColumnIndex("k1"));
-                linear_rule.k2 = c.getFloat(c.getColumnIndex("k2"));
-                linear_rule.k3 = c.getFloat(c.getColumnIndex("k3"));
-                linear_rule.b = c.getFloat(c.getColumnIndex("b"));
-                rule.setLinear_rule(linear_rule);
+                QuantitativeLinearRule quantitativeLinear_rule = new QuantitativeLinearRule();
+                quantitativeLinear_rule.id = c.getInt(c.getColumnIndex("id"));
+                quantitativeLinear_rule.k1 = c.getFloat(c.getColumnIndex("k1"));
+                quantitativeLinear_rule.k2 = c.getFloat(c.getColumnIndex("k2"));
+                quantitativeLinear_rule.k3 = c.getFloat(c.getColumnIndex("k3"));
+                quantitativeLinear_rule.b = c.getFloat(c.getColumnIndex("b"));
+                rule.setQuantitativeLinear_rule(quantitativeLinear_rule);
             }
             Cursor c1 = DAO.query("range_rule",null,"rule_id=?",new String[]{rule.id+""});
             List<Range_Rule> range_rules = new ArrayList<>();

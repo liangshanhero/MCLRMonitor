@@ -11,7 +11,7 @@ import java.util.Date;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
-import cn.edu.scau.cmi.colorCheck.domain.Linear_Rule;
+import cn.edu.scau.cmi.colorCheck.domain.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.Rule;
 
 public class RuleGenerateByCustomActivity extends AppCompatActivity {
@@ -55,12 +55,12 @@ public class RuleGenerateByCustomActivity extends AppCompatActivity {
             rule.name = ruleName.getText().toString();
             rule.create_date = new SimpleDateFormat("yyyy-MM-dd HH:ss").format(new Date());
             rule.type = "自定义规则";
-            Linear_Rule linear_rule = new Linear_Rule();
-            linear_rule.k1 = Float.valueOf(k1.getText().toString());
-            linear_rule.k2 = Float.valueOf(k2.getText().toString());
-            linear_rule.k3 = Float.valueOf(k3.getText().toString());
-            linear_rule.b = Float.valueOf(b.getText().toString());
-            rule.setLinear_rule(linear_rule);
+            QuantitativeLinearRule quantitativeLinear_rule = new QuantitativeLinearRule();
+            quantitativeLinear_rule.k1 = Float.valueOf(k1.getText().toString());
+            quantitativeLinear_rule.k2 = Float.valueOf(k2.getText().toString());
+            quantitativeLinear_rule.k3 = Float.valueOf(k3.getText().toString());
+            quantitativeLinear_rule.b = Float.valueOf(b.getText().toString());
+            rule.setQuantitativeLinear_rule(quantitativeLinear_rule);
             if(Service.addRule(rule)){
                 Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
                 finish();
