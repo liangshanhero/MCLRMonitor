@@ -10,6 +10,6 @@ public class UseageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_useage);
+        setContentView(R.layout.activity_manual);
     }
 }

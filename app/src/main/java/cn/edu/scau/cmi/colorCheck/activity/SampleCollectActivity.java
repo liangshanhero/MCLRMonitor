@@ -61,7 +61,7 @@ public class SampleCollectActivity extends AppCompatActivity implements View.OnT
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.study);
+        setContentView(R.layout.activity_collect_sample);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         type = getIntent().getStringExtra("type");

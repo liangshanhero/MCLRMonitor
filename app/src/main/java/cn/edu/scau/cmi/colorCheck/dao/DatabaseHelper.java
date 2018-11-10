@@ -9,24 +9,24 @@ import android.widget.Toast;
  * Created by Mr_Chen on 2018/6/7.
  */
 
-public class MyDatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
     private Context mContext;
-    private static MyDatabaseHelper myDatabaseHelper;
+    private static DatabaseHelper myDatabaseHelper;
     private static SQLiteDatabase sqLiteDatabase;
 
 
     public static SQLiteDatabase getSQLiteDatabase(){
         return sqLiteDatabase;
     }
-    public static MyDatabaseHelper getInstance(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
+    public static DatabaseHelper getInstance(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         if(myDatabaseHelper == null){
-            myDatabaseHelper =  new MyDatabaseHelper(context, name, factory, version);
+            myDatabaseHelper =  new DatabaseHelper(context, name, factory, version);
             sqLiteDatabase = myDatabaseHelper.getWritableDatabase();
         }
         return myDatabaseHelper;
     }
 
-    private MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    private DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         this.mContext = context;
     }

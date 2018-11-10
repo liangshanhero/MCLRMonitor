@@ -21,7 +21,7 @@ public class ProjectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project);
+        setContentView(R.layout.activity_project_list);
         recyclerView = findViewById(R.id.project_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         delBtn = findViewById(R.id.project_del);

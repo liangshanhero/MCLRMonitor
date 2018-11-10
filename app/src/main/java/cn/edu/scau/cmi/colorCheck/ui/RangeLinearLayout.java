@@ -25,7 +25,7 @@ public class RangeLinearLayout extends LinearLayout{
     public RangeLinearLayout(Context context, final DeleteListener listener) {
         super(context);
         this.listener = listener;
-        LayoutInflater.from(context).inflate(R.layout.range_item,this);
+        LayoutInflater.from(context).inflate(R.layout.item_range,this);
         editText = findViewById(R.id.range);
         delete = findViewById(R.id.range_delete);
         delete.setOnClickListener(new OnClickListener() {

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.DAO;
-import cn.edu.scau.cmi.colorCheck.dao.MyDatabaseHelper;
+import cn.edu.scau.cmi.colorCheck.dao.DatabaseHelper;
 import cn.edu.scau.cmi.colorCheck.domain.Check_Type;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA},1);
         }
-        MyDatabaseHelper.getInstance(this,"rgb.db",null,1);
+        DatabaseHelper.getInstance(this,"rgb.db",null,1);
         DAO.insert(new Check_Type("定量"));
         DAO.insert(new Check_Type("定性"));
 

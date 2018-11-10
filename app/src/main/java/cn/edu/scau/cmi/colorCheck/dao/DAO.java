@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
  */
 
 public class DAO {
-    private static SQLiteDatabase sqLiteDatabase = MyDatabaseHelper.getSQLiteDatabase();
+    private static SQLiteDatabase sqLiteDatabase = DatabaseHelper.getSQLiteDatabase();
     public static ContentValues objectToContentValues(Object object){
         Class<?> clazz = object.getClass();
         ContentValues contentValues = new ContentValues();

@@ -27,7 +27,7 @@ public class RegulationGenerateByMachineLearningActivity extends AppCompatActivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_machine_study);
+        setContentView(R.layout.activity_machine_learning);
 
         RecyclerView recyclerView = findViewById(R.id.collection_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
