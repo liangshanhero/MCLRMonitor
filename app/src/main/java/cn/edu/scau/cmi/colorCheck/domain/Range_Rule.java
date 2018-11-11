@@ -2,6 +2,8 @@ package cn.edu.scau.cmi.colorCheck.domain;
 
 /**
  * Created by Mr_Chen on 2018/6/28.
+ * 是什么规则？？？
+ *
  */
 
 public class Range_Rule {

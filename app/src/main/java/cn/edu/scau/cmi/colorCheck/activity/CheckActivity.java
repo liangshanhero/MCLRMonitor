@@ -24,16 +24,16 @@ import cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
 
 public class CheckActivity extends AppCompatActivity {
-
-    LinearLayout selectedColor;
-    EditText red;
-    EditText green;
-    EditText blue;
-    EditText result;
-    TextView resultName;
+// 用于显示选中后的背景
+    LinearLayout selectedColorLinnerLayout;
+    EditText redEditText;
+    EditText greenEditText;
+    EditText blueEditText;
+    EditText resultEditText;
+    TextView resultTextView;
     CustomizedSurfaceView surfaceView;
-    Spinner project;
-    Spinner rule;
+    Spinner projectSpinner;
+    Spinner ruleSpinner;
 
     private List<Project> projects;
     private List<Rule> rules;
@@ -51,25 +51,27 @@ public class CheckActivity extends AppCompatActivity {
         surfaceView.setGRBTouch(new CustomizedSurfaceView.RGBTouch() {
             @Override
             public void displayRGB(int color) {
-                selectedColor.setBackgroundColor(color);
-                int r = Color.red(color);
-                int g = Color.green(color);
-                int b = Color.blue(color);
-                red.setText(r+"");
-                green.setText(g+"");
-                blue.setText(b+"");
+                selectedColorLinnerLayout.setBackgroundColor(color);
+                int red = Color.red(color);
+                int green = Color.green(color);
+                int blue = Color.blue(color);
+                //在检测节目显示选中点的红、绿、蓝三色的值
+                redEditText.setText(red+"");
+                greenEditText.setText(green+"");
+                blueEditText.setText(blue+"");
                 if(rules.size() ==0 ){
-                    if(projects.size()>0 && projects.get(project.getSelectedItemPosition()).type_id == 2){
-                        result.setText(Service.rangeCheck(r,g,b,projects.get(project.getSelectedItemPosition()).id));
+                    if(projects.size()>0 && projects.get(projectSpinner.getSelectedItemPosition()).type_id == 2){
+                        resultEditText.setText(Service.rangeCheck(red,green,blue,projects.get(projectSpinner.getSelectedItemPosition()).id));
                     }else{
                         Toast.makeText(CheckActivity.this, "请先创建规则", Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
-                    if(rules.get(rule.getSelectedItemPosition()).getQuantitativeLinear_rule() != null){
-                        QuantitativeLinearRule rul = rules.get(rule.getSelectedItemPosition()).getQuantitativeLinear_rule();
-                        float y =  rul.k1*r + rul.k2*g + rul.k3*b + rul.b;
-                        result.setText(new BigDecimal(y).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+                    if(rules.get(ruleSpinner.getSelectedItemPosition()).getQuantitativeLinear_rule() != null){
+                        //目前只有线性规则在使用，待以后补充
+                        QuantitativeLinearRule quantitativeLinearRule = rules.get(ruleSpinner.getSelectedItemPosition()).getQuantitativeLinear_rule();
+                        float result =  quantitativeLinearRule.k1*red + quantitativeLinearRule.k2*green + quantitativeLinearRule.k3*blue + quantitativeLinearRule.b;
+                        resultEditText.setText(new BigDecimal(result).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
                     }
                 }
             }
@@ -83,19 +85,19 @@ public class CheckActivity extends AppCompatActivity {
             }
         });
 
-        selectedColor = findViewById(R.id.select_color);
-        red = findViewById(R.id.red);
-        green = findViewById(R.id.green);
-        blue = findViewById(R.id.blue);
-        resultName = findViewById(R.id.result_name);
-        result = findViewById(R.id.check_result);
-        project = findViewById(R.id.check_project);
-        rule = findViewById(R.id.check_rule);
+        selectedColorLinnerLayout = findViewById(R.id.select_color);
+        redEditText = findViewById(R.id.red);
+        greenEditText = findViewById(R.id.green);
+        blueEditText = findViewById(R.id.blue);
+        resultTextView = findViewById(R.id.result_name);
+        resultEditText = findViewById(R.id.check_result);
+        projectSpinner = findViewById(R.id.check_project);
+        ruleSpinner = findViewById(R.id.check_rule);
         projects = Service.getAllProject();
         ArrayAdapter<Project> projectAdapter = new ArrayAdapter<Project>(this,
                 android.R.layout.simple_list_item_1,
                 projects);
-        project.setAdapter(projectAdapter);
+        projectSpinner.setAdapter(projectAdapter);
         if(projects.size() != 0){
            rules = Service.getRulesOfProject(projects.get(0));
         }else{
@@ -104,17 +106,17 @@ public class CheckActivity extends AppCompatActivity {
         ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
                 rules);
-        rule.setAdapter(ruleAdapter);
+        ruleSpinner.setAdapter(ruleAdapter);
 
 
-        project.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 rules = Service.getRulesOfProject(projects.get(position));
                 ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(CheckActivity.this,
                         android.R.layout.simple_list_item_1,
                         rules);
-                rule.setAdapter(ruleAdapter);
+                ruleSpinner.setAdapter(ruleAdapter);
             }
 
             @Override
@@ -124,8 +126,4 @@ public class CheckActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
 }

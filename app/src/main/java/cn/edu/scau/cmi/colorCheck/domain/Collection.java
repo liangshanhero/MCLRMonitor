@@ -2,6 +2,8 @@ package cn.edu.scau.cmi.colorCheck.domain;
 
 /**
  * Created by Mr_Chen on 2018/6/7.
+ *
+ * 是不是数据采集？？？？？
  */
 
 public class Collection {
