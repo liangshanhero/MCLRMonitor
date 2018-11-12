@@ -1,5 +1,6 @@
 package cn.edu.scau.cmi.colorCheck.activity;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import cn.edu.scau.cmi.colorCheck.domain.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.Rule;
 import cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
+import cn.edu.scau.cmi.colorCheck.ui.TouchListener;
 
 public class CheckActivity extends AppCompatActivity {
 // 用于显示选中后的背景
@@ -48,7 +50,8 @@ public class CheckActivity extends AppCompatActivity {
 
     private void initView() {
         surfaceView = findViewById(R.id.check_surface);
-        surfaceView.setGRBTouch(new CustomizedSurfaceView.RGBTouch() {
+//        点击后的行为
+        surfaceView.setGRBTouch(new TouchListener() {
             @Override
             public void displayRGB(int color) {
                 selectedColorLinnerLayout.setBackgroundColor(color);
@@ -74,6 +77,11 @@ public class CheckActivity extends AppCompatActivity {
                         resultEditText.setText(new BigDecimal(result).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
                     }
                 }
+            }
+
+            @Override
+            public void showPicture(Bitmap bitmap) {
+//                在这里添加图片的显示部分
             }
 
             @Override
