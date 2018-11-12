@@ -12,19 +12,19 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
-import cn.edu.scau.cmi.colorCheck.domain.Range_Rule;
+import cn.edu.scau.cmi.colorCheck.domain.RangeRule;
 import cn.edu.scau.cmi.colorCheck.domain.Rule;
 
 /**
  * Created by Mr_Chen on 2018/6/6.
  */
 
-public class AdapterRegulation extends RecyclerView.Adapter<AdapterRegulation.ViewHolder>{
+public class AdapterRule extends RecyclerView.Adapter<AdapterRule.ViewHolder>{
 
     List<Rule> ruleList;
     Context context;
 
-    public AdapterRegulation(List<Rule> ruleList, Context context) {
+    public AdapterRule(List<Rule> ruleList, Context context) {
         this.ruleList = ruleList;
         this.context = context;
     }
@@ -65,7 +65,7 @@ public class AdapterRegulation extends RecyclerView.Adapter<AdapterRegulation.Vi
             holder.formula.setText(rule.getQuantitativeLinear_rule().toString());
         }else{
             StringBuilder sb = new StringBuilder();
-            for(Range_Rule range_rule : rule.getRange_rules()){
+            for(RangeRule range_rule : rule.getRange_rules()){
                 sb.append(range_rule.toString()).append('\n');
             }
             sb.deleteCharAt(sb.length()-1);

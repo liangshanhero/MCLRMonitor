@@ -6,7 +6,7 @@ package cn.edu.scau.cmi.colorCheck.domain;
  *
  */
 
-public class Range_Rule {
+public class RangeRule {
     public int id;
     public int r_start;
     public int r_end;

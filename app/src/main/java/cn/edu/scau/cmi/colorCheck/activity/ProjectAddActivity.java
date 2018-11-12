@@ -16,7 +16,7 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
-import cn.edu.scau.cmi.colorCheck.domain.Check_Type;
+import cn.edu.scau.cmi.colorCheck.domain.CheckType;
 import cn.edu.scau.cmi.colorCheck.domain.Project;
 import cn.edu.scau.cmi.colorCheck.domain.Target;
 import cn.edu.scau.cmi.colorCheck.ui.RangeLinearLayout;
@@ -99,7 +99,7 @@ public class ProjectAddActivity extends AppCompatActivity {
         }
         Project project = new Project(name.getText().toString(),memo.getText().toString());
         if("定性".equals(type1)){
-            if(!Service.addProject(project,new Check_Type(type1))){
+            if(!Service.addProject(project,new CheckType(type1))){
                 Toast.makeText(this, "项目名已被使用", Toast.LENGTH_SHORT).show();
                 return ;
             }
@@ -114,7 +114,7 @@ public class ProjectAddActivity extends AppCompatActivity {
             }
            Service.addRangeOfProject(project,targets);
         }else{
-            if(!Service.addProject(project,new Check_Type(type1))){
+            if(!Service.addProject(project,new CheckType(type1))){
                 Toast.makeText(this, "项目名已被使用", Toast.LENGTH_SHORT).show();
                 return ;
             }

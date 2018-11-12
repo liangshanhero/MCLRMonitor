@@ -26,13 +26,10 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
     private Camera camera;
     private SurfaceHolder surfaceHolder;
     private Context context;
-    private RGBTouch rgbTouch;
+    private TouchListener rgbTouch;
     float touchX, touchY;
-    public interface RGBTouch{
-        void displayRGB(int color);
-        void showPicture(byte[] data);
-    }
-    public void setGRBTouch(RGBTouch rgbTouch){
+
+    public void setGRBTouch(TouchListener rgbTouch){
         this.rgbTouch = rgbTouch;
     }
     public CustomizedSurfaceView(final Context context, AttributeSet attrs) {
@@ -102,20 +99,29 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
+            System.out.println("this is in Camera.PictureCallback");
             Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
             Matrix matrix = new Matrix();
             matrix.setRotate(90);
+//          图片获取，下面如何处理
+
+//            bitmap.
+
             bitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
             int x = (int)(touchX*((float)bitmap.getWidth()/getWidth()));
             int y = (int)(touchY*((float)bitmap.getHeight()/getHeight()));
             int argb = bitmap.getPixel(x, y);
+            System.out.println("选中的点的argb is "+argb);
+
+
             rgbTouch.displayRGB(argb);
+            rgbTouch.showPicture(bitmap);
 
         }
     };
 
 
-
+//打开相机
     private Camera openCamera(){
 
         if(camera == null){
@@ -123,6 +129,7 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
         }
         return camera;
     }
+//    开始预览
     private void startPreview(SurfaceHolder surfaceHolder){
         if(camera == null){
             camera = openCamera();
@@ -142,6 +149,7 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
             }
         }
     }
+//    释放相机
     private void releaseCamera(){
         if(camera!=null){
             camera.setPreviewCallback(null);
@@ -150,6 +158,7 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
             camera = null;
         }
     }
+//    停止预览
     private void stopPreView(){
         if(camera != null){
             camera.stopPreview();

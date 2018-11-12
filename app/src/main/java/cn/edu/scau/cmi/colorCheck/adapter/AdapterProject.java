@@ -108,7 +108,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.ViewHold
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 //TODO
                 List<Rule> list = Service.getRulesOfProject(project);
-                AdapterRegulation adapterRule = new AdapterRegulation(list,context);
+                AdapterRule adapterRule = new AdapterRule(list,context);
                 recyclerView.setAdapter(adapterRule);
                 AlertDialog alertDialog = new AlertDialog.Builder(context)
                         .setView(recyclerView)

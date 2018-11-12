@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.domain.Check_Type;
+import cn.edu.scau.cmi.colorCheck.domain.CheckType;
 import cn.edu.scau.cmi.colorCheck.domain.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.Project;
-import cn.edu.scau.cmi.colorCheck.domain.Range_Rule;
+import cn.edu.scau.cmi.colorCheck.domain.RangeRule;
 import cn.edu.scau.cmi.colorCheck.domain.Rule;
 import cn.edu.scau.cmi.colorCheck.domain.Sample;
 
@@ -65,7 +65,7 @@ public class Service {
         return targets;
     }
 
-    public static boolean addProject(Project project, Check_Type checkType){
+    public static boolean addProject(Project project, CheckType checkType){
        if(findProjectId(project) != -1){
            return false;
        }
@@ -89,7 +89,7 @@ public class Service {
             rule.getQuantitativeLinear_rule().rule_id = id;
             DAO.insert(rule.getQuantitativeLinear_rule());
         }else{
-            for(Range_Rule range_rule : rule.getRange_rules()){
+            for(RangeRule range_rule : rule.getRange_rules()){
                 range_rule.rule_id = id;
                 DAO.insert(range_rule);
             }
@@ -188,9 +188,9 @@ public class Service {
                 rule.setQuantitativeLinear_rule(quantitativeLinear_rule);
             }
             Cursor c1 = DAO.query("range_rule",null,"rule_id=?",new String[]{rule.id+""});
-            List<Range_Rule> range_rules = new ArrayList<>();
+            List<RangeRule> range_rules = new ArrayList<>();
             while(c1.moveToNext()){
-                Range_Rule range_rule = new Range_Rule();
+                RangeRule range_rule = new RangeRule();
                 range_rule.id = c1.getInt(c1.getColumnIndex("id"));
                 range_rule.r_start = c1.getInt(c1.getColumnIndex("r_start"));
                 range_rule.g_start = c1.getInt(c1.getColumnIndex("g_start"));
@@ -256,9 +256,9 @@ public class Service {
 
         Cursor cursor = DAO.rawQuery("select min(red),min(green),min(blue),max(red),max(green),max(blue),tname" +
                 " from ("+subSQL+")"+" group by tname",null);
-        List<Range_Rule> range_rules = new ArrayList<>();
+        List<RangeRule> range_rules = new ArrayList<>();
         while(cursor.moveToNext()){
-            Range_Rule range_rule = new Range_Rule();
+            RangeRule range_rule = new RangeRule();
             range_rule.r_start = cursor.getInt(cursor.getColumnIndex("min(red)"));
             range_rule.g_start = cursor.getInt(cursor.getColumnIndex("min(green)"));
             range_rule.b_start = cursor.getInt(cursor.getColumnIndex("min(blue)"));

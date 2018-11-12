@@ -27,7 +27,7 @@ public class RuleGenerateByMachineLearningActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_machineLearning_rule_generate);
+        setContentView(R.layout.activity_machinelearning_rule_generate);
 
         RecyclerView recyclerView = findViewById(R.id.collection_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

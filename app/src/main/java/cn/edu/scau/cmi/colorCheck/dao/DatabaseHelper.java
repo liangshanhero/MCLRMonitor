@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         //项目检测类型，暂时有定性和定量
-        db.execSQL("create table check_type(" +
+        db.execSQL("create table checktype(" +
                 "id integer primary key autoincrement," +
                 "name text not null unique)");
 

@@ -14,14 +14,14 @@ public class Rule {
     public String type;
     public int project_id;
 
-    private List<Range_Rule> range_rules;
+    private List<RangeRule> range_rules;
     private QuantitativeLinearRule quantitativeLinear_rule;
 
-    public List<Range_Rule> getRange_rules() {
+    public List<RangeRule> getRange_rules() {
         return range_rules;
     }
 
-    public void setRange_rules(List<Range_Rule> range_rules) {
+    public void setRange_rules(List<RangeRule> range_rules) {
         this.range_rules = range_rules;
     }
 

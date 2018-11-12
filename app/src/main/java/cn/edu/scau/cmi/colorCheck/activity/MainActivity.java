@@ -14,7 +14,7 @@ import android.widget.Toast;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.DAO;
 import cn.edu.scau.cmi.colorCheck.dao.DatabaseHelper;
-import cn.edu.scau.cmi.colorCheck.domain.Check_Type;
+import cn.edu.scau.cmi.colorCheck.domain.CheckType;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA},1);
         }
         DatabaseHelper.getInstance(this,"rgb.db",null,1);
-        DAO.insert(new Check_Type("定量"));
-        DAO.insert(new Check_Type("定性"));
+        DAO.insert(new CheckType("定量"));
+        DAO.insert(new CheckType("定性"));
 
     }
 
