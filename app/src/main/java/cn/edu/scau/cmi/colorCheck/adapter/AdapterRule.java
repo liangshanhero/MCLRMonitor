@@ -71,6 +71,7 @@ public class AdapterRule extends RecyclerView.Adapter<AdapterRule.ViewHolder>{
             sb.deleteCharAt(sb.length()-1);
             holder.formula.setText(sb.toString());
         }
+        
 
         if(rule.type.equals("机器学习")){
             holder.type.setText(rule.type+"-->数据量："+rule.num +" 条");
