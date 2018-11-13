@@ -26,11 +26,11 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
     private Camera camera;
     private SurfaceHolder surfaceHolder;
     private Context context;
-    private TouchListener rgbTouch;
+    private TouchListener touchListener;
     float touchX, touchY;
 
-    public void setGRBTouch(TouchListener rgbTouch){
-        this.rgbTouch = rgbTouch;
+    public void setTouchListener(TouchListener touchListener){
+        this.touchListener = touchListener;
     }
     public CustomizedSurfaceView(final Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,6 +39,7 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
         initCameraParams();
         surfaceHolder = this.getHolder();
         surfaceHolder.addCallback(this);
+//        点击后，捕获图片事件
         this.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -82,6 +83,7 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
             @Override
             public void onAutoFocus(boolean success, Camera camera) {
                 if(success){
+                    Log.i("聚焦状态","成功");
                     camera.takePicture(null,null,pc);
                     camera.setPreviewCallback(new Camera.PreviewCallback() {
                         @Override
@@ -99,7 +101,7 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
-            System.out.println("this is in Camera.PictureCallback");
+            Log.i("图片获取状态","成功");
             Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
             Matrix matrix = new Matrix();
             matrix.setRotate(90);
@@ -114,8 +116,9 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
             System.out.println("选中的点的argb is "+argb);
 
 
-            rgbTouch.displayRGB(argb);
-            rgbTouch.showPicture(bitmap);
+            touchListener.displayRgb(argb);
+            touchListener.showPicture(bitmap);
+            touchListener.displayRgbOnCoordinate(bitmap);
 
         }
     };

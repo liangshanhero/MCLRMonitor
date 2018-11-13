@@ -38,6 +38,8 @@ import cn.edu.scau.cmi.colorCheck.dao.Service;
 import cn.edu.scau.cmi.colorCheck.domain.Sample;
 import cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
+import cn.edu.scau.cmi.colorCheck.ui.TouchListener;
+import cn.edu.scau.cmi.colorCheck.ui.TouichListenerAdapter;
 
 public class SampleCollectActivity extends AppCompatActivity implements View.OnTouchListener{
     private static final int TAKE_PHOTO =  1;
@@ -173,11 +175,17 @@ public class SampleCollectActivity extends AppCompatActivity implements View.OnT
         }
         if(surfaceView.getVisibility() != View.VISIBLE){
             surfaceView.setVisibility(View.VISIBLE);
-            surfaceView.setGRBTouch(new CustomizedSurfaceView.RGBTouch() {
+            surfaceView.setTouchListener(new TouichListenerAdapter() {
                 @Override
-                public void displayRGB(int color) {
+                public void displayRgb(int color) {
                     setRGB(color);
                 }
+
+                @Override
+                public void showPicture(Bitmap bitmap) {
+
+                }
+
                 @Override
                 public void showPicture(byte[] data) {
 

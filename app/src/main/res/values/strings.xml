@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">多维智能检测</string>
 
     <string name="driver">com.mysql.jdbc.Driver</string>

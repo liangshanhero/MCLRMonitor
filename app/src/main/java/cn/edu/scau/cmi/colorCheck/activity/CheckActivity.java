@@ -24,6 +24,7 @@ import cn.edu.scau.cmi.colorCheck.domain.Rule;
 import cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.ui.TouchListener;
+import cn.edu.scau.cmi.colorCheck.ui.TouichListenerAdapter;
 
 public class CheckActivity extends AppCompatActivity {
 // 用于显示选中后的背景
@@ -50,10 +51,11 @@ public class CheckActivity extends AppCompatActivity {
 
     private void initView() {
         surfaceView = findViewById(R.id.check_surface);
-//        点击后的行为
-        surfaceView.setGRBTouch(new TouchListener() {
+//        点击后的行为,利用自定义的
+        surfaceView.setTouchListener(new TouichListenerAdapter() {
+//            前面的RGB色彩检测方法
             @Override
-            public void displayRGB(int color) {
+            public void displayRgb(int color) {
                 selectedColorLinnerLayout.setBackgroundColor(color);
                 int red = Color.red(color);
                 int green = Color.green(color);
@@ -79,9 +81,19 @@ public class CheckActivity extends AppCompatActivity {
                 }
             }
 
+
+            @Override
+            public void displayRgbOnCoordinate(Bitmap bitmap) {
+//                在这里添加图片的显示部分
+                System.out.println("在坐标上显示图片，暂时没有添加功能");
+                Toast.makeText(CheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
+            }
+
             @Override
             public void showPicture(Bitmap bitmap) {
 //                在这里添加图片的显示部分
+                System.out.println("显示图片，暂时没有添加功能");
+                Toast.makeText(CheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
             }
 
             @Override
