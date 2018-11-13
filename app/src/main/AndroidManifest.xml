@@ -32,26 +32,26 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SampleCollectActivity" />
-        <activity android:name=".activity.Main2Activity4Test" />
-        <activity android:name=".activity.PointCheckActivity" />
-        <activity android:name=".activity.ProjectActivity" />
+        <activity android:name=".activity.test.Main2Activity4Test" />
+        <activity android:name=".activity.check.PointCheckActivity" />
+        <activity android:name=".activity.ProjectListActivity" />
         <activity android:name=".activity.ProjectAddActivity" />
         <activity android:name=".activity.RuleGenerateByCustomActivity" />
         <activity android:name=".activity.RuleGenerateByMachineLearningActivity" />
         <activity android:name=".activity.ManualActivity" />
         <activity
-            android:name=".activity.PointCheckDetailActivity"
+            android:name=".activity.check.PointCheckDetailActivity"
             android:label="@string/title_activity_check_detail" />
         <activity
-            android:name=".activity.TestBasicActivity"
+            android:name=".activity.test.TestBasicActivity"
             android:label="@string/title_activity_test_basic"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.PictureCheckActivity"
+            android:name=".activity.check.PictureCheckActivity"
             android:label="@string/title_activity_picture_check"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.PictureCheckResultActivity"
+            android:name=".activity.check.PictureCheckResultActivity"
             android:label="@string/title_activity_picture_check_result"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

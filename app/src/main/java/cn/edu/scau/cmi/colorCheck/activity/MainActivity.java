@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
+import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.activity.check.PointCheckActivity;
 import cn.edu.scau.cmi.colorCheck.dao.DAO;
 import cn.edu.scau.cmi.colorCheck.dao.DatabaseHelper;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
@@ -43,39 +45,43 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-//基于像素点采集样本数据
-    public void pointCollectData(View view){
-        Intent intent = new Intent(MainActivity.this, ProjectActivity.class);
-        intent.putExtra("flag",1);
-        startActivity(intent);
+//    （1）查看所有的项目
+    public void listProjects(View view){
+        startActivity(new Intent(this, ProjectListActivity.class));
     }
-    //基于图片采集样本数据
-    public void pictureCollectData(View view){
-        Intent intent = new Intent(MainActivity.this, ProjectActivity.class);
-        intent.putExtra("flag",1);
-        startActivity(intent);
-    }
-    public void machineLearning(View view){
-        Intent intent = new Intent(MainActivity.this, ProjectActivity.class);
-        intent.putExtra("flag",2);
-        startActivity(intent);
-    }
-//基于像素点检测
+    //（2）基于像素点检测
     public void pointCheck(View view){
         Intent intent = new Intent(MainActivity.this, PointCheckActivity.class);
         startActivity(intent);
     }
-//    基于图片检测
+    // （3）基于图片检测
     public void pictureCheck(View view){
         Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
         startActivity(intent);
     }
+//（4）基于像素点采集样本数据
+    public void pointCollectData(View view){
+        Intent intent = new Intent(MainActivity.this, ProjectListActivity.class);
+        intent.putExtra("flag",1);
+        startActivity(intent);
+    }
+    //（5）基于图片采集样本数据
+    public void pictureCollectData(View view){
+        Intent intent = new Intent(MainActivity.this, ProjectListActivity.class);
+        intent.putExtra("flag",1);
+        startActivity(intent);
+    }
+//    (6)规则生成
+    public void ruleGenerate(View view){
+        Intent intent = new Intent(MainActivity.this, ProjectListActivity.class);
+        intent.putExtra("flag",2);
+        startActivity(intent);
+    }
 
-    public void usage(View view){
+// 使用说明
+    public void manual(View view){
         Intent intent = new Intent(MainActivity.this, ManualActivity.class);
         startActivity(intent);
     }
-    public void seeProject(View view){
-        startActivity(new Intent(this, ProjectActivity.class));
-    }
+
 }

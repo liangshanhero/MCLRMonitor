@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eae5e5">
-
-
+<!--查看所有的项目-->
     <android.support.v7.widget.CardView
-        android:onClick="seeProject"
+        android:onClick="listProjects"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +16,6 @@
         app:cardBackgroundColor="#fff">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -37,7 +35,7 @@
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="项目"/>
+                android:text="检测项目管理"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -46,11 +44,11 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-    <!--项目检测，包含点击点的检测和图片检测-->
+    <!--项目检测，像素点检测方法-->
 
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="point_check"
+        android:onClick="pointCheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -87,11 +85,11 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-
+<!--基于图片的检查-->
 
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="picture_check"
+        android:onClick="pictureCheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -210,7 +208,7 @@
 <!--生成规则-->
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="machineLearning"
+        android:onClick="ruleGenerate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -247,10 +245,11 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+    <!--使用说明-->
     <android.support.v7.widget.CardView
         android:visibility="gone"
         android:layout_margin="5dp"
-        android:onClick="usage"
+        android:onClick="manual"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"

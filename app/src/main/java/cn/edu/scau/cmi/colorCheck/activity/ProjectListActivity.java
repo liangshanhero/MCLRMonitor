@@ -12,7 +12,7 @@ import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.AdapterProject;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
 
-public class ProjectActivity extends AppCompatActivity {
+public class ProjectListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     AdapterProject adapterProject;

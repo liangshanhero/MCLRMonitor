@@ -151,7 +151,7 @@
             <EditText
 
                 android:id="@+id/red"
-                android:editable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -170,7 +170,7 @@
                 android:text="G="/>
             <EditText
                 android:id="@+id/green"
-                android:editable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -189,11 +189,18 @@
                 android:text="B="/>
             <EditText
                 android:id="@+id/blue"
-                android:editable="false"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/check_result_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="checkResultDetail"
+        android:text="Button" />
 
 
 </LinearLayout>

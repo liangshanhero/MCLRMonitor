@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity;
+package cn.edu.scau.cmi.colorCheck.activity.check;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,28 +11,19 @@ import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
+import cn.edu.scau.cmi.colorCheck.view.PictureSurfaceView;
 import cn.edu.scau.cmi.colorCheck.view.PointSurfaceView;
 
 
 public class PictureCheckActivity extends AppCompatActivity {
-    PointSurfaceView surfaceView;
+    PictureSurfaceView surfaceView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_check);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        initView();
     }
 
     private void initView(){

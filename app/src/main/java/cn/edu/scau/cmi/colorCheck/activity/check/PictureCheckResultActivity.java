@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity;
+package cn.edu.scau.cmi.colorCheck.activity.check;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
