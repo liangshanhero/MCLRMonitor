@@ -18,12 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.dao.Service;
-import cn.edu.scau.cmi.colorCheck.domain.Project;
-import cn.edu.scau.cmi.colorCheck.domain.QuantitativeLinearRule;
-import cn.edu.scau.cmi.colorCheck.domain.Rule;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 import cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.ui.TouchListener;
 import cn.edu.scau.cmi.colorCheck.ui.TouichListenerAdapter;
 
 public class CheckActivity extends AppCompatActivity {

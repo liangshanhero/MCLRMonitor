@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.domain.CheckType;
-import cn.edu.scau.cmi.colorCheck.domain.QuantitativeLinearRule;
-import cn.edu.scau.cmi.colorCheck.domain.Project;
-import cn.edu.scau.cmi.colorCheck.domain.RangeRule;
-import cn.edu.scau.cmi.colorCheck.domain.Rule;
-import cn.edu.scau.cmi.colorCheck.domain.Sample;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.RangeRule;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
 
-import cn.edu.scau.cmi.colorCheck.domain.Target;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
 
 /**
  * Created by Mr_Chen on 2018/6/28.

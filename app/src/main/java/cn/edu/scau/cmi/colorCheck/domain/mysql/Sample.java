@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.domain.database;
+package cn.edu.scau.cmi.colorCheck.domain.mysql;
 
 
 

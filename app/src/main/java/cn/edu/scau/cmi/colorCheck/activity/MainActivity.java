@@ -14,7 +14,7 @@ import android.widget.Toast;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.DAO;
 import cn.edu.scau.cmi.colorCheck.dao.DatabaseHelper;
-import cn.edu.scau.cmi.colorCheck.domain.CheckType;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
 
 public class MainActivity extends AppCompatActivity {
     @Override

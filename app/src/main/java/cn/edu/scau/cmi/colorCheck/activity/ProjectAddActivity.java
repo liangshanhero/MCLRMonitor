@@ -16,9 +16,9 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
-import cn.edu.scau.cmi.colorCheck.domain.CheckType;
-import cn.edu.scau.cmi.colorCheck.domain.Project;
-import cn.edu.scau.cmi.colorCheck.domain.Target;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
 import cn.edu.scau.cmi.colorCheck.ui.RangeLinearLayout;
 
 public class ProjectAddActivity extends AppCompatActivity {

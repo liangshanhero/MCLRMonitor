@@ -1,6 +1,9 @@
-package cn.edu.scau.cmi.colorCheck.domain;
+package cn.edu.scau.cmi.colorCheck.domain.sqlLite;
 
 import java.util.List;
+
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.RangeRule;
 
 /**
  * Created by Mr_Chen on 2018/6/28.

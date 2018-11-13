@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.domain;
+package cn.edu.scau.cmi.colorCheck.domain.sqlLite;
 
 /**
  * Created by Mr_Chen on 2018/6/28.

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.domain.Sample;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
 
 /**
  * Created by Mr_Chen on 2018/6/6.

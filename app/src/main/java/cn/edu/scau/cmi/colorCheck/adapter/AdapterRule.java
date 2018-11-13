@@ -12,8 +12,8 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
-import cn.edu.scau.cmi.colorCheck.domain.RangeRule;
-import cn.edu.scau.cmi.colorCheck.domain.Rule;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.RangeRule;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 
 /**
  * Created by Mr_Chen on 2018/6/6.

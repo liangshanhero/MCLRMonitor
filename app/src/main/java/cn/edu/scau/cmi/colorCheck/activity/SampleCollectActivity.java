@@ -35,10 +35,9 @@ import com.dingmouren.colorpicker.OnColorPickerListener;
 import java.io.File;
 
 import cn.edu.scau.cmi.colorCheck.dao.Service;
-import cn.edu.scau.cmi.colorCheck.domain.Sample;
+import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
 import cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.ui.TouchListener;
 import cn.edu.scau.cmi.colorCheck.ui.TouichListenerAdapter;
 
 public class SampleCollectActivity extends AppCompatActivity implements View.OnTouchListener{

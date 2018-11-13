@@ -1,14 +1,14 @@
-package cn.edu.scau.cmi.colorCheck.domain.database;
+package cn.edu.scau.cmi.colorCheck.domain.mysql;
 
 
-public class Check implements java.io.Serializable {
+public class Rule implements java.io.Serializable {
 
 	// Fields
 
 	private Long id;
 	private Project project;
-	private User user;
 	private String name;
+	private Boolean type;
 	private Integer red;
 	private Integer green;
 	private Integer blue;
@@ -18,15 +18,15 @@ public class Check implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Check() {
+	public Rule() {
 	}
 
 	/** full constructor */
-	public Check(Project project, User user, String name, Integer red, Integer green, Integer blue, Float result,
+	public Rule(Project project, String name, Boolean type, Integer red, Integer green, Integer blue, Float result,
 			String memo) {
 		this.project = project;
-		this.user = user;
 		this.name = name;
+		this.type = type;
 		this.red = red;
 		this.green = green;
 		this.blue = blue;
@@ -51,13 +51,6 @@ public class Check implements java.io.Serializable {
 		this.project = project;
 	}
 
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public String getName() {
 		return this.name;
@@ -65,6 +58,14 @@ public class Check implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Boolean getType() {
+		return this.type;
+	}
+
+	public void setType(Boolean type) {
+		this.type = type;
 	}
 
 	public Integer getRed() {
