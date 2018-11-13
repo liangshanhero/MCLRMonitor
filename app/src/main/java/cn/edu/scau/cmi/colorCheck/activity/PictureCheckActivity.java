@@ -38,25 +38,13 @@ public class PictureCheckActivity extends AppCompatActivity {
     private void initView(){
         surfaceView=findViewById(R.id.picture_check_surface);
         surfaceView.setTouchListener(new TouchListenerAdapter(){
-            @Override
-            public void displayRgb(int color){
 
-            }
             @Override
             public void showPicture(Bitmap bitmap) {
 //                在这里添加图片的显示部分
                 System.out.println("显示图片，暂时没有添加功能");
                 Toast.makeText(PictureCheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
             }
-
-            @Override
-            public void showPicture(byte[] data) {
-
-            }
-
         });
-
     }
-
-
 }

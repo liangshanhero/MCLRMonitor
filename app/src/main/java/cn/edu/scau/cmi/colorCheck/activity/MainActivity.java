@@ -43,22 +43,34 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    public void collectData(View view){
+//基于像素点采集样本数据
+    public void pointCollectData(View view){
         Intent intent = new Intent(MainActivity.this, ProjectActivity.class);
         intent.putExtra("flag",1);
         startActivity(intent);
     }
-
-    public void machineStudy(View view){
+    //基于图片采集样本数据
+    public void pictureCollectData(View view){
+        Intent intent = new Intent(MainActivity.this, ProjectActivity.class);
+        intent.putExtra("flag",1);
+        startActivity(intent);
+    }
+    public void machineLearning(View view){
         Intent intent = new Intent(MainActivity.this, ProjectActivity.class);
         intent.putExtra("flag",2);
         startActivity(intent);
     }
-    public void check(View view){
+//基于像素点检测
+    public void pointCheck(View view){
         Intent intent = new Intent(MainActivity.this, PointCheckActivity.class);
         startActivity(intent);
     }
+//    基于图片检测
+    public void pictureCheck(View view){
+        Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
+        startActivity(intent);
+    }
+
     public void usage(View view){
         Intent intent = new Intent(MainActivity.this, ManualActivity.class);
         startActivity(intent);
