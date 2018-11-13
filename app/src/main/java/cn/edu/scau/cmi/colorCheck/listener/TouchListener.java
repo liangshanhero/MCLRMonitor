@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.ui;
+package cn.edu.scau.cmi.colorCheck.listener;
 
 import android.graphics.Bitmap;
 //使用这个接口，在不同的Activety类中实现业务

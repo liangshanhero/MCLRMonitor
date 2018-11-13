@@ -3,24 +3,24 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e7e4e4">
-
+<!--摄像头部分-->
     <LinearLayout
-        android:id="@+id/select_color"
+        android:id="@+id/select_picture"
         android:background="#fff"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView
-            android:id="@+id/check_surface"
+        <cn.edu.scau.cmi.colorCheck.view.PictureSurfaceView
+            android:id="@+id/picture_check_surface"
             android:layout_gravity="center"
             android:layout_width="200dp"
             android:layout_height="300dp" />
 
     </LinearLayout>
 
-
+<!--检测项目部分-->
     <LinearLayout
         android:background="#fff"
         android:layout_marginTop="5dp"
@@ -50,7 +50,7 @@
         </LinearLayout>
 
     </LinearLayout>
-
+<!--检测规则部分-->
     <LinearLayout
         android:background="#fff"
 
@@ -81,7 +81,36 @@
         </LinearLayout>
 
     </LinearLayout>
+    <!--结果部分-->
+    <LinearLayout
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/result_name"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Result"/>
+        <TextView
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" = "/>
+        <EditText
+            android:editable="false"
+            android:id="@+id/check_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
+    <!--整个RGB颜色部分-->
     <LinearLayout
         android:background="#fff"
         android:layout_marginTop="10dp"
@@ -164,34 +193,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:background="#fff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:id="@+id/result_name"
-            android:textSize="15sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Result"/>
-        <TextView
-            android:textSize="15sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" = "/>
-        <EditText
-            android:editable="false"
-            android:id="@+id/check_result"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
 

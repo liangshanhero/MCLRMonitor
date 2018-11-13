@@ -21,11 +21,11 @@ import cn.edu.scau.cmi.colorCheck.dao.Service;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
-import cn.edu.scau.cmi.colorCheck.ui.CustomizedSurfaceView;
+import cn.edu.scau.cmi.colorCheck.view.PointSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.ui.TouichListenerAdapter;
+import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 
-public class CheckActivity extends AppCompatActivity {
+public class PointCheckActivity extends AppCompatActivity {
 // 用于显示选中后的背景
     LinearLayout selectedColorLinnerLayout;
     EditText redEditText;
@@ -33,7 +33,7 @@ public class CheckActivity extends AppCompatActivity {
     EditText blueEditText;
     EditText resultEditText;
     TextView resultTextView;
-    CustomizedSurfaceView surfaceView;
+    PointSurfaceView surfaceView;
     Spinner projectSpinner;
     Spinner ruleSpinner;
 
@@ -43,18 +43,19 @@ public class CheckActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check);
+        setContentView(R.layout.activity_point_check);
         initView();
 
     }
 
     private void initView() {
-        surfaceView = findViewById(R.id.check_surface);
+        surfaceView = findViewById(R.id.point_check_surface);
 //        点击后的行为,利用自定义的
-        surfaceView.setTouchListener(new TouichListenerAdapter() {
+        surfaceView.setTouchListener(new TouchListenerAdapter() {
 //            前面的RGB色彩检测方法
             @Override
             public void displayRgb(int color) {
+//                界面布局的背景设置为所选择点的颜色
                 selectedColorLinnerLayout.setBackgroundColor(color);
                 int red = Color.red(color);
                 int green = Color.green(color);
@@ -67,7 +68,7 @@ public class CheckActivity extends AppCompatActivity {
                     if(projects.size()>0 && projects.get(projectSpinner.getSelectedItemPosition()).type_id == 2){
                         resultEditText.setText(Service.rangeCheck(red,green,blue,projects.get(projectSpinner.getSelectedItemPosition()).id));
                     }else{
-                        Toast.makeText(CheckActivity.this, "请先创建规则", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PointCheckActivity.this, "请先创建规则", Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
@@ -85,24 +86,25 @@ public class CheckActivity extends AppCompatActivity {
             public void displayRgbOnCoordinate(Bitmap bitmap) {
 //                在这里添加图片的显示部分
                 System.out.println("在坐标上显示图片，暂时没有添加功能");
-                Toast.makeText(CheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PointCheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void showPicture(Bitmap bitmap) {
 //                在这里添加图片的显示部分
                 System.out.println("显示图片，暂时没有添加功能");
-                Toast.makeText(CheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PointCheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void showPicture(byte[] data) {
-//                Toast.makeText(CheckActivity.this, "Check", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(CheckActivity.this,Main2Activity4Test.class);
+//                Toast.makeText(PointCheckActivity.this, "Check", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(PointCheckActivity.this,Main2Activity4Test.class);
 //                intent.putExtra("pic",data);
 //                startActivity(intent);
             }
         });
+
 
         selectedColorLinnerLayout = findViewById(R.id.select_color);
         redEditText = findViewById(R.id.red);
@@ -127,12 +129,11 @@ public class CheckActivity extends AppCompatActivity {
                 rules);
         ruleSpinner.setAdapter(ruleAdapter);
 
-
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 rules = Service.getRulesOfProject(projects.get(position));
-                ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(CheckActivity.this,
+                ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(PointCheckActivity.this,
                         android.R.layout.simple_list_item_1,
                         rules);
                 ruleSpinner.setAdapter(ruleAdapter);
@@ -143,6 +144,5 @@ public class CheckActivity extends AppCompatActivity {
 
             }
         });
-
     }
 }

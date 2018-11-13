@@ -10,4 +10,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_test_basic">TestBasicActivity</string>
+    <string name="title_activity_picture_check">PictureCheckActivity</string>
+    <string name="title_activity_picture_check_result">PictureCheckResultActivity</string>
 </resources>

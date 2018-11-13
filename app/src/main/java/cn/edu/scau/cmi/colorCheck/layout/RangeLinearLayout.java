@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.ui;
+package cn.edu.scau.cmi.colorCheck.layout;
 
 import android.content.Context;
 import android.view.LayoutInflater;

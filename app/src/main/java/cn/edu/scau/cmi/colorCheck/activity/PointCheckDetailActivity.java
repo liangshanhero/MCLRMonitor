@@ -16,13 +16,13 @@ import cn.edu.scau.cmi.colorCheck.dao.DAO;
 import cn.edu.scau.cmi.colorCheck.dao.DatabaseHelper;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
 
-public class MainActivity extends AppCompatActivity {
+public class PointCheckDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA},1);
+        if(ContextCompat.checkSelfPermission(PointCheckDetailActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(PointCheckDetailActivity.this, new String[]{Manifest.permission.CAMERA},1);
         }
         DatabaseHelper.getInstance(this,"rgb.db",null,1);
         DAO.insert(new CheckType("定量"));
@@ -45,22 +45,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void collectData(View view){
-        Intent intent = new Intent(MainActivity.this, ProjectActivity.class);
+        Intent intent = new Intent(PointCheckDetailActivity.this, ProjectActivity.class);
         intent.putExtra("flag",1);
         startActivity(intent);
     }
 
     public void machineStudy(View view){
-        Intent intent = new Intent(MainActivity.this, ProjectActivity.class);
+        Intent intent = new Intent(PointCheckDetailActivity.this, ProjectActivity.class);
         intent.putExtra("flag",2);
         startActivity(intent);
     }
     public void check(View view){
-        Intent intent = new Intent(MainActivity.this, PointCheckActivity.class);
+        Intent intent = new Intent(PointCheckDetailActivity.this, PointCheckActivity.class);
         startActivity(intent);
     }
     public void usage(View view){
-        Intent intent = new Intent(MainActivity.this, ManualActivity.class);
+        Intent intent = new Intent(PointCheckDetailActivity.this, ManualActivity.class);
         startActivity(intent);
     }
     public void seeProject(View view){

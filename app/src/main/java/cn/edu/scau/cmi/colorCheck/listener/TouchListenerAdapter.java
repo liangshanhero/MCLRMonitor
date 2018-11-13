@@ -1,8 +1,10 @@
-package cn.edu.scau.cmi.colorCheck.ui;
+package cn.edu.scau.cmi.colorCheck.listener;
 
 import android.graphics.Bitmap;
 
-public abstract class TouichListenerAdapter implements TouchListener {
+import cn.edu.scau.cmi.colorCheck.listener.TouchListener;
+
+public abstract class TouchListenerAdapter implements TouchListener {
     @Override
     public void displayRgb(int color) {
 

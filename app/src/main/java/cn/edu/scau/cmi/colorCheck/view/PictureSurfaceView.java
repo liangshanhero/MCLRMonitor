@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.ui;
+package cn.edu.scau.cmi.colorCheck.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,19 +9,21 @@ import android.hardware.Camera;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 import java.io.IOException;
 
+import cn.edu.scau.cmi.colorCheck.listener.TouchListener;
+
 /**
  * Created by Mr_Chen on 2018/4/3.
  *
- * 取景的界面
+ * 取景的界面，获取一个界面的视图
  */
 
-public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
+public class PictureSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     private Camera camera;
     private SurfaceHolder surfaceHolder;
@@ -32,7 +34,7 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
     public void setTouchListener(TouchListener touchListener){
         this.touchListener = touchListener;
     }
-    public CustomizedSurfaceView(final Context context, AttributeSet attrs) {
+    public PictureSurfaceView(final Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         camera = openCamera();
@@ -52,30 +54,6 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
                 return true;
             }
         });
-    }
-
-
-    private void initCameraParams()
-    {
-        Camera.Parameters parameters = camera.getParameters();
-        //parameters.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
-        parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
-        parameters.setPictureFormat(ImageFormat.JPEG);
-        parameters.setJpegQuality(100);
-        camera.setParameters(parameters);
-        Log.d("sursize", this.getWidth()+" "+this.getHeight());
-        //parameters.setPreviewSize(this.getWidth(),this.getHeight());
-       // parameters.setPictureSize(this.getWidth(),this.getHeight());
-        //        Log.d("presize", parameters.getPreviewSize().width+" "+parameters.getPreviewSize().height);
-//        List<Camera.Size> sizes = parameters.getSupportedPreviewSizes();
-//        for(Camera.Size size  : sizes){
-//            Log.d("size", size.width+" "+size.height);
-//        }
-//        List<Camera.Size> sizes = parameters.getSupportedPictureSizes();
-//
-//        for(Camera.Size size  : sizes){
-//            Log.d("size", size.width+" "+size.height);
-//        }
     }
     private void capture(){
         camera.setPreviewCallback(null);
@@ -115,13 +93,37 @@ public class CustomizedSurfaceView extends SurfaceView implements SurfaceHolder.
             int argb = bitmap.getPixel(x, y);
             System.out.println("选中的点的argb is "+argb);
 
-
             touchListener.displayRgb(argb);
             touchListener.showPicture(bitmap);
             touchListener.displayRgbOnCoordinate(bitmap);
 
         }
     };
+
+
+
+    private void initCameraParams()
+    {
+        Camera.Parameters parameters = camera.getParameters();
+        //parameters.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
+        parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+        parameters.setPictureFormat(ImageFormat.JPEG);
+        parameters.setJpegQuality(100);
+        camera.setParameters(parameters);
+        Log.d("sursize", this.getWidth()+" "+this.getHeight());
+        //parameters.setPreviewSize(this.getWidth(),this.getHeight());
+       // parameters.setPictureSize(this.getWidth(),this.getHeight());
+        //        Log.d("presize", parameters.getPreviewSize().width+" "+parameters.getPreviewSize().height);
+//        List<Camera.Size> sizes = parameters.getSupportedPreviewSizes();
+//        for(Camera.Size size  : sizes){
+//            Log.d("size", size.width+" "+size.height);
+//        }
+//        List<Camera.Size> sizes = parameters.getSupportedPictureSizes();
+//
+//        for(Camera.Size size  : sizes){
+//            Log.d("size", size.width+" "+size.height);
+//        }
+    }
 
 
 //打开相机
