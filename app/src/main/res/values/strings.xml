@@ -6,4 +6,8 @@
     <string name="url">jdbc:mysql://120.79.219.78:3306/color </string>
     <string name="user">hombio</string>
     <string name="pass">hombio</string>
+    <string name="title_activity_check_detail">CheckDetailActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

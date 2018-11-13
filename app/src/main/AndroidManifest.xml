@@ -24,21 +24,24 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.SampleCollectActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.Main2Activity4Test" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.CheckActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.ProjectActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.ProjectAddActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.RuleGenerateByCustomActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.RuleGenerateByMachineLearningActivity" />
-        <activity android:name="cn.edu.scau.cmi.colorCheck.activity.ManualActivity"></activity>
+        <activity android:name=".activity.SampleCollectActivity" />
+        <activity android:name=".activity.Main2Activity4Test" />
+        <activity android:name=".activity.CheckActivity" />
+        <activity android:name=".activity.ProjectActivity" />
+        <activity android:name=".activity.ProjectAddActivity" />
+        <activity android:name=".activity.RuleGenerateByCustomActivity" />
+        <activity android:name=".activity.RuleGenerateByMachineLearningActivity" />
+        <activity android:name=".activity.ManualActivity" />
+        <activity
+            android:name=".activity.CheckDetailActivity"
+            android:label="@string/title_activity_check_detail"></activity>
     </application>
 
 </manifest>
