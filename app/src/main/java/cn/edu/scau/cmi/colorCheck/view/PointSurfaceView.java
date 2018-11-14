@@ -94,8 +94,8 @@ public class PointSurfaceView extends SurfaceView implements SurfaceHolder.Callb
             System.out.println("选中的点的argb is "+argb);
 
             touchListener.displayRgb(argb);
-            touchListener.showPicture(bitmap);
-            touchListener.displayRgbOnCoordinate(bitmap);
+//            touchListener.showPicture(bitmap);
+//            touchListener.displayRgbOnCoordinate(bitmap);
 
         }
     };

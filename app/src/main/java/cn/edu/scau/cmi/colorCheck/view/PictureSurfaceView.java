@@ -93,7 +93,7 @@ public class PictureSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             int argb = bitmap.getPixel(x, y);
             System.out.println("选中的点的argb is "+argb);
 
-            touchListener.displayRgb(argb);
+//            touchListener.displayRgb(argb);
             touchListener.showPicture(bitmap);
             touchListener.displayRgbOnCoordinate(bitmap);
 
