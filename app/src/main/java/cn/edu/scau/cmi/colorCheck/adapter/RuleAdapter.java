@@ -19,12 +19,12 @@ import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
  * Created by Mr_Chen on 2018/6/6.
  */
 
-public class AdapterRule extends RecyclerView.Adapter<AdapterRule.ViewHolder>{
+public class RuleAdapter extends RecyclerView.Adapter<RuleAdapter.ViewHolder>{
 
     List<Rule> ruleList;
     Context context;
 
-    public AdapterRule(List<Rule> ruleList, Context context) {
+    public RuleAdapter(List<Rule> ruleList, Context context) {
         this.ruleList = ruleList;
         this.context = context;
     }

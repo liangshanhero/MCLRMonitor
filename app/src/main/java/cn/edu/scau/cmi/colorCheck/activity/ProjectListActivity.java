@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.Button;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.adapter.AdapterProject;
+import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
 
 public class ProjectListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    AdapterProject adapterProject;
+    ProjectAdapter adapterProject;
     Button delBtn;
     int flag;
     @Override
@@ -38,7 +38,7 @@ public class ProjectListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        adapterProject = new AdapterProject(Service.getAllProject(),flag, this);
+        adapterProject = new ProjectAdapter(Service.getAllProject(),flag, this);
         recyclerView.setAdapter(adapterProject);
     }
 

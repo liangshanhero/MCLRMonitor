@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.adapter.AdapterSample;
+import cn.edu.scau.cmi.colorCheck.adapter.SampleAdapter;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
@@ -34,7 +34,7 @@ public class MachineLearningRuleActivity extends AppCompatActivity {
         projectId = getIntent().getIntExtra("projectId",0);
         type = getIntent().getStringExtra("type");
         samples = Service.getSampleOfProject(projectId);
-        recyclerView.setAdapter(new AdapterSample(samples,this));
+        recyclerView.setAdapter(new SampleAdapter(samples,this));
         getSupportActionBar().setTitle(getIntent().getStringExtra("projectName"));
 
     }

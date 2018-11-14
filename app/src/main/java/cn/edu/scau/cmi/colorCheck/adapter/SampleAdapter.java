@@ -18,12 +18,12 @@ import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
  * Created by Mr_Chen on 2018/6/6.
  */
 
-public class AdapterSample extends RecyclerView.Adapter<AdapterSample.ViewHolder>{
+public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder>{
 
     List<Sample> sampleList;
     Context context;
 
-    public AdapterSample(List<Sample> sampleList, Context context) {
+    public SampleAdapter(List<Sample> sampleList, Context context) {
         this.sampleList = sampleList;
         this.context = context;
     }

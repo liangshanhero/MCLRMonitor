@@ -29,12 +29,12 @@ import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
  * Created by Mr_Chen on 2018/6/6.
  */
 
-public class AdapterProject extends RecyclerView.Adapter<AdapterProject.ViewHolder>{
+public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHolder>{
 
     List<Project> projectList;
     Context context;
     int flag;
-    public AdapterProject(List<Project> projectList, int flag, Context context) {
+    public ProjectAdapter(List<Project> projectList, int flag, Context context) {
         this.projectList = projectList;
         this.flag = flag;
         this.context = context;
@@ -108,7 +108,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.ViewHold
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 //TODO
                 List<Rule> list = Service.getRulesOfProject(project);
-                AdapterRule adapterRule = new AdapterRule(list,context);
+                RuleAdapter adapterRule = new RuleAdapter(list,context);
                 recyclerView.setAdapter(adapterRule);
                 AlertDialog alertDialog = new AlertDialog.Builder(context)
                         .setView(recyclerView)
