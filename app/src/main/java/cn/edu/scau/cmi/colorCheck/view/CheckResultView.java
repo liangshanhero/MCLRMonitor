@@ -18,6 +18,6 @@ public class CheckResultView extends View {
         Paint paint=new Paint();
         paint.setColor(Color.RED );
         paint.setShadowLayer(2,3,3,Color.rgb(90,90,90));
-        canvas.drawRect(40,0,200,100,paint);
+        canvas.drawRect(40,40,1200,1000,paint);
     }
 }

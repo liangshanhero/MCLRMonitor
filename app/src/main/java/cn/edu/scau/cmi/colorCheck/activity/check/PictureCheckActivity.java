@@ -36,13 +36,11 @@ public class PictureCheckActivity extends AppCompatActivity {
 
             @Override
             public void showPicture(Bitmap bitmap) {
-//                在这里添加图片的显示部分
-                Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
-                startActivity(intent);
+//                在这里添加图片的显示部分，在结果界面中显示这个图表。
 
-                FrameLayout frameLayout=findViewById(R.id.frameLayoutCheckResult);
-//TODO  这个方法估计有问题！！！
-                frameLayout.addView(new CheckResultView(getApplicationContext()));
+                Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
+
+                startActivity(intent);
 
                 System.out.println("显示图片，暂时没有添加功能");
                 Toast.makeText(PictureCheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
