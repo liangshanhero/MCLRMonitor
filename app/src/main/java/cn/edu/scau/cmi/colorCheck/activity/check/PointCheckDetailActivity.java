@@ -14,8 +14,8 @@ import android.widget.Toast;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.ManualActivity;
 import cn.edu.scau.cmi.colorCheck.activity.ProjectListActivity;
-import cn.edu.scau.cmi.colorCheck.dao.DAO;
-import cn.edu.scau.cmi.colorCheck.dao.DatabaseHelper;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DAO;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DatabaseHelper;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
 
 public class PointCheckDetailActivity extends AppCompatActivity {

@@ -15,9 +15,20 @@ public class CheckResultView extends View {
 
     public void onDraw(Canvas canvas){
         super.onDraw(canvas);
+        canvas.drawColor(Color.GREEN);
         Paint paint=new Paint();
+
+        paint.setStrokeWidth(3 );
         paint.setColor(Color.RED );
-        paint.setShadowLayer(2,3,3,Color.rgb(90,90,90));
-        canvas.drawRect(40,40,1200,1000,paint);
+        canvas.drawLine(50,300,1000,300,paint);
+        canvas.drawLine(50,300,50,1000,paint);
+
+
+
+
+
+
+//        paint.setShadowLayer(2,3,3,Color.rgb(90,90,90));
+//        canvas.drawRect(40,40,1200,1000,paint);
     }
 }

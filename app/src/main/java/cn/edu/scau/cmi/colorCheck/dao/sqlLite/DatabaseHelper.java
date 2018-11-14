@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.dao;
+package cn.edu.scau.cmi.colorCheck.dao.sqlLite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.mContext = context;
     }
 
-
+//在手机上创建本地数据库
     @Override
     public void onCreate(SQLiteDatabase db) {
 

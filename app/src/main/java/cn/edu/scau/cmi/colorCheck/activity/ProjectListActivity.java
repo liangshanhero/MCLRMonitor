@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
-import cn.edu.scau.cmi.colorCheck.dao.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
 
 public class ProjectListActivity extends AppCompatActivity {
 

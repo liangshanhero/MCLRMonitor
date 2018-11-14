@@ -34,7 +34,7 @@ import com.dingmouren.colorpicker.OnColorPickerListener;
 
 import java.io.File;
 
-import cn.edu.scau.cmi.colorCheck.dao.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
 import cn.edu.scau.cmi.colorCheck.view.PointSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;

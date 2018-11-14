@@ -18,23 +18,7 @@ public class PictureCheckResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_check_result);
-       FrameLayout frameLayout=(FrameLayout)findViewById(R.id.frameLayoutCheckResult);
-//       获取context， 估计有问题！！！
-
-
-       //TODO  这个方法估计有问题！！！java.lang.NullPointerException，空指针异常
-        if(frameLayout == null){
-            Toast.makeText(PictureCheckResultActivity.this, "frameLayout对象是空", Toast.LENGTH_SHORT).show();
-        }
-        else{
-//            frameLayout.addView(new CheckResultView(this.getApplicationContext()));
-            frameLayout.addView(new CheckResultView(PictureCheckResultActivity.this));
-        }
-
-
-
-
-
+        FrameLayout frameLayout=(FrameLayout)findViewById(R.id.frameLayoutCheckResult);
+        frameLayout.addView(new CheckResultView(PictureCheckResultActivity.this));
     }
-
 }

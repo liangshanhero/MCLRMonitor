@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.dao;
+package cn.edu.scau.cmi.colorCheck.dao.sqlLite;
 
 import android.database.Cursor;
 
@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DAO;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;

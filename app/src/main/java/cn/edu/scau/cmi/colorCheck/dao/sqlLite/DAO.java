@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.dao;
+package cn.edu.scau.cmi.colorCheck.dao.sqlLite;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 
 public class DAO {
     private static SQLiteDatabase sqLiteDatabase = DatabaseHelper.getSQLiteDatabase();
-    public static ContentValues objectToContentValues(Object object){
+    private static ContentValues objectToContentValues(Object object){
         Class<?> clazz = object.getClass();
         ContentValues contentValues = new ContentValues();
         for(Field field : clazz.getFields()){

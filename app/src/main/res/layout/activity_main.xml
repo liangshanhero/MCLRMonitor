@@ -234,7 +234,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="人工规则生成"
+                    android:text="人工定制规则"
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -277,7 +277,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="机器学习规则生成"
+                    android:text="机器学习规则"
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="bold" />

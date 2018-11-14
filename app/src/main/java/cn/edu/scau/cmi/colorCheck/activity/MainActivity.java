@@ -16,8 +16,8 @@ import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PointCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PictureSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
-import cn.edu.scau.cmi.colorCheck.dao.DAO;
-import cn.edu.scau.cmi.colorCheck.dao.DatabaseHelper;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DAO;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DatabaseHelper;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
 
 public class MainActivity extends AppCompatActivity {
