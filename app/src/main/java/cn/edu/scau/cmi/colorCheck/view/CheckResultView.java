@@ -8,8 +8,8 @@ import android.view.View;
 
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 
-public class ResultView extends View {
-    public ResultView(Context context) {
+public class CheckResultView extends View {
+    public CheckResultView(Context context) {
         super(context);
     }
 
