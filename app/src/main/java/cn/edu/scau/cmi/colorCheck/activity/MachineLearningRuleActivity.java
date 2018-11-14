@@ -20,7 +20,7 @@ import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
 import cn.edu.scau.cmi.colorCheck.machineLearning.Regression;
 
-public class RuleGenerateByMachineLearningActivity extends AppCompatActivity {
+public class MachineLearningRuleActivity extends AppCompatActivity {
     int projectId;
     String type;
     List<Sample> samples;

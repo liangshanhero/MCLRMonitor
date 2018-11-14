@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity;
+package cn.edu.scau.cmi.colorCheck.activity.collect;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -40,7 +40,7 @@ import cn.edu.scau.cmi.colorCheck.view.PointSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 
-public class SampleCollectActivity extends AppCompatActivity implements View.OnTouchListener{
+public class PointSampleCollectActivity extends AppCompatActivity implements View.OnTouchListener{
     private static final int TAKE_PHOTO =  1;
     private static final int CHOOSE_PHOTO =  2;
 
@@ -132,7 +132,7 @@ public class SampleCollectActivity extends AppCompatActivity implements View.OnT
         surfaceView = findViewById(R.id.collection_surface);
         if(type.equals("定性")){
             targets.setVisibility(View.VISIBLE);
-            ArrayAdapter arrayAdapter = new ArrayAdapter(SampleCollectActivity.this,android.R.layout.simple_list_item_1,
+            ArrayAdapter arrayAdapter = new ArrayAdapter(PointSampleCollectActivity.this,android.R.layout.simple_list_item_1,
                     Service.getTargetsOfProject(projectId));
             targets.setAdapter(arrayAdapter);
         }else{
@@ -157,7 +157,7 @@ public class SampleCollectActivity extends AppCompatActivity implements View.OnT
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         if(Build.VERSION.SDK_INT >= 24){
-            imageUri = FileProvider.getUriForFile(SampleCollectActivity.this,"cn.edu.scau.cmi.fileprovider",outputImage);
+            imageUri = FileProvider.getUriForFile(PointSampleCollectActivity.this,"cn.edu.scau.cmi.fileprovider",outputImage);
         }else{
             imageUri = Uri.fromFile(outputImage);
         }
@@ -286,8 +286,8 @@ public class SampleCollectActivity extends AppCompatActivity implements View.OnT
         }
 
         setRGBNull();
-        if(ContextCompat.checkSelfPermission(SampleCollectActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(SampleCollectActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        if(ContextCompat.checkSelfPermission(PointSampleCollectActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(PointSampleCollectActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         }else{
             openAlbum();
         }
@@ -316,7 +316,7 @@ public class SampleCollectActivity extends AppCompatActivity implements View.OnT
         if(surfaceView.getVisibility() != View.GONE){
             surfaceView.setVisibility(View.GONE);
         }
-        new ColorPickerDialog(SampleCollectActivity.this, 0, false, new OnColorPickerListener() {
+        new ColorPickerDialog(PointSampleCollectActivity.this, 0, false, new OnColorPickerListener() {
             @Override
             public void onColorCancel(ColorPickerDialog dialog) {
 

@@ -14,6 +14,8 @@ import android.widget.Toast;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PointCheckActivity;
+import cn.edu.scau.cmi.colorCheck.activity.collect.PictureSampleCollectActivity;
+import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.dao.DAO;
 import cn.edu.scau.cmi.colorCheck.dao.DatabaseHelper;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
@@ -61,19 +63,25 @@ public class MainActivity extends AppCompatActivity {
     }
 //（4）基于像素点采集样本数据
     public void pointCollectData(View view){
-        Intent intent = new Intent(MainActivity.this, ProjectListActivity.class);
+        Intent intent = new Intent(MainActivity.this, PointSampleCollectActivity.class);
         intent.putExtra("flag",1);
         startActivity(intent);
     }
     //（5）基于图片采集样本数据
     public void pictureCollectData(View view){
-        Intent intent = new Intent(MainActivity.this, ProjectListActivity.class);
+        Intent intent = new Intent(MainActivity.this, PictureSampleCollectActivity.class);
         intent.putExtra("flag",1);
         startActivity(intent);
     }
-//    (6)规则生成
-    public void ruleGenerate(View view){
-        Intent intent = new Intent(MainActivity.this, ProjectListActivity.class);
+//    (6)人工定义规则生成
+    public void customizeRule(View view){
+        Intent intent = new Intent(MainActivity.this, CustomizeRuleActivity.class);
+        intent.putExtra("flag",2);
+        startActivity(intent);
+    }
+    //    (7)机器学习规则生成
+    public void machineLearnRule(View view){
+        Intent intent = new Intent(MainActivity.this, MachineLearningRuleActivity.class);
         intent.putExtra("flag",2);
         startActivity(intent);
     }

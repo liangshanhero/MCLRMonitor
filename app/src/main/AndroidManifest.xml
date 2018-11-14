@@ -31,13 +31,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SampleCollectActivity" />
+        <activity android:name=".activity.collect.PointSampleCollectActivity" />
         <activity android:name=".activity.test.Main2Activity4Test" />
         <activity android:name=".activity.check.PointCheckActivity" />
         <activity android:name=".activity.ProjectListActivity" />
         <activity android:name=".activity.ProjectAddActivity" />
-        <activity android:name=".activity.RuleGenerateByCustomActivity" />
-        <activity android:name=".activity.RuleGenerateByMachineLearningActivity" />
+        <activity android:name=".activity.CustomizeRuleActivity" />
+        <activity android:name=".activity.MachineLearningRuleActivity" />
         <activity android:name=".activity.ManualActivity" />
         <activity
             android:name=".activity.check.PointCheckDetailActivity"
@@ -53,7 +53,17 @@
         <activity
             android:name=".activity.check.PictureCheckResultActivity"
             android:label="@string/title_activity_picture_check_result"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.collect.PictureSampleCollectActivity"
+            android:label="@string/title_activity_picture_sample_collect"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

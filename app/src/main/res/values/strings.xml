@@ -13,4 +13,5 @@
     <string name="title_activity_test_basic">TestBasicActivity</string>
     <string name="title_activity_picture_check">PictureCheckActivity</string>
     <string name="title_activity_picture_check_result">PictureCheckResultActivity</string>
+    <string name="title_activity_picture_sample_collect">PictureSampleCollectActivity</string>
 </resources>

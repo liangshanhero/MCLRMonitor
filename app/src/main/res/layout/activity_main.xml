@@ -205,10 +205,10 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-<!--生成规则-->
+<!--人工生成规则-->
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="ruleGenerate"
+        android:onClick="customizeRule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -234,7 +234,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="规则生成"
+                    android:text="人工规则生成"
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -245,6 +245,52 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+    <!--机器学习生成规则-->
+    <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
+        android:onClick="machineLearnRule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="#fff">
+
+        <LinearLayout
+            android:layout_width="354dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机器学习规则生成"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看项目采集的样本数据，并利用机器学习生成相应的规则" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
     <!--使用说明-->
     <android.support.v7.widget.CardView
         android:visibility="gone"

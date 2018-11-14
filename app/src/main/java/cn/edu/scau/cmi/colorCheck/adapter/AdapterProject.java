@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.activity.RuleGenerateByMachineLearningActivity;
+import cn.edu.scau.cmi.colorCheck.activity.MachineLearningRuleActivity;
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.activity.RuleGenerateByCustomActivity;
-import cn.edu.scau.cmi.colorCheck.activity.SampleCollectActivity;
+import cn.edu.scau.cmi.colorCheck.activity.CustomizeRuleActivity;
+import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.dao.Service;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
@@ -117,7 +117,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.ViewHold
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(holder.dataDB.getText().toString().equals("定量")){
-                                    Intent intent = new Intent(context, RuleGenerateByCustomActivity.class);
+                                    Intent intent = new Intent(context, CustomizeRuleActivity.class);
                                     intent.putExtra("projectId", projectList.get(position).id);
                                     context.startActivity(intent);
                                 }
@@ -134,7 +134,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.ViewHold
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context,SampleCollectActivity.class);
+                    Intent intent = new Intent(context,PointSampleCollectActivity.class);
                     intent.putExtra("projectId",project.id);
                     intent.putExtra("projectName",project.name+"_样本采集");
                     intent.putExtra("type",Service.getCheckType(project.type_id));
@@ -148,7 +148,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.ViewHold
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context,RuleGenerateByMachineLearningActivity.class);
+                    Intent intent = new Intent(context,MachineLearningRuleActivity.class);
                     intent.putExtra("projectName",project.name);
                     intent.putExtra("projectId",project.id);
                     intent.putExtra("type",Service.getCheckType(project.type_id));
