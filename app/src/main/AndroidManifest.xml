@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.edu.scau.cmi.rgbstudy">
+    package="cn.edu.scau.cmi.colorCheck">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -31,14 +31,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SampleCollectActivity" />
-        <activity android:name=".activity.Main2Activity4Test" />
-        <activity android:name=".activity.CheckActivity" />
-        <activity android:name=".activity.ProjectActivity" />
+        <activity android:name=".activity.collect.PointSampleCollectActivity" />
+        <activity android:name=".activity.test.Main2Activity4Test" />
+        <activity android:name=".activity.check.PointCheckActivity" />
+        <activity android:name=".activity.ProjectListActivity" />
         <activity android:name=".activity.ProjectAddActivity" />
-        <activity android:name=".activity.RegulationGenerateByCustomizationActivity" />
-        <activity android:name=".activity.RegulationGenerateByMachineLearningActivity" />
-        <activity android:name=".activity.UseageActivity"></activity>
+        <activity android:name=".activity.CustomizeRuleActivity" />
+        <activity android:name=".activity.MachineLearningRuleActivity" />
+        <activity android:name=".activity.ManualActivity" />
+        <activity
+            android:name=".activity.check.PointCheckDetailActivity"
+            android:label="@string/title_activity_check_detail" />
+        <activity
+            android:name=".activity.test.TestBasicActivity"
+            android:label="@string/title_activity_test_basic"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.check.PictureCheckActivity"
+            android:label="@string/title_activity_picture_check"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.check.PictureCheckResultActivity"
+            android:label="@string/title_activity_picture_check_result"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.collect.PictureSampleCollectActivity"
+            android:label="@string/title_activity_picture_sample_collect"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eae5e5">
-
-
+<!--查看所有的项目-->
     <android.support.v7.widget.CardView
-        android:onClick="seeProject"
+        android:onClick="listProjects"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +16,6 @@
         app:cardBackgroundColor="#fff">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -37,7 +35,7 @@
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="项目"/>
+                android:text="检测项目管理"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,9 +43,12 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+    <!--项目检测，像素点检测方法-->
+
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="check"
+        android:onClick="pointCheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -75,7 +76,7 @@
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="项目检测"/>
+                    android:text="项目像素检测"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,9 +84,12 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+<!--基于图片的检查-->
+
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="collectData"
+        android:onClick="pictureCheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -113,7 +117,86 @@
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="样本数据采集"/>
+                    android:text="项目图片检测"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="选择一个项目，指定规则，预测结果"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <!--使用像素点采集样本-->
+    <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
+        android:onClick="pointCollectData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="#fff">
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="像素样本采集"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="采集数据，用于学习生成规则"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <!--使用图片采集样本-->
+    <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
+        android:onClick="pictureCollectData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="#fff">
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="图片数据采集"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,11 +205,10 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-
-
+<!--人工生成规则-->
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="machineStudy"
+        android:onClick="customizeRule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -152,7 +234,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="规则生成"
+                    android:text="人工定制规则"
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -163,10 +245,57 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+    <!--机器学习生成规则-->
+    <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
+        android:onClick="machineLearnRule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="#fff">
+
+        <LinearLayout
+            android:layout_width="354dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机器学习规则"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看项目采集的样本数据，并利用机器学习生成相应的规则" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <!--使用说明-->
     <android.support.v7.widget.CardView
         android:visibility="gone"
         android:layout_margin="5dp"
-        android:onClick="usage"
+        android:onClick="manual"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
