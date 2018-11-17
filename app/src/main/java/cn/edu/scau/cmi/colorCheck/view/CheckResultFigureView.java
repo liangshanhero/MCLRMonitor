@@ -37,8 +37,8 @@ public class CheckResultFigureView extends View {
         float[] points=new float[2000];
         for(int i=0;i<1000;i=i+2){
             points[i]=i+50;
-//            points[i+1]=(int) Math.random()*800;
-            points[i+1]=(50+i*2)%800;
+            points[i+1]= (float)(50+Math.random()*800);
+//            points[i+1]=(50+i*2)%800;
         }
 
         canvas.drawLine(xAxisStartPoint.x,xAxisStartPoint.y,xAxisEndPoint.x,xAxisEndPoint.y,paint);//横坐标
@@ -47,7 +47,7 @@ public class CheckResultFigureView extends View {
         paint.setColor(Color.BLACK);
         canvas.drawPoints(points,paint);
 //        canvas.drawPoints(new float[]{10,10,15,10,20,15,25,10,30,10},paint);
-        paint.setTextSize(24);
+        paint.setTextSize(36);
         canvas.drawText("华南农业大学",20,20,paint);
 
 //        paint.setShadowLayer(2,3,3,Color.rgb(90,90,90));
