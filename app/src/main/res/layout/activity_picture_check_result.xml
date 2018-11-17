@@ -5,12 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.check.PictureCheckResultActivity">
-
-
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/frameLayoutCheckResult">
-
+        android:layout_height="300dp"
+        android:id="@+id/frameLayoutCheckResult"
+        android:background="#FF0088">
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="framelayout中的内容"/>
     </FrameLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="300dp"
+        android:text="测试"/>
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/resultTextView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#FF00FF"
+        android:text="结果"
+        android:layout_marginTop="400dp"/>
 </android.support.design.widget.CoordinatorLayout>
