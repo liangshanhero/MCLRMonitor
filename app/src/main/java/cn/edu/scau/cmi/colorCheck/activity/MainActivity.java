@@ -8,7 +8,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,11 +17,7 @@ import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PointCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PictureSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
-import cn.edu.scau.cmi.colorCheck.dao.async.UserAsync;
-import cn.edu.scau.cmi.colorCheck.dao.mysql.UseAsyncTask;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DAO;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DatabaseHelper;
-import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
+import cn.edu.scau.cmi.colorCheck.dao.asyncTask.UserAsyncTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        UserAsync userAsyncTask=new UserAsync(this);
+        UserAsyncTask userAsyncTask=new UserAsyncTask(this);
         userAsyncTask.execute();
 
     }
@@ -107,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     // 测试数据异步采集
     public void testJsonDataFromWeb(View view){
         EditText editText=(EditText)findViewById(R.id.editText);
-        editText.setText("准备采集数据"+UserAsync.getUsers());
+        editText.setText("准备采集数据"+UserAsyncTask.getUsers());
 
     }
 
