@@ -1,11 +1,10 @@
 <resources>
-
     <string name="app_name">多维智能检测</string>
-
     <string name="driver">com.mysql.jdbc.Driver</string>
-    <string name="url">jdbc:mysql://139.159.188.31:3306/colorCheck </string>
+    <string name="url">jdbc:mysql://139.159.188.31:3306/colorCheck/</string>
     <string name="user">root</string>
     <string name="pass">root</string>
+    <string name="prefix_url">http://139.159.188.31:8080/colorCheckServer/</string>
     <string name="title_activity_check_detail">CheckDetailActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -14,5 +13,4 @@
     <string name="title_activity_picture_check">PictureCheckActivity</string>
     <string name="title_activity_picture_check_result">PictureCheckResultActivity</string>
     <string name="title_activity_picture_sample_collect">PictureSampleCollectActivity</string>
-    <string name="prefix_url">http://139.159.188.31:8080/colorCheckServer</string>
 </resources>

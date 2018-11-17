@@ -16,7 +16,7 @@ public class CheckAsyncTask extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            String jsonData = HttpUtil.sendHttpRequest(HttpUtil.getGetRequest("/Check"));
+            String jsonData = HttpUtil.getJsonDataFromWeb(HttpUtil.getGetRequest("/Check"));
             checkList = new Gson().fromJson(jsonData,new TypeToken<List<String>>(){}.getType());
         } catch (IOException e) {
             e.printStackTrace();
