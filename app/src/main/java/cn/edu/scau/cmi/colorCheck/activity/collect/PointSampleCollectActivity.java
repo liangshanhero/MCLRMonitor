@@ -36,7 +36,7 @@ import java.io.File;
 
 import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
-import cn.edu.scau.cmi.colorCheck.view.PointSurfaceView;
+import cn.edu.scau.cmi.colorCheck.view.CameraPointSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 
@@ -58,7 +58,7 @@ public class PointSampleCollectActivity extends AppCompatActivity implements Vie
     LinearLayout selectedColor;
     Spinner targets;
 
-    PointSurfaceView surfaceView;
+    CameraPointSurfaceView surfaceView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

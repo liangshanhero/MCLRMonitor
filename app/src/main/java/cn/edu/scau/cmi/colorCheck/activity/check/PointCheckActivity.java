@@ -21,7 +21,7 @@ import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
-import cn.edu.scau.cmi.colorCheck.view.PointSurfaceView;
+import cn.edu.scau.cmi.colorCheck.view.CameraPointSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 
@@ -33,7 +33,7 @@ public class PointCheckActivity extends AppCompatActivity {
     EditText blueEditText;
     EditText resultEditText;
     TextView resultTextView;
-    PointSurfaceView surfaceView;
+    CameraPointSurfaceView cameraPointSurfaceView;
     Spinner projectSpinner;
     Spinner ruleSpinner;
 
@@ -49,9 +49,9 @@ public class PointCheckActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        surfaceView = findViewById(R.id.point_check_surface);
+        cameraPointSurfaceView = findViewById(R.id.point_check_surface);
 //        点击后的行为,利用自定义的
-        surfaceView.setTouchListener(new TouchListenerAdapter() {
+        cameraPointSurfaceView.setTouchListener(new TouchListenerAdapter() {
 //            前面的RGB色彩检测方法
             @Override
             public void displayRgb(int color) {
@@ -112,8 +112,9 @@ public class PointCheckActivity extends AppCompatActivity {
         blueEditText = findViewById(R.id.blue);
         resultTextView = findViewById(R.id.result_name);
         resultEditText = findViewById(R.id.check_result);
-        projectSpinner = findViewById(R.id.check_project);
+        projectSpinner = findViewById(R.id.point_check_project);
         ruleSpinner = findViewById(R.id.check_rule);
+
         projects = Service.getAllProject();
         ArrayAdapter<Project> projectAdapter = new ArrayAdapter<Project>(this,
                 android.R.layout.simple_list_item_1,

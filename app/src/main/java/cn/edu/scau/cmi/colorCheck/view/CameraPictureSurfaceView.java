@@ -23,7 +23,7 @@ import cn.edu.scau.cmi.colorCheck.listener.TouchListener;
  * 取景的界面，获取一个界面的视图
  */
 
-public class PictureSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
+public class CameraPictureSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     private Camera camera;
     private SurfaceHolder surfaceHolder;
@@ -34,7 +34,7 @@ public class PictureSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     public void setTouchListener(TouchListener touchListener){
         this.touchListener = touchListener;
     }
-    public PictureSurfaceView(final Context context, AttributeSet attrs) {
+    public CameraPictureSurfaceView(final Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         camera = openCamera();
