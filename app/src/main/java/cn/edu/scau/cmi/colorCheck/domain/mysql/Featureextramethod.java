@@ -1,22 +1,23 @@
 
 package cn.edu.scau.cmi.colorCheck.domain.mysql;
 
+
+
 import java.io.Serializable;
+import java.util.Set;
 
-import java.lang.StringBuilder;
 
 
-public class User implements Serializable {
+public class Featureextramethod implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
 	Integer id;
-
 	String name;
-
-	String password;
-
 	String memo;
+Set<Check> checks;
+	java.util.Set<Rule> rules;
+	java.util.Set<Samplefeature> samplefeatures;
 
 	/**
 	 */
@@ -44,18 +45,6 @@ public class User implements Serializable {
 
 	/**
 	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	/**
-	 */
-	public String getPassword() {
-		return this.password;
-	}
-
-	/**
-	 */
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
@@ -68,18 +57,68 @@ public class User implements Serializable {
 
 	/**
 	 */
-	public User() {
+	public void setChecks(Set<Check> checks) {
+		this.checks = checks;
+	}
+
+	/**
+	 */
+
+	public Set<Check> getChecks() {
+		if (checks == null) {
+			checks = new java.util.LinkedHashSet<Check>();
+		}
+		return checks;
+	}
+
+	/**
+	 */
+	public void setRules(Set<Rule> rules) {
+		this.rules = rules;
+	}
+
+	/**
+	 */
+
+	public Set<Rule> getRules() {
+		if (rules == null) {
+			rules = new java.util.LinkedHashSet<Rule>();
+		}
+		return rules;
+	}
+
+	/**
+	 */
+	public void setSamplefeatures(Set<Samplefeature> samplefeatures) {
+		this.samplefeatures = samplefeatures;
+	}
+
+	/**
+	 */
+
+	public Set<Samplefeature> getSamplefeatures() {
+		if (samplefeatures == null) {
+			samplefeatures = new java.util.LinkedHashSet<Samplefeature>();
+		}
+		return samplefeatures;
+	}
+
+	/**
+	 */
+	public Featureextramethod() {
 	}
 
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
 	 */
-	public void copy(User that) {
+	public void copy(Featureextramethod that) {
 		setId(that.getId());
 		setName(that.getName());
-		setPassword(that.getPassword());
 		setMemo(that.getMemo());
+		setChecks(new java.util.LinkedHashSet<Check>(that.getChecks()));
+		setRules(new java.util.LinkedHashSet<Rule>(that.getRules()));
+		setSamplefeatures(new java.util.LinkedHashSet<Samplefeature>(that.getSamplefeatures()));
 	}
 
 	/**
@@ -92,7 +131,6 @@ public class User implements Serializable {
 
 		buffer.append("id=[").append(id).append("] ");
 		buffer.append("name=[").append(name).append("] ");
-		buffer.append("password=[").append(password).append("] ");
 		buffer.append("memo=[").append(memo).append("] ");
 
 		return buffer.toString();
@@ -113,9 +151,9 @@ public class User implements Serializable {
 	public boolean equals(Object obj) {
 		if (obj == this)
 			return true;
-		if (!(obj instanceof User))
+		if (!(obj instanceof Featureextramethod))
 			return false;
-		User equalCheck = (User) obj;
+		Featureextramethod equalCheck = (Featureextramethod) obj;
 		if ((id == null && equalCheck.id != null) || (id != null && equalCheck.id == null))
 			return false;
 		if (id != null && !id.equals(equalCheck.id))

@@ -2,17 +2,8 @@ package cn.edu.scau.cmi.colorCheck.dao.mysql;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
-
-import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.User;
-import cn.edu.scau.cmi.colorCheck.util.CmiApplication;
-import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 
 public class UseAsyncTask extends AsyncTask {
     private List<User> userList;
