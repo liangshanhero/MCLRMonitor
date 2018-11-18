@@ -81,7 +81,7 @@
         </LinearLayout>
 
     </LinearLayout>
-    <!--结果部分-->
+    <!--&lt;!&ndash;结果部分&ndash;&gt;
     <LinearLayout
         android:background="#fff"
         android:layout_width="match_parent"
@@ -109,8 +109,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <!--整个RGB颜色部分-->
+-->
+  <!--  &lt;!&ndash;整个RGB颜色部分&ndash;&gt;
     <LinearLayout
         android:background="#fff"
         android:layout_marginTop="10dp"
@@ -194,13 +194,16 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
+-->
 
-    <Button
-        android:id="@+id/check_result_button"
+    <!--以后点击按钮出结果，现在是点击图片即可-->
+<!--    <Button
+        android:id="@+id/picture_check_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="checkResultDetail"
-        android:text="Button" />
+        android:onClick="picture_check"
+        android:text="检测"
+        />-->
 
 
 </LinearLayout>

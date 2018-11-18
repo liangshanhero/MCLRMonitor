@@ -83,9 +83,6 @@ public class PictureSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
             Matrix matrix = new Matrix();
             matrix.setRotate(90);
-//          图片获取，下面如何处理
-
-//            bitmap.
 
             bitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
             int x = (int)(touchX*((float)bitmap.getWidth()/getWidth()));
