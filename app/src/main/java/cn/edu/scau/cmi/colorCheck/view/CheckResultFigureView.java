@@ -11,14 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckResultActivity;
 
 public class CheckResultFigureView extends View {
+    PictureCheckResultActivity pictureCheckResultActivity;
     public CheckResultFigureView(Context context) {
         super(context);
+
+
     }
 
     public void onDraw(Canvas canvas){
         super.onDraw(canvas);
+
+        Context context = getContext();
 
         canvas.drawColor(Color.WHITE);
         Paint paint=new Paint();

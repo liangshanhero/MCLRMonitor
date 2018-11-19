@@ -53,7 +53,6 @@
 <!--检测规则部分-->
     <LinearLayout
         android:background="#fff"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -76,23 +75,22 @@
                 android:id="@+id/picture_check_rule_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
             </Spinner>
         </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
+<!--测试从后台获取数据-->
+    <!--<TextView
         android:id="@+id/picture_check_project_asyncTask_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView" />-->
 
     <Button
         android:id="@+id/picture_check_gain_data_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="获取项目和规则数据"
+        android:text="获取存在的检测项目和规则"
         android:onClick="onPictureCheckGainData"/>
 
     <!--&lt;!&ndash;结果部分&ndash;&gt;
