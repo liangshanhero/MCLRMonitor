@@ -8,7 +8,7 @@ public interface TouchListener {
 //    显示图片截取后的特征点的坐标
     void displayRgbOnCoordinate(Bitmap bitmap);
 
-    void showPicture(Bitmap bitmap);
-    void showPicture(byte[] data);
+    void showPictureCheckResult(Bitmap bitmap);
+    void showPictureCheckResult(byte[] data);
 
 }

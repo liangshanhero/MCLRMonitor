@@ -99,14 +99,14 @@ public class PointCheckActivity extends AppCompatActivity {
             }
 
             @Override
-            public void showPicture(Bitmap bitmap) {
+            public void showPictureCheckResult(Bitmap bitmap) {
 //                在这里添加图片的显示部分
                 System.out.println("显示图片，暂时没有添加功能");
                 Toast.makeText(PointCheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void showPicture(byte[] data) {
+            public void showPictureCheckResult(byte[] data) {
 //                Toast.makeText(PointCheckActivity.this, "Check", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(PointCheckActivity.this,Main2Activity4Test.class);
 //                intent.putExtra("pic",data);

@@ -86,7 +86,7 @@ public class CameraPictureSurfaceView extends SurfaceView implements SurfaceHold
             int argb = bitmap.getPixel(x, y);
             System.out.println("选中的点的argb is "+argb);
 //            touchListener.displayRgb(argb);
-            touchListener.showPicture(bitmap);
+            touchListener.showPictureCheckResult(bitmap);
             touchListener.displayRgbOnCoordinate(bitmap);
         }
     };

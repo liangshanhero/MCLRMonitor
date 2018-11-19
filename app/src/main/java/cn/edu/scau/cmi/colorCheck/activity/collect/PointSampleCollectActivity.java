@@ -181,12 +181,12 @@ public class PointSampleCollectActivity extends AppCompatActivity implements Vie
                 }
 
                 @Override
-                public void showPicture(Bitmap bitmap) {
+                public void showPictureCheckResult(Bitmap bitmap) {
 
                 }
 
                 @Override
-                public void showPicture(byte[] data) {
+                public void showPictureCheckResult(byte[] data) {
 
                 }
             });

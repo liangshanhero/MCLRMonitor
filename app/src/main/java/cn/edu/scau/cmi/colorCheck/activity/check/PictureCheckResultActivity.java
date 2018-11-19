@@ -114,8 +114,4 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         private void drawRed() {
         }
     }
-
-
-
-
 }
