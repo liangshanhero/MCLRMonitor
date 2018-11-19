@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,7 +30,9 @@ import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 import cn.edu.scau.cmi.colorCheck.util.FileUtil;
+import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import cn.edu.scau.cmi.colorCheck.view.CameraPictureSurfaceView;
+import okhttp3.Request;
 
 
 public class PictureCheckActivity extends AppCompatActivity {
@@ -38,6 +41,10 @@ public class PictureCheckActivity extends AppCompatActivity {
     Spinner ruleSpinner;
     private static  List<Project> projectList;
     private static List<Rule> ruleList;
+
+    public void setProjectList(List<Project> projectList){
+        this.projectList=projectList;
+    }
 
     private ArrayAdapter<Project> projectAdapter;
     private ArrayAdapter<Rule> ruleAdapter;
@@ -61,14 +68,15 @@ public class PictureCheckActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_check);
         initView();
+//       暂时还么有rule数据
 
-//异步获取数据，并在异步任务中显示输出，设置界面
+        projectSpinner=findViewById(R.id.picture_check_project_spinner);
+
         ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
         projectAsyncTask.execute();
-//       暂时还么有rule数据
         RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
         ruleAsyncTask.execute();
-        initSpinner();
+
     }
 
     private void initView(){
@@ -93,11 +101,10 @@ public class PictureCheckActivity extends AppCompatActivity {
     }
 
     private void initSpinner() {
-        projectAdapter=new ArrayAdapter<Project>(this, android.R.layout.simple_list_item_1,projectList);
-        projectSpinner.setAdapter(projectAdapter);
 
-        ruleList=RuleAsyncTask.getAllRules();
-        ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
+
+//        ruleList=RuleAsyncTask.getAllRules();
+//        ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
 //        ruleSpinner.setAdapter(ruleAdapter);
     }
 
@@ -125,10 +132,20 @@ public class PictureCheckActivity extends AppCompatActivity {
     }
 
     // TODO  待完成：点击界面上的检测按钮后打开结果页面
-    private void picture_check(View view){
+    public void picture_check(View view){
 //      在这里将图片的检测结果作为参数在结果界面中显示这个图表。
 //        获取图片！！！
         Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
         startActivity(intent);
     }
+
+    public void onPictureCheckGainData(View view){
+        projectList=ProjectAsyncTask.getAllProject();
+        System.out.println("***********************"+projectList);
+        projectAdapter=new ArrayAdapter<Project>(this, android.R.layout.simple_list_item_1,projectList);
+        projectSpinner.setAdapter(projectAdapter);
+    }
+
+
+
 }

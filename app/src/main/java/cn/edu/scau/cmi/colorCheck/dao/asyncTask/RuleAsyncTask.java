@@ -11,7 +11,6 @@ import java.util.List;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
-import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Request;
 
@@ -41,7 +40,7 @@ public class RuleAsyncTask extends AsyncTask<String,Void,String> {
     //利用该方法，可以更新界面的内容，更简单的方法
     protected void onPostExecute(String str){
         System.out.println("异步任务完成后所获取的所有的项目是："+allRule.toString());
-        TextView textView=pictureCheckActivity.findViewById(R.id.picture_check_random);
+        TextView textView=pictureCheckActivity.findViewById(R.id.picture_check_project_asyncTask_result);
         textView.setText("异步任务完成后所获取的所有的项目是："+allRule.toString());
     }
 

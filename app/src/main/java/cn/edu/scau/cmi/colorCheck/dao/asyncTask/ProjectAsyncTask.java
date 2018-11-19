@@ -1,9 +1,7 @@
 package cn.edu.scau.cmi.colorCheck.dao.asyncTask;
 
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
 
@@ -15,7 +13,6 @@ import java.util.List;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 
 
-import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Request;
@@ -35,7 +32,6 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
         try {
             Request request=HttpUtil.getGetRequest("Project");
             String responseString = HttpUtil.getJsonDataFromWeb(request);
-            System.out.println("ProjectAsyncTask的响应字符串是："+responseString);
             allProject = new Gson().fromJson(responseString,new TypeToken<List<Project>>(){}.getType());
             return "获取数据成功";
         } catch (Exception e) {
@@ -43,18 +39,20 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
         }
     }
 
-//利用该方法，可以更新界面的内容，更简单的方法
+//TODO 利用该方法，可以更新界面的内容，更简单的方法，更新Sprnner还没有成功。
+@Override
     protected void onPostExecute(String str){
-        System.out.println("异步任务完成后所获取的所有的项目是："+allProject.toString());
-        TextView textView=pictureCheckActivity.findViewById(R.id.picture_check_random);
+//        System.out.println("异步任务完成后所获取的所有的项目是："+allProject.toString());
+        TextView textView=pictureCheckActivity.findViewById(R.id.picture_check_project_asyncTask_result);
         textView.setText("异步任务完成后所获取的所有的项目是："+allProject.toString());
+        pictureCheckActivity.setProjectList(allProject);
+
+
+
 //       TODO ,前面几部可行，后面的还有待测试！！！
-        ArrayAdapter adapter=pictureCheckActivity.getProjectAdapter();
-        adapter=new ArrayAdapter<Project>(pictureCheckActivity, android.R.layout.simple_list_item_1,allProject);
-
-        pictureCheckActivity.getProjectSpinner().setAdapter(new ArrayAdapter<Project>(pictureCheckActivity, android.R.layout.simple_list_item_1,allProject));
-
-
+//        ArrayAdapter adapter=pictureCheckActivity.getProjectAdapter();
+//        adapter=new ArrayAdapter<Project>(pictureCheckActivity, android.R.layout.simple_list_item_1,allProject);
+//        pictureCheckActivity.getProjectSpinner().setAdapter(new ArrayAdapter<Project>(pictureCheckActivity, android.R.layout.simple_list_item_1,allProject));
     }
 }
 

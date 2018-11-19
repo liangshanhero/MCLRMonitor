@@ -43,7 +43,7 @@
             <Spinner
                 android:ellipsize="marquee"
                 android:spinnerMode="dialog"
-                android:id="@+id/picture_check_project"
+                android:id="@+id/picture_check_project_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </Spinner>
@@ -83,10 +83,18 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/picture_check_random"
+        android:id="@+id/picture_check_project_asyncTask_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/picture_check_gain_data_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取项目和规则数据"
+        android:onClick="onPictureCheckGainData"/>
+
     <!--&lt;!&ndash;结果部分&ndash;&gt;
     <LinearLayout
         android:background="#fff"

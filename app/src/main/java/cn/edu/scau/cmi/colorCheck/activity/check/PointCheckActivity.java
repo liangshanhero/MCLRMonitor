@@ -49,6 +49,15 @@ public class PointCheckActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        selectedColorLinnerLayout = findViewById(R.id.select_color);
+        redEditText = findViewById(R.id.red);
+        greenEditText = findViewById(R.id.green);
+        blueEditText = findViewById(R.id.blue);
+        resultTextView = findViewById(R.id.result_name);
+        resultEditText = findViewById(R.id.check_result);
+        projectSpinner = findViewById(R.id.point_check_project);
+        ruleSpinner = findViewById(R.id.check_rule);
+
         cameraPointSurfaceView = findViewById(R.id.point_check_surface);
 //        点击后的行为,利用自定义的
         cameraPointSurfaceView.setTouchListener(new TouchListenerAdapter() {
@@ -105,29 +114,16 @@ public class PointCheckActivity extends AppCompatActivity {
             }
         });
 
-
-        selectedColorLinnerLayout = findViewById(R.id.select_color);
-        redEditText = findViewById(R.id.red);
-        greenEditText = findViewById(R.id.green);
-        blueEditText = findViewById(R.id.blue);
-        resultTextView = findViewById(R.id.result_name);
-        resultEditText = findViewById(R.id.check_result);
-        projectSpinner = findViewById(R.id.point_check_project);
-        ruleSpinner = findViewById(R.id.check_rule);
-
         projects = Service.getAllProject();
-        ArrayAdapter<Project> projectAdapter = new ArrayAdapter<Project>(this,
-                android.R.layout.simple_list_item_1,
-                projects);
+        ArrayAdapter<Project> projectAdapter = new ArrayAdapter<Project>(this,  android.R.layout.simple_list_item_1,  projects);
         projectSpinner.setAdapter(projectAdapter);
         if(projects.size() != 0){
            rules = Service.getRulesOfProject(projects.get(0));
         }else{
             rules = new ArrayList<>();
         }
-        ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                rules);
+
+        ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<>(this,  android.R.layout.simple_list_item_1,  rules);
         ruleSpinner.setAdapter(ruleAdapter);
 
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -41,7 +41,7 @@ public class CameraPictureSurfaceView extends SurfaceView implements SurfaceHold
         initCameraParams();
         surfaceHolder = this.getHolder();
         surfaceHolder.addCallback(this);
-//        点击后，捕获图片事件
+//        点击后，捕获图片事件，
         this.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -72,14 +72,10 @@ public class CameraPictureSurfaceView extends SurfaceView implements SurfaceHold
                 }
             }
         });
-
-
     }
     private Camera.PictureCallback pc = new Camera.PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
-
-            Log.i("图片获取状态","成功");
             Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
             Matrix matrix = new Matrix();
             matrix.setRotate(90);
@@ -89,16 +85,11 @@ public class CameraPictureSurfaceView extends SurfaceView implements SurfaceHold
             int y = (int)(touchY*((float)bitmap.getHeight()/getHeight()));
             int argb = bitmap.getPixel(x, y);
             System.out.println("选中的点的argb is "+argb);
-
 //            touchListener.displayRgb(argb);
             touchListener.showPicture(bitmap);
             touchListener.displayRgbOnCoordinate(bitmap);
-
         }
     };
-
-
-
     private void initCameraParams()
     {
         Camera.Parameters parameters = camera.getParameters();
@@ -107,7 +98,7 @@ public class CameraPictureSurfaceView extends SurfaceView implements SurfaceHold
         parameters.setPictureFormat(ImageFormat.JPEG);
         parameters.setJpegQuality(100);
         camera.setParameters(parameters);
-        Log.d("sursize", this.getWidth()+" "+this.getHeight());
+//        Log.d("sursize", this.getWidth()+" "+this.getHeight());
         //parameters.setPreviewSize(this.getWidth(),this.getHeight());
        // parameters.setPictureSize(this.getWidth(),this.getHeight());
         //        Log.d("presize", parameters.getPreviewSize().width+" "+parameters.getPreviewSize().height);
@@ -125,7 +116,6 @@ public class CameraPictureSurfaceView extends SurfaceView implements SurfaceHold
 
 //打开相机
     private Camera openCamera(){
-
         if(camera == null){
             return  Camera.open();
         }
