@@ -38,7 +38,7 @@ public class PictureCheckActivity extends AppCompatActivity {
     Spinner ruleSpinner;
     private static  List<Project> projectList;
     private static List<Rule> ruleList;
-    private Handler handler;
+
     private ArrayAdapter<Project> projectAdapter;
     private ArrayAdapter<Rule> ruleAdapter;
     private TextView tv_random;
@@ -56,8 +56,6 @@ public class PictureCheckActivity extends AppCompatActivity {
         return ruleSpinner;
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,11 +69,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
         ruleAsyncTask.execute();
         initSpinner();
-
     }
-
-
-
 
     private void initView(){
 //        第一步：初始化摄像头
@@ -137,37 +131,4 @@ public class PictureCheckActivity extends AppCompatActivity {
         Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
         startActivity(intent);
     }
-// 启用线程，调用异步任务获取数据，并利用hanlder更新spinner
-//    @Override
-//    public void run() {
-//
-//        //TODO        （2）所有检测项目的获取,将项目列表给projectSpinner选择。
-////TODO 好像也可以不用传context进去，最后通过静态方法获取值应该可以，待测试!!!!!!
-////        TODO 也应该可以使用一个自定义的service类，这个service再来调用AsyncTask任务，待测试？？？？？？这样应该可以简化代码
-//        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
-//        projectAsyncTask.execute();
-//
-//        //TODO        (3)应该是项目选择后，根据项目的情况出现规则的值，现在都选，后面在修改。
-//        RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
-//
-//        ruleAsyncTask.execute();
-//        while (!Thread.currentThread().isInterrupted()){
-//            Message m=handler.obtainMessage();
-//            m.what=1;
-//            handler.sendMessage(m);
-//            try{
-//                Thread.sleep(5000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
-
-
-
-
-
-
-
 }
