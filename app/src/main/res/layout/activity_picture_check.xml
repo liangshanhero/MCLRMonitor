@@ -81,6 +81,12 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/picture_check_random"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
     <!--&lt;!&ndash;结果部分&ndash;&gt;
     <LinearLayout
         android:background="#fff"
