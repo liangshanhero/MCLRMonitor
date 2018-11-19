@@ -3,15 +3,10 @@ package cn.edu.scau.cmi.colorCheck.activity.check;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Looper;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -19,21 +14,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.dao.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.dao.asyncTask.RuleAsyncTask;
-
-
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 import cn.edu.scau.cmi.colorCheck.util.FileUtil;
-import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import cn.edu.scau.cmi.colorCheck.view.CameraPictureSurfaceView;
-import okhttp3.Request;
-
 
 public class PictureCheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
@@ -67,26 +56,10 @@ public class PictureCheckActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_check);
-        initView();
-//       暂时还么有rule数据
+        initCamera();
 
         projectSpinner=findViewById(R.id.picture_check_project_spinner);
-
-        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
-        projectAsyncTask.execute();
-        RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
-        ruleAsyncTask.execute();
-
-    }
-
-    private void initView(){
-//        第一步：初始化摄像头
-        initCamera();
-//第二部：初始化project和rule的spinner。
-//        initSpinner();
-
-//TODO (4)点击项目后，ruleSpinner的内容应该改变
-
+//TODO        选择了project后应该在选择项目对应的规则，
 //        projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
 //            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -98,17 +71,15 @@ public class PictureCheckActivity extends AppCompatActivity {
 //            public void onNothingSelected(AdapterView<?> parent) {
 //            }
 //        });
+
+        ruleSpinner=findViewById(R.id.picture_check_rule_spinner);
+
+        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
+        projectAsyncTask.execute();
+        RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
+        ruleAsyncTask.execute();
+
     }
-
-    private void initSpinner() {
-
-
-//        ruleList=RuleAsyncTask.getAllRules();
-//        ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
-//        ruleSpinner.setAdapter(ruleAdapter);
-    }
-
-
 
     private void initCamera() {
         //        （1）摄像头处理
@@ -118,7 +89,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         cameraPictureSurfaceView.setTouchListener(new TouchListenerAdapter(){
             @Override
             public void showPicture(Bitmap bitmap) {
-//                保存图片到本地,文件名称是yyyyMMddhhmmss
+//                保存图片到本地,文件名称是yyyyMMddhhmmss，OK。
                 String fileName=new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
                 try {
                     FileUtil.saveMyBitmap(bitmap,fileName);
@@ -138,14 +109,16 @@ public class PictureCheckActivity extends AppCompatActivity {
         Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
         startActivity(intent);
     }
-
+//Spinner设置初始值
     public void onPictureCheckGainData(View view){
         projectList=ProjectAsyncTask.getAllProject();
         System.out.println("***********************"+projectList);
         projectAdapter=new ArrayAdapter<Project>(this, android.R.layout.simple_list_item_1,projectList);
         projectSpinner.setAdapter(projectAdapter);
+
+        ruleList=RuleAsyncTask.getAllRules();
+        System.out.println("----------------------"+ruleList);
+        ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
+        ruleSpinner.setAdapter(ruleAdapter);
     }
-
-
-
 }

@@ -73,7 +73,7 @@
             <Spinner
                 android:ellipsize="marquee"
                 android:spinnerMode="dialog"
-                android:id="@+id/check_rule"
+                android:id="@+id/picture_check_rule_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

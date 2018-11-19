@@ -45,14 +45,6 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
 //        System.out.println("异步任务完成后所获取的所有的项目是："+allProject.toString());
         TextView textView=pictureCheckActivity.findViewById(R.id.picture_check_project_asyncTask_result);
         textView.setText("异步任务完成后所获取的所有的项目是："+allProject.toString());
-        pictureCheckActivity.setProjectList(allProject);
-
-
-
-//       TODO ,前面几部可行，后面的还有待测试！！！
-//        ArrayAdapter adapter=pictureCheckActivity.getProjectAdapter();
-//        adapter=new ArrayAdapter<Project>(pictureCheckActivity, android.R.layout.simple_list_item_1,allProject);
-//        pictureCheckActivity.getProjectSpinner().setAdapter(new ArrayAdapter<Project>(pictureCheckActivity, android.R.layout.simple_list_item_1,allProject));
     }
 }
 
