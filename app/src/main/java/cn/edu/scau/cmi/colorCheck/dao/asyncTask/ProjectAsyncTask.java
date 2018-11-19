@@ -1,6 +1,7 @@
 package cn.edu.scau.cmi.colorCheck.dao.asyncTask;
 
 import android.os.AsyncTask;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import java.util.List;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 
 
+import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Request;
@@ -46,6 +48,13 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
         System.out.println("异步任务完成后所获取的所有的项目是："+allProject.toString());
         TextView textView=pictureCheckActivity.findViewById(R.id.picture_check_random);
         textView.setText("异步任务完成后所获取的所有的项目是："+allProject.toString());
+//       TODO ,前面几部可行，后面的还有待测试！！！
+        ArrayAdapter adapter=pictureCheckActivity.getProjectAdapter();
+        adapter=new ArrayAdapter<Project>(pictureCheckActivity, android.R.layout.simple_list_item_1,allProject);
+
+        pictureCheckActivity.getProjectSpinner().setAdapter(new ArrayAdapter<Project>(pictureCheckActivity, android.R.layout.simple_list_item_1,allProject));
+
+
     }
 }
 

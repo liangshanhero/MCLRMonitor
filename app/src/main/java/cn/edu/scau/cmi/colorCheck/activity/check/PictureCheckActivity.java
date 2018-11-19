@@ -39,10 +39,22 @@ public class PictureCheckActivity extends AppCompatActivity {
     private static  List<Project> projectList;
     private static List<Rule> ruleList;
     private Handler handler;
-    ArrayAdapter<Project> projectAdapter;
-    ArrayAdapter<Rule> ruleAdapter;
+    private ArrayAdapter<Project> projectAdapter;
+    private ArrayAdapter<Rule> ruleAdapter;
     private TextView tv_random;
     private Looper looper;
+
+    public ArrayAdapter getProjectAdapter(){
+        return this.projectAdapter;
+    }
+
+    public Spinner getProjectSpinner(){
+        return projectSpinner;
+    }
+
+    public Spinner getRuleSpinner(){
+        return ruleSpinner;
+    }
 
 
 
@@ -55,7 +67,10 @@ public class PictureCheckActivity extends AppCompatActivity {
 //异步获取数据，并在异步任务中显示输出，设置界面
         ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
         projectAsyncTask.execute();
-
+//       暂时还么有rule数据
+        RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
+        ruleAsyncTask.execute();
+        initSpinner();
 
     }
 
@@ -84,11 +99,8 @@ public class PictureCheckActivity extends AppCompatActivity {
     }
 
     private void initSpinner() {
-        //TODO 利用消息队列更新界面的内容
-        projectList=ProjectAsyncTask.getAllProject();
-        System.out.println("开始的时候，所有的项目是："+projectList);
         projectAdapter=new ArrayAdapter<Project>(this, android.R.layout.simple_list_item_1,projectList);
-//        projectSpinner.setAdapter(projectAdapter);
+        projectSpinner.setAdapter(projectAdapter);
 
         ruleList=RuleAsyncTask.getAllRules();
         ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
