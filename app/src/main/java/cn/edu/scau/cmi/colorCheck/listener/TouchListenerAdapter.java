@@ -16,12 +16,12 @@ public abstract class TouchListenerAdapter implements TouchListener {
     }
 
     @Override
-    public void showPicture(Bitmap bitmap) {
+    public void showPictureCheckResult(Bitmap bitmap) {
 
     }
 
     @Override
-    public void showPicture(byte[] data) {
+    public void showPictureCheckResult(byte[] data) {
 
     }
 }

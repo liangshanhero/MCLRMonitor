@@ -9,8 +9,8 @@ import android.hardware.Camera;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.SurfaceHolder;
 import android.view.View;
 
 import java.io.IOException;
@@ -20,10 +20,10 @@ import cn.edu.scau.cmi.colorCheck.listener.TouchListener;
 /**
  * Created by Mr_Chen on 2018/4/3.
  *
- * 取景的界面，获取一个界面的视图
+ * 取景的界面,获取一个点的处理界面
  */
 
-public class PictureSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
+public class CameraPointSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     private Camera camera;
     private SurfaceHolder surfaceHolder;
@@ -34,7 +34,7 @@ public class PictureSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     public void setTouchListener(TouchListener touchListener){
         this.touchListener = touchListener;
     }
-    public PictureSurfaceView(final Context context, AttributeSet attrs) {
+    public CameraPointSurfaceView(final Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         camera = openCamera();
@@ -93,9 +93,9 @@ public class PictureSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             int argb = bitmap.getPixel(x, y);
             System.out.println("选中的点的argb is "+argb);
 
-//            touchListener.displayRgb(argb);
-            touchListener.showPicture(bitmap);
-            touchListener.displayRgbOnCoordinate(bitmap);
+            touchListener.displayRgb(argb);
+//            touchListener.showPictureCheckResult(bitmap);
+//            touchListener.displayRgbOnCoordinate(bitmap);
 
         }
     };

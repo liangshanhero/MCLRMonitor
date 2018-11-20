@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
@@ -16,21 +17,29 @@ import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PointCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PictureSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DAO;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.DatabaseHelper;
-import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
+import cn.edu.scau.cmi.colorCheck.dao.asyncTask.UserAsyncTask;
 
 public class MainActivity extends AppCompatActivity {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init();//异步获取用户的数据测试
+
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA},1);
         }
-        DatabaseHelper.getInstance(this,"rgb.db",null,1);
-        DAO.insert(new CheckType("定量"));
-        DAO.insert(new CheckType("定性"));
+//        数据库暂时关闭
+//        DatabaseHelper.getInstance(this,"rgb.db",null,1);
+//        DAO.insert(new CheckType("定量"));
+//        DAO.insert(new CheckType("定性"));
+    }
+
+    private void init() {
+        UserAsyncTask userAsyncTask=new UserAsyncTask(this);
+        userAsyncTask.execute();
 
     }
 
@@ -40,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             case 1 :
             {
                 if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
                 }else{
                     Toast.makeText(this, "禁止用摄像头将导致程序功能异常", Toast.LENGTH_SHORT).show();
                 }
@@ -90,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
     public void manual(View view){
         Intent intent = new Intent(MainActivity.this, ManualActivity.class);
         startActivity(intent);
+    }
+    // 测试数据异步采集
+    public void testJsonDataFromWeb(View view){
+        EditText editText=(EditText)findViewById(R.id.editText);
+        editText.setText("准备采集数据"+UserAsyncTask.getUsers());
+
     }
 
 }

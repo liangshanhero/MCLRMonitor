@@ -21,7 +21,7 @@ import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
-import cn.edu.scau.cmi.colorCheck.view.PointSurfaceView;
+import cn.edu.scau.cmi.colorCheck.view.CameraPointSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 
@@ -33,7 +33,7 @@ public class PointCheckActivity extends AppCompatActivity {
     EditText blueEditText;
     EditText resultEditText;
     TextView resultTextView;
-    PointSurfaceView surfaceView;
+    CameraPointSurfaceView cameraPointSurfaceView;
     Spinner projectSpinner;
     Spinner ruleSpinner;
 
@@ -49,9 +49,18 @@ public class PointCheckActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        surfaceView = findViewById(R.id.point_check_surface);
+        selectedColorLinnerLayout = findViewById(R.id.select_color);
+        redEditText = findViewById(R.id.red);
+        greenEditText = findViewById(R.id.green);
+        blueEditText = findViewById(R.id.blue);
+        resultTextView = findViewById(R.id.result_name);
+        resultEditText = findViewById(R.id.check_result);
+        projectSpinner = findViewById(R.id.point_check_project);
+        ruleSpinner = findViewById(R.id.check_rule);
+
+        cameraPointSurfaceView = findViewById(R.id.point_check_surface);
 //        点击后的行为,利用自定义的
-        surfaceView.setTouchListener(new TouchListenerAdapter() {
+        cameraPointSurfaceView.setTouchListener(new TouchListenerAdapter() {
 //            前面的RGB色彩检测方法
             @Override
             public void displayRgb(int color) {
@@ -90,14 +99,14 @@ public class PointCheckActivity extends AppCompatActivity {
             }
 
             @Override
-            public void showPicture(Bitmap bitmap) {
+            public void showPictureCheckResult(Bitmap bitmap) {
 //                在这里添加图片的显示部分
                 System.out.println("显示图片，暂时没有添加功能");
                 Toast.makeText(PointCheckActivity.this, "显示图片，暂时没有添加功能", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void showPicture(byte[] data) {
+            public void showPictureCheckResult(byte[] data) {
 //                Toast.makeText(PointCheckActivity.this, "Check", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(PointCheckActivity.this,Main2Activity4Test.class);
 //                intent.putExtra("pic",data);
@@ -105,28 +114,16 @@ public class PointCheckActivity extends AppCompatActivity {
             }
         });
 
-
-        selectedColorLinnerLayout = findViewById(R.id.select_color);
-        redEditText = findViewById(R.id.red);
-        greenEditText = findViewById(R.id.green);
-        blueEditText = findViewById(R.id.blue);
-        resultTextView = findViewById(R.id.result_name);
-        resultEditText = findViewById(R.id.check_result);
-        projectSpinner = findViewById(R.id.check_project);
-        ruleSpinner = findViewById(R.id.check_rule);
         projects = Service.getAllProject();
-        ArrayAdapter<Project> projectAdapter = new ArrayAdapter<Project>(this,
-                android.R.layout.simple_list_item_1,
-                projects);
+        ArrayAdapter<Project> projectAdapter = new ArrayAdapter<Project>(this,  android.R.layout.simple_list_item_1,  projects);
         projectSpinner.setAdapter(projectAdapter);
         if(projects.size() != 0){
            rules = Service.getRulesOfProject(projects.get(0));
         }else{
             rules = new ArrayList<>();
         }
-        ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                rules);
+
+        ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<>(this,  android.R.layout.simple_list_item_1,  rules);
         ruleSpinner.setAdapter(ruleAdapter);
 
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

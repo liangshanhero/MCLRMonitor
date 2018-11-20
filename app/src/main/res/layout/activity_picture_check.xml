@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <cn.edu.scau.cmi.colorCheck.view.PictureSurfaceView
+        <cn.edu.scau.cmi.colorCheck.view.CameraPictureSurfaceView
             android:id="@+id/picture_check_surface"
             android:layout_gravity="center"
             android:layout_width="200dp"
@@ -43,7 +43,7 @@
             <Spinner
                 android:ellipsize="marquee"
                 android:spinnerMode="dialog"
-                android:id="@+id/check_project"
+                android:id="@+id/picture_check_project_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </Spinner>
@@ -53,7 +53,6 @@
 <!--检测规则部分-->
     <LinearLayout
         android:background="#fff"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -73,15 +72,28 @@
             <Spinner
                 android:ellipsize="marquee"
                 android:spinnerMode="dialog"
-                android:id="@+id/check_rule"
+                android:id="@+id/picture_check_rule_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
             </Spinner>
         </LinearLayout>
 
     </LinearLayout>
-    <!--结果部分-->
+<!--测试从后台获取数据-->
+    <!--<TextView
+        android:id="@+id/picture_check_project_asyncTask_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />-->
+
+    <Button
+        android:id="@+id/picture_check_gain_data_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取存在的检测项目和规则"
+        android:onClick="onPictureCheckGainData"/>
+
+    <!--&lt;!&ndash;结果部分&ndash;&gt;
     <LinearLayout
         android:background="#fff"
         android:layout_width="match_parent"
@@ -109,8 +121,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <!--整个RGB颜色部分-->
+-->
+  <!--  &lt;!&ndash;整个RGB颜色部分&ndash;&gt;
     <LinearLayout
         android:background="#fff"
         android:layout_marginTop="10dp"
@@ -194,13 +206,16 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
+-->
 
-    <Button
-        android:id="@+id/check_result_button"
+    <!--以后点击按钮出结果，现在是点击图片即可-->
+<!--    <Button
+        android:id="@+id/picture_check_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="checkResultDetail"
-        android:text="Button" />
+        android:onClick="picture_check"
+        android:text="检测"
+        />-->
 
 
 </LinearLayout>

@@ -9,8 +9,8 @@ import android.hardware.Camera;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 import java.io.IOException;
@@ -20,10 +20,10 @@ import cn.edu.scau.cmi.colorCheck.listener.TouchListener;
 /**
  * Created by Mr_Chen on 2018/4/3.
  *
- * 取景的界面,获取一个点的处理界面
+ * 取景的界面，获取一个界面的视图
  */
 
-public class PointSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
+public class CameraPictureSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     private Camera camera;
     private SurfaceHolder surfaceHolder;
@@ -34,14 +34,14 @@ public class PointSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     public void setTouchListener(TouchListener touchListener){
         this.touchListener = touchListener;
     }
-    public PointSurfaceView(final Context context, AttributeSet attrs) {
+    public CameraPictureSurfaceView(final Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         camera = openCamera();
         initCameraParams();
         surfaceHolder = this.getHolder();
         surfaceHolder.addCallback(this);
-//        点击后，捕获图片事件
+//        点击后，捕获图片事件，
         this.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -72,36 +72,24 @@ public class PointSurfaceView extends SurfaceView implements SurfaceHolder.Callb
                 }
             }
         });
-
-
     }
     private Camera.PictureCallback pc = new Camera.PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
-
-            Log.i("图片获取状态","成功");
             Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
             Matrix matrix = new Matrix();
             matrix.setRotate(90);
-//          图片获取，下面如何处理
-
-//            bitmap.
 
             bitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
             int x = (int)(touchX*((float)bitmap.getWidth()/getWidth()));
             int y = (int)(touchY*((float)bitmap.getHeight()/getHeight()));
             int argb = bitmap.getPixel(x, y);
             System.out.println("选中的点的argb is "+argb);
-
-            touchListener.displayRgb(argb);
-//            touchListener.showPicture(bitmap);
-//            touchListener.displayRgbOnCoordinate(bitmap);
-
+//            touchListener.displayRgb(argb);
+            touchListener.showPictureCheckResult(bitmap);
+            touchListener.displayRgbOnCoordinate(bitmap);
         }
     };
-
-
-
     private void initCameraParams()
     {
         Camera.Parameters parameters = camera.getParameters();
@@ -110,7 +98,7 @@ public class PointSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         parameters.setPictureFormat(ImageFormat.JPEG);
         parameters.setJpegQuality(100);
         camera.setParameters(parameters);
-        Log.d("sursize", this.getWidth()+" "+this.getHeight());
+//        Log.d("sursize", this.getWidth()+" "+this.getHeight());
         //parameters.setPreviewSize(this.getWidth(),this.getHeight());
        // parameters.setPictureSize(this.getWidth(),this.getHeight());
         //        Log.d("presize", parameters.getPreviewSize().width+" "+parameters.getPreviewSize().height);
@@ -128,7 +116,6 @@ public class PointSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
 //打开相机
     private Camera openCamera(){
-
         if(camera == null){
             return  Camera.open();
         }
