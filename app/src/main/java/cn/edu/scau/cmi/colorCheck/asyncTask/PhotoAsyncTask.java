@@ -15,6 +15,10 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
 
     @Override
     protected String doInBackground(Void... voids) {
+//TODO 上传图片
+
+
+
         return "暂时还没有完成上传的功能";
     }
 
