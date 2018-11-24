@@ -49,7 +49,7 @@ public class HttpUtil {
     public static Request getGetRequest(String postfixURL){
           return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
-//TODO 上传图片文件，待测试20181124
+//TODO 上传图片文件，待测试20181124，服务端待做。
     public static void postFile(String address, okhttp3.Callback callback, Map<String,String> map)
     {
         OkHttpClient client = new OkHttpClient();
