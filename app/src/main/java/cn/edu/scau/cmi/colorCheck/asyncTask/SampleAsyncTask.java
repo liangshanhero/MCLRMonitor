@@ -1,10 +1,8 @@
-package cn.edu.scau.cmi.colorCheck.dao.asyncTask;
+package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.os.AsyncTask;
 
-
-
-public class CheckAsyncTask extends AsyncTask<String,Void,String> {
+public class SampleAsyncTask extends AsyncTask<String,Void,String>  {
     @Override
     protected String doInBackground(String... strings) {
         return null;

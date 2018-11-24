@@ -2,7 +2,6 @@ package cn.edu.scau.cmi.colorCheck.dao.mysql;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.dao.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 

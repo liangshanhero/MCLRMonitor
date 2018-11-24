@@ -1,14 +1,12 @@
-package cn.edu.scau.cmi.colorCheck.dao.asyncTask;
+package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.os.AsyncTask;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;

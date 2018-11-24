@@ -17,7 +17,8 @@ import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PointCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PictureSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
-import cn.edu.scau.cmi.colorCheck.dao.asyncTask.UserAsyncTask;
+import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
+import cn.edu.scau.cmi.colorCheck.asyncTask.UserAsyncTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         UserAsyncTask userAsyncTask=new UserAsyncTask(this);
         userAsyncTask.execute();
+
+        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(this);
+        photoAsyncTask.execute();
+
 
     }
 

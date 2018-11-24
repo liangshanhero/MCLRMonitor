@@ -1,9 +1,6 @@
-package cn.edu.scau.cmi.colorCheck.dao.asyncTask;
+package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.os.AsyncTask;
-import android.widget.TextView;
-
-import cn.edu.scau.cmi.colorCheck.R;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
