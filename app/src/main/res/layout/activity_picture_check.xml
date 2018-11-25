@@ -93,6 +93,13 @@
         android:text="获取存在的检测项目和规则"
         android:onClick="onPictureCheckGainData"/>
 
+    <Button
+        android:id="@+id/picture_check_upload_bitmap_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="上传检测的图片"
+        android:onClick="onPictureCheckUploadBitMap"/>
+
     <!--&lt;!&ndash;结果部分&ndash;&gt;
     <LinearLayout
         android:background="#fff"

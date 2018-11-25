@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
+import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.RuleAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
@@ -132,6 +133,20 @@ public class PictureCheckActivity extends AppCompatActivity {
         ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
         ruleSpinner.setAdapter(ruleAdapter);
     }
+
+
+    //TODO 上传文件，调用PhotoAsyncTask
+    public void onPictureCheckUploadBitMap(View view){
+
+        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this);
+        photoAsyncTask.execute();
+
+
+    }
+
+
+
+
 //点击图片后，显示结果界面，
 //    public void onPictureCheck(View view){
 ////      在这里将图片的检测结果作为参数在结果界面中显示这个图表。

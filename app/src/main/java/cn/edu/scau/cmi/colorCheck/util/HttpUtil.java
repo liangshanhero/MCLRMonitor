@@ -49,7 +49,7 @@ public class HttpUtil {
     public static Request getGetRequest(String postfixURL){
           return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
-//TODO 上传图片文件，待测试20181124，服务端待做。
+//TODO 上传图片文件，待测试20181124，服务端已完成
     public static void postFile(String address, okhttp3.Callback callback, Map<String,String> map)
     {
         OkHttpClient client = new OkHttpClient();
@@ -61,10 +61,10 @@ public class HttpUtil {
                 builder.addFormDataPart(entry.getKey(),entry.getValue());
             }
         }
-
+//测试的时候暂时用固定的文件，看这个文件在那个目录
         String uploadImagFile="test.png";
-
         File file = new File(uploadImagFile);
+        System.out.println("---------------要上传文件的绝对路径是："+file.getAbsolutePath());
         if(file.exists()){
             Log.d(TAG, "postFile: 文件存在");
             String TYPE = "application/octet-stream";
