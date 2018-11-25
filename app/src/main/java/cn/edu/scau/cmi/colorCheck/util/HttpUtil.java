@@ -52,7 +52,8 @@ public class HttpUtil {
     public static Request getGetRequest(String postfixURL){
           return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
-//TODO 第一中方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
+//  TODO 第一中方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
+    //    address是网络地址？
     public static void postFile(String address, okhttp3.Callback callback, Map<String,String> map)
     {
         OkHttpClient client = new OkHttpClient();
@@ -64,10 +65,11 @@ public class HttpUtil {
                 builder.addFormDataPart(entry.getKey(),entry.getValue());
             }
         }
-//测试的时候暂时用固定的文件，看这个文件在那个目录
+        //测试的时候暂时用固定的文件，看这个文件在那个目录
         String uploadImagFile="test.png";
         File file = new File(uploadImagFile);
         System.out.println("---------------要上传文件的绝对路径是："+file.getAbsolutePath());
+        Log.e("色彩检测：","---------------要上传文件的绝对路径是："+file.getAbsolutePath());
         if(file.exists()){
             Log.d(TAG, "postFile: 文件存在");
             String TYPE = "application/octet-stream";
@@ -84,9 +86,7 @@ public class HttpUtil {
             client.newCall(request).enqueue(callback);
         }
     }
-
-
-
+//TODO 待测试是否成功
     public static void postFile2Server(){
         OkHttpClient client=new OkHttpClient();
 
@@ -107,6 +107,8 @@ public class HttpUtil {
 
 
 //三种：混合参数和文件请求
+        RequestBody paramsBody=null;
+        RequestBody fileBody=null;
         RequestBody multipartBody = new MultipartBody.Builder()
                 .setType(MultipartBody.ALTERNATIVE)
                 //一样的效果
@@ -126,8 +128,6 @@ public class HttpUtil {
                 .addFormDataPart("mode",currentPlan.getMode()+"")
                 .addFormDataPart("params","plans.xml",fileBody)*/
                 .build();
-
-
 
         Request request=new Request.Builder().url("http://192.168.1.121:8080/Server/Service")
                 .addHeader("User-Agent","android")
@@ -150,10 +150,5 @@ public class HttpUtil {
                 }
             }
         });
-
-
     }
-
-
-
 }

@@ -5,9 +5,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -33,6 +36,12 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
 
     @Override
     protected String doInBackground(Void... voids) {
+        String address=null;
+        Callback callback=null;
+        Map<String, String> map=new HashMap<>();
+        HttpUtil.postFile(address, callback, map);
+        HttpUtil.postFile2Server();
+
 
 
         return "后台检测一下，看是否成功上传图片文件";
@@ -46,7 +55,5 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
         else{
             Toast.makeText(mainActivity, result, Toast.LENGTH_SHORT).show();
         }
-
-
     }
 }
