@@ -121,15 +121,15 @@ public class PictureCheckActivity extends AppCompatActivity {
         intent.putExtras(bundle);
     }
 
-    //点击舒适化按钮，Spinner设置初始值
+    //点击初始化按钮，Spinner设置初始值
     public void onPictureCheckGainData(View view){
         projectList=ProjectAsyncTask.getAllProject();
-        System.out.println("***********************"+projectList);
+        System.out.println("PictureCheckActivity onPictureCheckGainData,所有的***项目***是： ***********************"+projectList);
         projectAdapter=new ArrayAdapter<Project>(this, android.R.layout.simple_list_item_1,projectList);
         projectSpinner.setAdapter(projectAdapter);
 
         ruleList=RuleAsyncTask.getAllRules();
-        System.out.println("----------------------"+ruleList);
+        System.out.println("PictureCheckActivity onPictureCheckGainData,所有的***规则***是：----------------------"+ruleList);
         ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
         ruleSpinner.setAdapter(ruleAdapter);
     }

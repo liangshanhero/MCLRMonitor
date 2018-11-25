@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.Map;
 
 import cn.edu.scau.cmi.colorCheck.R;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -49,7 +52,7 @@ public class HttpUtil {
     public static Request getGetRequest(String postfixURL){
           return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
-//TODO 上传图片文件，待测试20181124，服务端已完成
+//TODO 第一中方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
     public static void postFile(String address, okhttp3.Callback callback, Map<String,String> map)
     {
         OkHttpClient client = new OkHttpClient();
@@ -81,4 +84,76 @@ public class HttpUtil {
             client.newCall(request).enqueue(callback);
         }
     }
+
+
+
+    public static void postFile2Server(){
+        OkHttpClient client=new OkHttpClient();
+
+//一种：参数请求体
+//        FormBody paramsBody=new FormBody.Builder()
+//                .add("id",currentPlan.getPlanId()+"")
+//                .add("name",currentPlan.getName())
+//                .add("volume",currentPlan.getVolume())
+//                .add("type",currentPlan.getType()+"")
+//                .add("mode",currentPlan.getMode()+"")
+//                .build();
+
+
+//二种：文件请求体
+//        MediaType type=MediaType.parse("application/octet-stream");//"text/xml;charset=utf-8"
+//        File file=new File("/data/data/com.example.company/files/plan/plans.xml");
+//        RequestBody fileBody=RequestBody.create(type,file);
+
+
+//三种：混合参数和文件请求
+        RequestBody multipartBody = new MultipartBody.Builder()
+                .setType(MultipartBody.ALTERNATIVE)
+                //一样的效果
+                .addPart(Headers.of(
+                        "Content-Disposition",
+                        "form-data; name=\"params\"")
+                        ,paramsBody)
+                .addPart(Headers.of(
+                        "Content-Disposition",
+                        "form-data; name=\"file\"; filename=\"plans.xml\"")
+                        , fileBody)
+                //一样的效果
+                /*.addFormDataPart("id",currentPlan.getPlanId()+"")
+                .addFormDataPart("name",currentPlan.getName())
+                .addFormDataPart("volume",currentPlan.getVolume())
+                .addFormDataPart("type",currentPlan.getType()+"")
+                .addFormDataPart("mode",currentPlan.getMode()+"")
+                .addFormDataPart("params","plans.xml",fileBody)*/
+                .build();
+
+
+
+        Request request=new Request.Builder().url("http://192.168.1.121:8080/Server/Service")
+                .addHeader("User-Agent","android")
+                .header("Content-Type","text/html; charset=utf-8;")
+                .post(multipartBody)//传参数、文件或者混合，改一下就行请求体就行
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                Log.i("xxx","1、连接的消息"+response.message());
+                if(response.isSuccessful()){
+                    Log.i("xxx","2、连接成功获取的内容"+response.body().string());
+                }
+            }
+        });
+
+
+    }
+
+
+
 }
