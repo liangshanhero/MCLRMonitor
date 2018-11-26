@@ -36,11 +36,17 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
 
     @Override
     protected String doInBackground(Void... voids) {
-        String address=null;
-        Callback callback=null;
-        Map<String, String> map=new HashMap<>();
-        HttpUtil.postFile(address, callback, map);
-        HttpUtil.postFile2Server();
+
+
+        HttpUtil.uploadMultiFile();
+
+//        String address=null;
+//        Callback callback=null;
+//        Map<String, String> map=new HashMap<>();
+////   两种方式上传图片，这是第一种；
+//        HttpUtil.postFile( callback, map);
+////   两种方式上传图片，这是第二种；
+//        HttpUtil.postFile2Server();
 
 
 

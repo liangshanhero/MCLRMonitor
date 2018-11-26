@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import okhttp3.Call;
@@ -20,11 +21,12 @@ import okhttp3.Response;
 public class HttpUtil {
 
 //    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
- private static final String getUserJsonUrlPrefix = "http://139.159.188.31:8080/colorCheckServer/";
+    private static final String getUserJsonUrlPrefix = "http://139.159.188.31:8080/colorCheckServer/";
+    private static final String uploadImage_url = "http://139.159.188.31:8080/colorCheckServer/springUpload";
     private static final String TAG = "-----HttpUtil测试消息------";
 
 //不要在代码里改配置，到res/alues/string.xml修改
-    //CmiApplication.getContext().getString(R.string.prefix_url);
+//    CmiApplication.getContext().getString(R.string.prefix_url);
 //    prefix_url是数据所在的网址的前缀，postURL是具体的数据后缀。
 
     private static String getCompleteURLString(String postfixURL){
@@ -52,9 +54,35 @@ public class HttpUtil {
     public static Request getGetRequest(String postfixURL){
           return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
-//  TODO 第一中方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
+
+//    第一种上传文件的方法：20181125在Java Application中测试成功的方法
+public static void uploadMultiFile() {
+//    final String url = "http://localhost:8080/colorCheckServer/springUpload";
+    File file = new File("d:/mysql-connector-java-5.1.29.jar");
+    RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+    RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", "test.jpg", fileBody).build();
+    Request request = new Request.Builder().url(uploadImage_url).post(requestBody).build();
+
+    final okhttp3.OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
+    OkHttpClient okHttpClient = httpBuilder.connectTimeout(10, TimeUnit.SECONDS).writeTimeout(15, TimeUnit.SECONDS).build();
+    okHttpClient.newCall(request).enqueue(new Callback() {
+        @Override
+        public void onFailure(Call call, IOException e) {
+            System.out.println("很遗憾地告诉你，没有上传成功");
+        }
+
+        @Override
+        public void onResponse(Call call, Response response) throws IOException {
+            System.out.println("恭喜你，上传成功");
+            System.out.println("uploadMultiFile() response=" + response.body().string());
+    	  Log.i(TAG, "uploadMultiFile() response=" + response.body().string());
+        }
+    });
+}
+
+//  TODO 第二种方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
     //    address是网络地址？
-    public static void postFile(String address, okhttp3.Callback callback, Map<String,String> map)
+    public static void postFile(okhttp3.Callback callback, Map<String,String> map)
     {
         OkHttpClient client = new OkHttpClient();
         MultipartBody.Builder builder = new MultipartBody.Builder();
@@ -66,9 +94,9 @@ public class HttpUtil {
             }
         }
         //测试的时候暂时用固定的文件，看这个文件在那个目录
-        String uploadImagFile="test.png";
+
+        String uploadImagFile="hs_user.txt";
         File file = new File(uploadImagFile);
-        System.out.println("---------------要上传文件的绝对路径是："+file.getAbsolutePath());
         Log.e("色彩检测：","---------------要上传文件的绝对路径是："+file.getAbsolutePath());
         if(file.exists()){
             Log.d(TAG, "postFile: 文件存在");
@@ -77,12 +105,12 @@ public class HttpUtil {
 
             RequestBody requestBody = builder.setType(MultipartBody.FORM).addFormDataPart("detail_image",file.getName(),fileBody).build();
 
-            Request request = new Request.Builder().url(address).post(requestBody).addHeader("Authorization","Bearer ").build();
+            Request request = new Request.Builder().url(uploadImage_url).post(requestBody).addHeader("Authorization","Bearer ").build();
             client.newCall(request).enqueue(callback);
         }else {
             Log.d(TAG, "postFile: 文件不存在");
             RequestBody requestBody = builder.setType(MultipartBody.FORM).build();
-            Request request = new Request.Builder().url(address).post(requestBody).addHeader("Authorization","Bearer ").build();
+            Request request = new Request.Builder().url(uploadImage_url).post(requestBody).addHeader("Authorization","Bearer ").build();
             client.newCall(request).enqueue(callback);
         }
     }

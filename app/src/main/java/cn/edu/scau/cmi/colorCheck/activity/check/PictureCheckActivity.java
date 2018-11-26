@@ -133,7 +133,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         ruleSpinner.setAdapter(ruleAdapter);
     }
 
-    //TODO 上传文件，调用PhotoAsyncTask
+    //TODO 上传文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。
     public void onPictureCheckUploadBitMap(View view){
         PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this);
         photoAsyncTask.execute();

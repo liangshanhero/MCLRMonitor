@@ -41,11 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         UserAsyncTask userAsyncTask=new UserAsyncTask(this);
         userAsyncTask.execute();
-//在主界面打开上传相片的记录
-        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(this);
-        photoAsyncTask.execute();
-
-
     }
 
     @Override
