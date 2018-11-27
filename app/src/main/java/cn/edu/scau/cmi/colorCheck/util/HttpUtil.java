@@ -58,10 +58,10 @@ public class HttpUtil {
 //    第一种上传文件的方法：20181125在Java Application中测试成功的方法
 public static void uploadMultiFile(SharedPreferences.Editor sharePreferencesEditor) {
 //手机colorCheck目录中的所有检测图片
-    File[] allColorCheckBitmapFiles=FileUtil.getAllColorCheckBitmaps();
-//    服务器上存在的文件
-    File[] nonCommitColorCheckBitmaps= getNonCommitColorCheckBitmaps(allColorCheckBitmapFiles);
-    for(File file:allColorCheckBitmapFiles){
+    File[] allColorCheckBitmapFilesInPhone=FileUtil.getAllColorCheckBitmaps();
+//    手机上所有的文件看是否在服务器上，
+    File[] nonCommitColorCheckBitmaps= getNonCommitColorCheckBitmaps(allColorCheckBitmapFilesInPhone);
+    for(File file:allColorCheckBitmapFilesInPhone){
         sharePreferencesEditor.putBoolean(file.getName(),false);
     }
 
@@ -72,7 +72,7 @@ public static void uploadMultiFile(SharedPreferences.Editor sharePreferencesEdit
 //    TODO 服务器已经存在的文件就不用上传了！！！
 
 
-    for(File file:allColorCheckBitmapFiles){
+    for(File file:allColorCheckBitmapFilesInPhone){
 //TODO 判断文件是否已经存在,coolpad已经上传成果一个文件 了！！！文件名还需要折腾一下就可以了。
         Log.e("准备上传的文件名是：",file.getAbsolutePath());
 
@@ -99,7 +99,7 @@ public static void uploadMultiFile(SharedPreferences.Editor sharePreferencesEdit
     }
 
 }
-
+//TODO 得到没有上传文件数组
     private static File[] getNonCommitColorCheckBitmaps(File[] allColorCheckBitmapFiles) {
         allColorCheckBitmapFiles
 
