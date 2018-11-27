@@ -36,10 +36,7 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
 
     @Override
     protected String doInBackground(Void... voids) {
-
-
         HttpUtil.uploadMultiFile();
-
 //        String address=null;
 //        Callback callback=null;
 //        Map<String, String> map=new HashMap<>();
@@ -47,9 +44,6 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
 //        HttpUtil.postFile( callback, map);
 ////   两种方式上传图片，这是第二种；
 //        HttpUtil.postFile2Server();
-
-
-
         return "后台检测一下，看是否成功上传图片文件";
     }
 

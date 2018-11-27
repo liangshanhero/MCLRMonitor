@@ -57,27 +57,37 @@ public class HttpUtil {
 
 //    第一种上传文件的方法：20181125在Java Application中测试成功的方法
 public static void uploadMultiFile() {
-//    final String url = "http://localhost:8080/colorCheckServer/springUpload";
-    File file = new File("d:/mysql-connector-java-5.1.29.jar");
-    RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-    RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", "test.jpg", fileBody).build();
-    Request request = new Request.Builder().url(uploadImage_url).post(requestBody).build();
+//    final String url = "http://localhost:8888/colorCheckServer/springUpload";
 
-    final okhttp3.OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
-    OkHttpClient okHttpClient = httpBuilder.connectTimeout(10, TimeUnit.SECONDS).writeTimeout(15, TimeUnit.SECONDS).build();
-    okHttpClient.newCall(request).enqueue(new Callback() {
-        @Override
-        public void onFailure(Call call, IOException e) {
-            System.out.println("很遗憾地告诉你，没有上传成功");
-        }
+    File[] allFiles=FileUtil.getAllColorCheckBitmaps();
+//    TODO 服务器已经存在的文件就不用上传了！！！
 
-        @Override
-        public void onResponse(Call call, Response response) throws IOException {
-            System.out.println("恭喜你，上传成功");
-            System.out.println("uploadMultiFile() response=" + response.body().string());
-    	  Log.i(TAG, "uploadMultiFile() response=" + response.body().string());
-        }
-    });
+    for(File file:allFiles){
+        RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", "test.jpg", fileBody).build();
+        Request request = new Request.Builder().url(uploadImage_url).post(requestBody).build();
+
+        final okhttp3.OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
+        OkHttpClient okHttpClient = httpBuilder.connectTimeout(60, TimeUnit.SECONDS).writeTimeout(60, TimeUnit.SECONDS).build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                System.out.println("很遗憾地告诉你，没有上传成功");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                System.out.println("恭喜你，上传成功");
+                System.out.println("uploadMultiFile() response=" + response.body().string());
+                Log.i(TAG, "uploadMultiFile() response=" + response.body().string());
+            }
+        });
+
+    }
+
+
+
+
 }
 
 //  TODO 第二种方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
