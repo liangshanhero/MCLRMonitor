@@ -1,6 +1,7 @@
 package cn.edu.scau.cmi.colorCheck.activity.check;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,8 @@ public class PictureCheckActivity extends AppCompatActivity {
     Spinner ruleSpinner;
     private static  List<Project> projectList;
     private static List<Rule> ruleList;
+    private SharedPreferences.Editor sharePreferencesEditor;
+
     public void setProjectList(List<Project> projectList){
         this.projectList=projectList;
     }
@@ -51,6 +54,12 @@ public class PictureCheckActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_check);
         initCamera();
+//       获取sharedPreferences.Editior
+        sharePreferencesEditor=getSharedPreferences("colorCheckBitmaps",MODE_PRIVATE).edit();
+
+
+
+
 
         projectSpinner=findViewById(R.id.picture_check_project_spinner);
 //TODO        选择了project后应该在选择项目对应的规则，
@@ -65,7 +74,6 @@ public class PictureCheckActivity extends AppCompatActivity {
                 Project selectedProject = (Project) parent.getItemAtPosition(position);
                 System.out.println(selectedProject);
 
-
                 bundle.putString("selectedPorject",selectedProject.toString());
             }
             @Override
@@ -74,12 +82,11 @@ public class PictureCheckActivity extends AppCompatActivity {
         });
 
         ruleSpinner=findViewById(R.id.picture_check_rule_spinner);
-//后台获取所有的项目和规则数据，用户sprinner提供选项
+//      后台获取所有的项目和规则数据，用户sprinner提供选项
         ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
         projectAsyncTask.execute();
         RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
         ruleAsyncTask.execute();
-
     }
 
     private void initCamera() {
@@ -93,7 +100,7 @@ public class PictureCheckActivity extends AppCompatActivity {
 //              (1)点击图片，等待聚焦后，将保存图片到本地,文件名称是yyyyMMddhhmmss，OK。
                 String fileName=new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
                 try {
-                    FileUtil.saveMyBitmap(bitmap,fileName);
+                    FileUtil.savecolorCheckBitmap(bitmap,fileName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -135,9 +142,12 @@ public class PictureCheckActivity extends AppCompatActivity {
 
     //TODO 上传文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。
     public void onPictureCheckUploadBitMap(View view){
-        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this);
+        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor);
         photoAsyncTask.execute();
     }
+
+
+
 
 
 //点击图片后，显示结果界面，

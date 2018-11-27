@@ -1,5 +1,6 @@
 package cn.edu.scau.cmi.colorCheck.asyncTask;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import okhttp3.Response;
 public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     private MainActivity mainActivity;
     private PictureCheckActivity pictureCheckActivity;
+    private SharedPreferences.Editor sharePreferencesEditor;
 
 
     public PhotoAsyncTask(MainActivity mainActivity) {
@@ -34,9 +36,15 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
         this.pictureCheckActivity=pictureCheckActivity;
     }
 
+    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences.Editor sharePreferencesEditor) {
+        this.pictureCheckActivity=pictureCheckActivity;
+        this.sharePreferencesEditor=sharePreferencesEditor;
+
+    }
+
     @Override
     protected String doInBackground(Void... voids) {
-        HttpUtil.uploadMultiFile();
+        HttpUtil.uploadMultiFile(sharePreferencesEditor);
 //        String address=null;
 //        Callback callback=null;
 //        Map<String, String> map=new HashMap<>();

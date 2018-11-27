@@ -39,8 +39,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+//      主要是用来测试一下网络是否联通的方法，
         UserAsyncTask userAsyncTask=new UserAsyncTask(this);
         userAsyncTask.execute();
+//在主界面打开上传相片的记录
+//        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(this);
+//        photoAsyncTask.execute();
+
+
     }
 
     @Override

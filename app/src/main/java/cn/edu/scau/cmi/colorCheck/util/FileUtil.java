@@ -1,42 +1,38 @@
 package cn.edu.scau.cmi.colorCheck.util;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
+import android.util.Log;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 
 public class FileUtil {
-
-    static String galleryPath = Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM + File.separator + "colorCheck" + File.separator;
-    static File colorCheckBitmapDirectory=new File(galleryPath);
-    static {
-        if(!colorCheckBitmapDirectory.exists()){
-            colorCheckBitmapDirectory.mkdirs();
+    //系统相册目录,Coolpad放置的地方是手机存储盘：/storage/emulated/0/DCIM/Camera/20181126095938.png
+    static String colorCheckBitmapDirectory = Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM  + File.separator + "colorCheck" + File.separator;
+//    如果指定的色彩不空，就创建该目录。
+    static{
+        File colorCheckBitmapDirctory=new File(colorCheckBitmapDirectory);
+        if(!colorCheckBitmapDirctory.exists()){
+            colorCheckBitmapDirctory.mkdirs();
         }
     }
 
-    public static void saveMyBitmap(Bitmap bmp, String picName) throws IOException {
-        File file = new File(colorCheckBitmapDirectory.getAbsolutePath(), picName + ".png");
+    public static void savecolorCheckBitmap(Bitmap bmp, String picName) throws IOException {
+        File file = new File(colorCheckBitmapDirectory, picName + ".png");
         FileOutputStream outStream = new FileOutputStream(file);
         bmp.compress(Bitmap.CompressFormat.PNG, 90, outStream);
+        System.out.println("文件放到的地方是："+file.getAbsolutePath());
+        Log.e("图片存放的地方是：",file.getAbsolutePath());
         outStream.flush();
         outStream.close();
     }
-    
-    public  static File[] getAllColorCheckBitmaps(){
-        File[] allColorCheckBitmaps = colorCheckBitmapDirectory.listFiles();
-        return allColorCheckBitmaps;
-        
+//获取所有的指导目录下的图片，从properties文件中或者那里获取呢？
+//    利用SharedPreferences记录已经上传的文件
+    public static File[] getAllColorCheckBitmaps(){
+        File gallery=new File(colorCheckBitmapDirectory);
+        return gallery.listFiles();
     }
-
-
-
-
 }

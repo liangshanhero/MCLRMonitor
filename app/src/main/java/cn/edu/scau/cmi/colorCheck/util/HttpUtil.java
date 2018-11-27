@@ -1,5 +1,6 @@
 package cn.edu.scau.cmi.colorCheck.util;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.io.File;
@@ -7,7 +8,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import cn.edu.scau.cmi.colorCheck.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -20,9 +20,9 @@ import okhttp3.Response;
 
 public class HttpUtil {
 
-//    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
-    private static final String getUserJsonUrlPrefix = "http://139.159.188.31:8080/colorCheckServer/";
-    private static final String uploadImage_url = "http://139.159.188.31:8080/colorCheckServer/springUpload";
+    //    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
+    private static final String getUserJsonUrlPrefix = "http://139.159.188.31:8888/colorCheckServer/";
+    private static final String uploadImage_url = "http://139.159.188.31:8888/colorCheckServer/springUpload";
     private static final String TAG = "-----HttpUtil测试消息------";
 
 //不要在代码里改配置，到res/alues/string.xml修改
@@ -52,19 +52,33 @@ public class HttpUtil {
     }
 
     public static Request getGetRequest(String postfixURL){
-          return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
+        return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
 
 //    第一种上传文件的方法：20181125在Java Application中测试成功的方法
-public static void uploadMultiFile() {
-//    final String url = "http://localhost:8888/colorCheckServer/springUpload";
+public static void uploadMultiFile(SharedPreferences.Editor sharePreferencesEditor) {
+//手机colorCheck目录中的所有检测图片
+    File[] allColorCheckBitmapFiles=FileUtil.getAllColorCheckBitmaps();
+//    服务器上存在的文件
+    File[] nonCommitColorCheckBitmaps= getNonCommitColorCheckBitmaps(allColorCheckBitmapFiles);
+    for(File file:allColorCheckBitmapFiles){
+        sharePreferencesEditor.putBoolean(file.getName(),false);
+    }
 
-    File[] allFiles=FileUtil.getAllColorCheckBitmaps();
+
+
+
+
 //    TODO 服务器已经存在的文件就不用上传了！！！
 
-    for(File file:allFiles){
+
+    for(File file:allColorCheckBitmapFiles){
+//TODO 判断文件是否已经存在,coolpad已经上传成果一个文件 了！！！文件名还需要折腾一下就可以了。
+        Log.e("准备上传的文件名是：",file.getAbsolutePath());
+
+
         RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", "test.jpg", fileBody).build();
+        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", file.getName(), fileBody).build();
         Request request = new Request.Builder().url(uploadImage_url).post(requestBody).build();
 
         final okhttp3.OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
@@ -82,15 +96,19 @@ public static void uploadMultiFile() {
                 Log.i(TAG, "uploadMultiFile() response=" + response.body().string());
             }
         });
+    }
+
+}
+
+    private static File[] getNonCommitColorCheckBitmaps(File[] allColorCheckBitmapFiles) {
+        allColorCheckBitmapFiles
 
     }
 
 
 
 
-}
-
-//  TODO 第二种方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
+    //  TODO 第二种方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
     //    address是网络地址？
     public static void postFile(okhttp3.Callback callback, Map<String,String> map)
     {
