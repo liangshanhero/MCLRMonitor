@@ -31,7 +31,8 @@ public class PictureCheckActivity extends AppCompatActivity {
     Spinner ruleSpinner;
     private static  List<Project> projectList;
     private static List<Rule> ruleList;
-    private SharedPreferences.Editor sharePreferencesEditor;
+    private SharedPreferences sharePreferencesEditor;
+
 
     public void setProjectList(List<Project> projectList){
         this.projectList=projectList;
@@ -54,11 +55,8 @@ public class PictureCheckActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_check);
         initCamera();
-//       获取sharedPreferences.Editior
-        sharePreferencesEditor=getSharedPreferences("colorCheckBitmaps",MODE_PRIVATE).edit();
-
-
-
+//       获取sharedPreferences
+        sharePreferencesEditor=getSharedPreferences("colorCheckBitmaps",MODE_PRIVATE);
 
 
         projectSpinner=findViewById(R.id.picture_check_project_spinner);

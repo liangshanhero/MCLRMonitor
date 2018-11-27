@@ -25,7 +25,7 @@ import okhttp3.Response;
 public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     private MainActivity mainActivity;
     private PictureCheckActivity pictureCheckActivity;
-    private SharedPreferences.Editor sharePreferencesEditor;
+    private SharedPreferences sharePreferences;
 
 
     public PhotoAsyncTask(MainActivity mainActivity) {
@@ -36,23 +36,16 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
         this.pictureCheckActivity=pictureCheckActivity;
     }
 
-    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences.Editor sharePreferencesEditor) {
+    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences) {
         this.pictureCheckActivity=pictureCheckActivity;
-        this.sharePreferencesEditor=sharePreferencesEditor;
+        this.sharePreferences=sharePreferences;
 
     }
 
     @Override
     protected String doInBackground(Void... voids) {
-        HttpUtil.uploadMultiFile(sharePreferencesEditor);
-//        String address=null;
-//        Callback callback=null;
-//        Map<String, String> map=new HashMap<>();
-////   两种方式上传图片，这是第一种；
-//        HttpUtil.postFile( callback, map);
-////   两种方式上传图片，这是第二种；
-//        HttpUtil.postFile2Server();
-        return "后台检测一下，看是否成功上传图片文件";
+        HttpUtil.uploadMultiFile(sharePreferences);
+        return "请登录到服务器后台，检测否成功上传图片文件";
     }
 
     @Override

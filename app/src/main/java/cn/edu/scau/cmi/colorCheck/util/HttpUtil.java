@@ -6,6 +6,7 @@ import android.util.Log;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -56,54 +57,39 @@ public class HttpUtil {
     }
 
 //    第一种上传文件的方法：20181125在Java Application中测试成功的方法
-public static void uploadMultiFile(SharedPreferences.Editor sharePreferencesEditor) {
-//手机colorCheck目录中的所有检测图片
-    File[] allColorCheckBitmapFilesInPhone=FileUtil.getAllColorCheckBitmaps();
-//    手机上所有的文件看是否在服务器上，
-    File[] nonCommitColorCheckBitmaps= getNonCommitColorCheckBitmaps(allColorCheckBitmapFilesInPhone);
-    for(File file:allColorCheckBitmapFilesInPhone){
-        sharePreferencesEditor.putBoolean(file.getName(),false);
+public static void uploadMultiFile(SharedPreferences sharePreferences) {
+//手机colorCheck目录中的所有检测图片，如果在sharePreferences没找到，就上传，并将记录保存到如果在sharePreferences没找到中。
+    SharedPreferences.Editor sharePreferencesEditor = sharePreferences.edit();
+    File[] allColorCheckBitmapFilesInPhone = FileUtil.getAllColorCheckBitmaps();
+//    手机上所有的文件看是否在服务器上，已经保存的所有的文件
+    Map<String, ?> itemsMap = sharePreferences.getAll();//所有已经上传了的文件名称
+
+    for (File file : allColorCheckBitmapFilesInPhone) {
+        if (itemsMap.get(file.getName()) == null) {
+            RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+            RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", file.getName(), fileBody).build();
+            Request request = new Request.Builder().url(uploadImage_url).post(requestBody).build();
+
+            final okhttp3.OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
+            OkHttpClient okHttpClient = httpBuilder.connectTimeout(60, TimeUnit.SECONDS).writeTimeout(60, TimeUnit.SECONDS).build();
+            okHttpClient.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    System.out.println("很遗憾地告诉你，没有上传成功");
+                }
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    System.out.println("恭喜你，上传成功");
+                    System.out.println("uploadMultiFile() response=" + response.body().string());
+                    Log.i(TAG, "uploadMultiFile() response=" + response.body().string());
+                }
+            });
+//TODO　   保存上传文件的记录，待测试
+            sharePreferencesEditor.putBoolean(file.getName(), true);
+            sharePreferencesEditor.commit();
+        }
     }
-
-
-
-
-
-//    TODO 服务器已经存在的文件就不用上传了！！！
-
-
-    for(File file:allColorCheckBitmapFilesInPhone){
-//TODO 判断文件是否已经存在,coolpad已经上传成果一个文件 了！！！文件名还需要折腾一下就可以了。
-        Log.e("准备上传的文件名是：",file.getAbsolutePath());
-
-
-        RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", file.getName(), fileBody).build();
-        Request request = new Request.Builder().url(uploadImage_url).post(requestBody).build();
-
-        final okhttp3.OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
-        OkHttpClient okHttpClient = httpBuilder.connectTimeout(60, TimeUnit.SECONDS).writeTimeout(60, TimeUnit.SECONDS).build();
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                System.out.println("很遗憾地告诉你，没有上传成功");
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                System.out.println("恭喜你，上传成功");
-                System.out.println("uploadMultiFile() response=" + response.body().string());
-                Log.i(TAG, "uploadMultiFile() response=" + response.body().string());
-            }
-        });
-    }
-
 }
-//TODO 得到没有上传文件数组
-    private static File[] getNonCommitColorCheckBitmaps(File[] allColorCheckBitmapFiles) {
-        allColorCheckBitmapFiles
-
-    }
 
 
 
