@@ -15,7 +15,7 @@ import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 public class ProjectListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ProjectAdapter adapterProject;
+    ProjectAdapter projectAdapter;
     Button delBtn;
     int flag;
     @Override
@@ -32,20 +32,17 @@ public class ProjectListActivity extends AppCompatActivity {
         }else{
             getSupportActionBar().setTitle("项目列表");
         }
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 //        TODO 从数据库中获取姓名，不用本地数据库
+        projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
 
 
-
-        adapterProject = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
-        recyclerView.setAdapter(adapterProject);
+        recyclerView.setAdapter(projectAdapter);
     }
-
     public void addProject(View view){
         startActivity(new Intent(this, ProjectAddActivity.class));
     }

@@ -61,7 +61,7 @@ public class HttpUtil {
         return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
 
-public static void uploadColorCheckBitmaps(SharedPreferences sharePreferences) throws Exception{
+    public static void uploadColorCheckBitmaps(SharedPreferences sharePreferences) throws Exception{
 /*["d:\\colorCheckServer\\checkBitMap\\20181126101602.png","d:\\colorCheckServer\\checkBitMap\\20181127043739.png"]
     List<File> fileList = new Gson().fromJson(responseString, new TypeToken<List<File>>() {}.getType());
      使用String[]传回来的数据是,利用GSon封装为文件名列表。
@@ -92,8 +92,6 @@ public static void uploadColorCheckBitmaps(SharedPreferences sharePreferences) t
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                System.out.println("恭喜你，上传成功");
-                System.out.println("uploadColorCheckBitmaps() response=" + response.body().string());
                 Log.i(TAG, "uploadColorCheckBitmaps() response=" + response.body().string());
             }
         });

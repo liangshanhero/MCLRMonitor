@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-//    （1）查看所有的项目
-    public void onListProjects(View view){
+//    （1）查看并管理所有的项目
+    public void onProjectManage(View view){
         startActivity(new Intent(this, ProjectListActivity.class));
     }
     //（2）基于像素点检测
