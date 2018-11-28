@@ -44,7 +44,11 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
 
     @Override
     protected String doInBackground(Void... voids) {
-        HttpUtil.uploadMultiFile(sharePreferences);
+        try {
+            HttpUtil.uploadMultiFile(sharePreferences);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "请登录到服务器后台，检测否成功上传图片文件";
     }
 

@@ -3,12 +3,16 @@ package cn.edu.scau.cmi.colorCheck.util;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import cn.edu.scau.cmi.colorCheck.domain.mysql.User;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -22,9 +26,11 @@ import okhttp3.Response;
 public class HttpUtil {
 
     //    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
-    private static final String getUserJsonUrlPrefix = "http://139.159.188.31:8888/colorCheckServer/";
+    private static final String colorCheckServerSite = "http://139.159.188.31:8888/colorCheckServer/";
     private static final String uploadImage_url = "http://139.159.188.31:8888/colorCheckServer/springUpload";
     private static final String TAG = "-----HttpUtil测试消息------";
+    private static final String getNonCommitColorCheckBitmaps = "getNonCommitColorCheckBitmaps";
+
 
 //不要在代码里改配置，到res/alues/string.xml修改
 //    CmiApplication.getContext().getString(R.string.prefix_url);
@@ -32,7 +38,7 @@ public class HttpUtil {
 
     private static String getCompleteURLString(String postfixURL){
 //        String completeUrlString=CmiApplication.getContext().getString(R.string.prefix_url) + postfixURL;
-        String completeUrlString=getUserJsonUrlPrefix + postfixURL;
+        String completeUrlString= colorCheckServerSite + postfixURL;
         return  completeUrlString;
     }
 
@@ -57,12 +63,18 @@ public class HttpUtil {
     }
 
 //    第一种上传文件的方法：20181125在Java Application中测试成功的方法
-public static void uploadMultiFile(SharedPreferences sharePreferences) {
+public static void uploadMultiFile(SharedPreferences sharePreferences) throws Exception{
 //手机colorCheck目录中的所有检测图片，如果在sharePreferences没找到，就上传，并将记录保存到如果在sharePreferences没找到中。
     SharedPreferences.Editor sharePreferencesEditor = sharePreferences.edit();
+//    本机所有的文件
     File[] allColorCheckBitmapFilesInPhone = FileUtil.getAllColorCheckBitmaps();
 //    手机上所有的文件看是否在服务器上，已经保存的所有的文件
     Map<String, ?> itemsMap = sharePreferences.getAll();//所有已经上传了的文件名称
+//获取所有的书本字符串，不在就上传文件
+//服务器上所有的文件
+    String responseString = getJsonDataFromWeb(getGetRequest("getNonCommitColorCheckBitmaps"));
+    List<File> fileList = new Gson().fromJson(responseString, new TypeToken<List<File>>() {}.getType());
+    Log.e("******准备上传文件*********","_______________it is hard to commit bitmap____________");
 
     for (File file : allColorCheckBitmapFilesInPhone) {
         if (itemsMap.get(file.getName()) == null) {
