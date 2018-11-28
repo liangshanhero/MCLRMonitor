@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.RangeRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 
@@ -90,7 +90,7 @@ public class RuleAdapter extends RecyclerView.Adapter<RuleAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 //TODO
-                Service.deleteRule(rule.id);
+                SqlLiteService.deleteRule(rule.id);
                 ruleList.remove(position);
                 notifyDataSetChanged();
             }

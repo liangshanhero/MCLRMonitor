@@ -21,7 +21,7 @@ import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
  * Created by Mr_Chen on 2018/6/28.
  */
 
-public class Service {
+public class SqlLiteService {
 
     public static int findProjectId(Project project){
         Cursor cursor1 = DAO.query("project",new String[]{"id"},"name=?",new String[]{project.name});

@@ -14,7 +14,7 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.SampleAdapter;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
@@ -33,7 +33,7 @@ public class MachineLearningRuleActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         projectId = getIntent().getIntExtra("projectId",0);
         type = getIntent().getStringExtra("type");
-        samples = Service.getSampleOfProject(projectId);
+        samples = SqlLiteService.getSampleOfProject(projectId);
         recyclerView.setAdapter(new SampleAdapter(samples,this));
         getSupportActionBar().setTitle(getIntent().getStringExtra("projectName"));
 
@@ -79,7 +79,7 @@ public class MachineLearningRuleActivity extends AppCompatActivity {
                     quantitativeLinear_rule.k3 = new BigDecimal(K[1]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
                     quantitativeLinear_rule.b = new BigDecimal(K[0]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
                     rule.setQuantitativeLinear_rule(quantitativeLinear_rule);
-                    Service.addRule(rule);
+                    SqlLiteService.addRule(rule);
                 }
                 result = Regression.LineRegression(x, y, K, n, m);
                 if(result == 0){
@@ -98,7 +98,7 @@ public class MachineLearningRuleActivity extends AppCompatActivity {
                     quantitativeLinear_rule.k3 = new BigDecimal(K[1]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
                     quantitativeLinear_rule.b = new BigDecimal(K[0]).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
                     rule.setQuantitativeLinear_rule(quantitativeLinear_rule);
-                    Service.addRule(rule);
+                    SqlLiteService.addRule(rule);
                     Toast.makeText(this, "训练成功", Toast.LENGTH_SHORT).show();
                     finish();
                 }

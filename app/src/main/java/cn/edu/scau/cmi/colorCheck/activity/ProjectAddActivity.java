@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
@@ -68,7 +68,7 @@ public class ProjectAddActivity extends AppCompatActivity {
 
             }
         });
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, Service.getAllCheckType());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, SqlLiteService.getAllCheckType());
         type.setAdapter(adapter);
         addRange.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +99,7 @@ public class ProjectAddActivity extends AppCompatActivity {
         }
         Project project = new Project(name.getText().toString(),memo.getText().toString());
         if("定性".equals(type1)){
-            if(!Service.addProject(project,new CheckType(type1))){
+            if(!SqlLiteService.addProject(project,new CheckType(type1))){
                 Toast.makeText(this, "项目名已被使用", Toast.LENGTH_SHORT).show();
                 return ;
             }
@@ -112,9 +112,9 @@ public class ProjectAddActivity extends AppCompatActivity {
                     targets.add(new Target(layout.getRange()));
                 }
             }
-           Service.addRangeOfProject(project,targets);
+           SqlLiteService.addRangeOfProject(project,targets);
         }else{
-            if(!Service.addProject(project,new CheckType(type1))){
+            if(!SqlLiteService.addProject(project,new CheckType(type1))){
                 Toast.makeText(this, "项目名已被使用", Toast.LENGTH_SHORT).show();
                 return ;
             }

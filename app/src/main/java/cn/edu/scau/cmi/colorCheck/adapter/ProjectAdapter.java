@@ -20,7 +20,7 @@ import cn.edu.scau.cmi.colorCheck.activity.MachineLearningRuleActivity;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.CustomizeRuleActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
@@ -74,11 +74,11 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
         final Project project = projectList.get(position);
         holder.project.setText(project.name);
         holder.memo.setText(project.memo);
-        String type = Service.getCheckType(project.type_id);
+        String type = SqlLiteService.getCheckType(project.type_id);
         if("定性".equals(type)){
             type += "：";
-            List<Target> list =  Service.getProjectTarget(project);
-            for(Target target : Service.getProjectTarget(project)){
+            List<Target> list =  SqlLiteService.getProjectTarget(project);
+            for(Target target : SqlLiteService.getProjectTarget(project)){
                 type += target.name+" ";
             }
             holder.dataDB.setText(type);
@@ -91,7 +91,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             @Override
             public void onClick(View v) {
                projectList.remove(position);
-               Service.deleteProject(project);
+               SqlLiteService.deleteProject(project);
                notifyDataSetChanged();
             }
         });
@@ -107,7 +107,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                 RecyclerView recyclerView = new RecyclerView(context);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 //TODO
-                List<Rule> list = Service.getRulesOfProject(project);
+                List<Rule> list = SqlLiteService.getRulesOfProject(project);
                 RuleAdapter adapterRule = new RuleAdapter(list,context);
                 recyclerView.setAdapter(adapterRule);
                 AlertDialog alertDialog = new AlertDialog.Builder(context)
@@ -137,7 +137,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                     Intent intent = new Intent(context,PointSampleCollectActivity.class);
                     intent.putExtra("projectId",project.id);
                     intent.putExtra("projectName",project.name+"_样本采集");
-                    intent.putExtra("type",Service.getCheckType(project.type_id));
+                    intent.putExtra("type",SqlLiteService.getCheckType(project.type_id));
                     context.startActivity(intent);
                     ((Activity)context).finish();
                 }
@@ -151,7 +151,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                     Intent intent = new Intent(context,MachineLearningRuleActivity.class);
                     intent.putExtra("projectName",project.name);
                     intent.putExtra("projectId",project.id);
-                    intent.putExtra("type",Service.getCheckType(project.type_id));
+                    intent.putExtra("type",SqlLiteService.getCheckType(project.type_id));
                     context.startActivity(intent);
                     ((Activity)context).finish();
                 }

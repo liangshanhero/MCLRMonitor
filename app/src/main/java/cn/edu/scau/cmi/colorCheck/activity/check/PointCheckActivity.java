@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
@@ -75,7 +75,7 @@ public class PointCheckActivity extends AppCompatActivity {
                 blueEditText.setText(blue+"");
                 if(rules.size() ==0 ){
                     if(projects.size()>0 && projects.get(projectSpinner.getSelectedItemPosition()).type_id == 2){
-                        resultEditText.setText(Service.rangeCheck(red,green,blue,projects.get(projectSpinner.getSelectedItemPosition()).id));
+                        resultEditText.setText(SqlLiteService.rangeCheck(red,green,blue,projects.get(projectSpinner.getSelectedItemPosition()).id));
                     }else{
                         Toast.makeText(PointCheckActivity.this, "请先创建规则", Toast.LENGTH_SHORT).show();
                     }
@@ -114,11 +114,11 @@ public class PointCheckActivity extends AppCompatActivity {
             }
         });
 
-        projects = Service.getAllProject();
+        projects = SqlLiteService.getAllProject();
         ArrayAdapter<Project> projectAdapter = new ArrayAdapter<Project>(this,  android.R.layout.simple_list_item_1,  projects);
         projectSpinner.setAdapter(projectAdapter);
         if(projects.size() != 0){
-           rules = Service.getRulesOfProject(projects.get(0));
+           rules = SqlLiteService.getRulesOfProject(projects.get(0));
         }else{
             rules = new ArrayList<>();
         }
@@ -129,7 +129,7 @@ public class PointCheckActivity extends AppCompatActivity {
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                rules = Service.getRulesOfProject(projects.get(position));
+                rules = SqlLiteService.getRulesOfProject(projects.get(position));
                 ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(PointCheckActivity.this,
                         android.R.layout.simple_list_item_1,
                         rules);

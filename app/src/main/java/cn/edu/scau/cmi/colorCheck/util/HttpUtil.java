@@ -176,7 +176,7 @@ public static void uploadColorCheckBitmaps(SharedPreferences sharePreferences) t
                 .addFormDataPart("params","plans.xml",fileBody)*/
                 .build();
 
-        Request request=new Request.Builder().url("http://192.168.1.121:8080/Server/Service")
+        Request request=new Request.Builder().url("http://192.168.1.121:8080/Server/SqlLiteService")
                 .addHeader("User-Agent","android")
                 .header("Content-Type","text/html; charset=utf-8;")
                 .post(multipartBody)//传参数、文件或者混合，改一下就行请求体就行

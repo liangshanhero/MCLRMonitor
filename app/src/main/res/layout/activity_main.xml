@@ -7,7 +7,7 @@
     android:background="#eae5e5">
 <!--查看所有的项目-->
     <android.support.v7.widget.CardView
-        android:onClick="listProjects"
+        android:onClick="onListProjects"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,11 +35,11 @@
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="检测项目管理"/>
+                android:text="项目管理"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="查看项目列表，进行管理"/>
+                    android:text="查看、管理项目"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -117,11 +117,11 @@
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="项目图片检测"/>
+                    android:text="检测"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="选择一个项目，指定规则，预测结果"/>
+                    android:text="选择检测项目，指定规则，得到检测结果"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -168,7 +168,7 @@
     <!--使用图片采集样本-->
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="pictureCollectData"
+        android:onClick="onPictureCheckSampleCollect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -196,11 +196,11 @@
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="图片数据采集"/>
+                    android:text="样本采集"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="采集数据，用于学习生成规则"/>
+                    android:text="采集检测样本，指定检测结果，用于规则生成"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -208,7 +208,7 @@
 <!--人工生成规则-->
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="customizeRule"
+        android:onClick="onCustomizeRuleGenerate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -234,14 +234,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="人工定制规则"
+                    android:text="制定人工规则"
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="查看项目采集的样本数据，可选择生成规则"/>
+                    android:text="查看项目采集的样本数据，生成规则"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -249,7 +249,7 @@
     <!--机器学习生成规则-->
     <android.support.v7.widget.CardView
         android:layout_margin="5dp"
-        android:onClick="machineLearnRule"
+        android:onClick="onMachineLearnRuleGenerate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -292,7 +292,7 @@
 
 
     <!--机器学习生成规则-->
-    <android.support.v7.widget.CardView
+   <!-- <android.support.v7.widget.CardView
         android:layout_margin="5dp"
         android:onClick="testJsonDataFromWeb"
         android:layout_width="match_parent"
@@ -333,7 +333,7 @@
                     android:text="查看项目采集的样本数据，并利用机器学习生成相应的规则" />
             </LinearLayout>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>-->
 
 
 
@@ -378,14 +378,6 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="" />
 
 
 </LinearLayout>

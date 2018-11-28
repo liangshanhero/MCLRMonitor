@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 
@@ -61,7 +61,7 @@ public class CustomizeRuleActivity extends AppCompatActivity {
             quantitativeLinear_rule.k3 = Float.valueOf(k3.getText().toString());
             quantitativeLinear_rule.b = Float.valueOf(b.getText().toString());
             rule.setQuantitativeLinear_rule(quantitativeLinear_rule);
-            if(Service.addRule(rule)){
+            if(SqlLiteService.addRule(rule)){
                 Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
                 finish();
             }else{

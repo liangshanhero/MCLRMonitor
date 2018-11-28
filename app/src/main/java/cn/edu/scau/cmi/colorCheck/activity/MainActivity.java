@@ -39,14 +39,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-//      主要是用来测试一下网络是否联通的方法，
-        UserAsyncTask userAsyncTask=new UserAsyncTask(this);
-        userAsyncTask.execute();
-//在主界面打开上传相片的记录
-//        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(this);
-//        photoAsyncTask.execute();
-
-
     }
 
     @Override
@@ -62,39 +54,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 //    （1）查看所有的项目
-    public void listProjects(View view){
+    public void onListProjects(View view){
         startActivity(new Intent(this, ProjectListActivity.class));
     }
     //（2）基于像素点检测
-    public void pointCheck(View view){
+    public void onPointCheck(View view){
         Intent intent = new Intent(MainActivity.this, PointCheckActivity.class);
         startActivity(intent);
     }
     // （3）基于图片检测
-    public void pictureCheck(View view){
+    public void onPictureCheck(View view){
         Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
         startActivity(intent);
     }
 //（4）基于像素点采集样本数据
-    public void pointCollectData(View view){
+    public void onPointCollectData(View view){
         Intent intent = new Intent(MainActivity.this, PointSampleCollectActivity.class);
         intent.putExtra("flag",1);
         startActivity(intent);
     }
     //（5）基于图片采集样本数据
-    public void pictureCollectData(View view){
+    public void onPictureCheckSampleCollect(View view){
         Intent intent = new Intent(MainActivity.this, PictureSampleCollectActivity.class);
         intent.putExtra("flag",1);
         startActivity(intent);
     }
 //    (6)人工定义规则生成
-    public void customizeRule(View view){
+    public void onCustomizeRuleGenerate(View view){
         Intent intent = new Intent(MainActivity.this, CustomizeRuleActivity.class);
         intent.putExtra("flag",2);
         startActivity(intent);
     }
     //    (7)机器学习规则生成
-    public void machineLearnRule(View view){
+    public void onMachineLearnRuleGenerate(View view){
         Intent intent = new Intent(MainActivity.this, MachineLearningRuleActivity.class);
         intent.putExtra("flag",2);
         startActivity(intent);
@@ -104,12 +96,6 @@ public class MainActivity extends AppCompatActivity {
     public void manual(View view){
         Intent intent = new Intent(MainActivity.this, ManualActivity.class);
         startActivity(intent);
-    }
-    // 测试数据异步采集
-    public void testJsonDataFromWeb(View view){
-        EditText editText=(EditText)findViewById(R.id.editText);
-        editText.setText("准备采集数据"+UserAsyncTask.getUsers());
-
     }
 
 }

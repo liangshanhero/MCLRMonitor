@@ -34,7 +34,7 @@ import com.dingmouren.colorpicker.OnColorPickerListener;
 
 import java.io.File;
 
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.Service;
+import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Sample;
 import cn.edu.scau.cmi.colorCheck.view.CameraPointSurfaceView;
 import cn.edu.scau.cmi.colorCheck.R;
@@ -133,7 +133,7 @@ public class PointSampleCollectActivity extends AppCompatActivity implements Vie
         if(type.equals("定性")){
             targets.setVisibility(View.VISIBLE);
             ArrayAdapter arrayAdapter = new ArrayAdapter(PointSampleCollectActivity.this,android.R.layout.simple_list_item_1,
-                    Service.getTargetsOfProject(projectId));
+                    SqlLiteService.getTargetsOfProject(projectId));
             targets.setAdapter(arrayAdapter);
         }else{
             result.setVisibility(View.VISIBLE);
@@ -340,14 +340,14 @@ public class PointSampleCollectActivity extends AppCompatActivity implements Vie
         sample.blue = Integer.valueOf(blue.getText().toString());
         if(type.equals("定性")){
             sample.setTarget(targets.getSelectedItem().toString());
-            Service.addRangeSample(sample);
+            SqlLiteService.addRangeSample(sample);
         }else{
             if(result.getText().length() == 0){
                 Toast.makeText(this, "请输入result", Toast.LENGTH_SHORT).show();
                 return ;
             }
             sample.result = Float.valueOf(result.getText().toString());
-            Service.addLinearSample(sample);
+            SqlLiteService.addLinearSample(sample);
         }
         Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
         setRGBNull();
