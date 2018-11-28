@@ -8,8 +8,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import cn.edu.scau.cmi.colorCheck.domain.mysql.User;
@@ -62,26 +64,23 @@ public class HttpUtil {
         return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
 
-//    第一种上传文件的方法：20181125在Java Application中测试成功的方法
-public static void uploadMultiFile(SharedPreferences sharePreferences) throws Exception{
-//手机colorCheck目录中的所有检测图片，如果在sharePreferences没找到，就上传，并将记录保存到如果在sharePreferences没找到中。
-    SharedPreferences.Editor sharePreferencesEditor = sharePreferences.edit();
-//    本机所有的文件
+public static void uploadColorCheckBitmaps(SharedPreferences sharePreferences) throws Exception{
+//      本机所有的文件
     File[] allColorCheckBitmapFilesInPhone = FileUtil.getAllColorCheckBitmaps();
-//    手机上所有的文件看是否在服务器上，已经保存的所有的文件
-    Map<String, ?> itemsMap = sharePreferences.getAll();//所有已经上传了的文件名称
-//获取所有的书本字符串，不在就上传文件
-//服务器上所有的文件
-    String responseString = getJsonDataFromWeb(getGetRequest("getNonCommitColorCheckBitmaps"));
+//      服务器上所有的文件
+    String responseStringOfCommitedBitmap = getJsonDataFromWeb(getGetRequest("getNonCommitColorCheckBitmaps"));
+    /*["d:\\colorCheckServer\\checkBitMap\\20181126101602.png","d:\\colorCheckServer\\checkBitMap\\20181127043739.png"]
     List<File> fileList = new Gson().fromJson(responseString, new TypeToken<List<File>>() {}.getType());
-    Log.e("******准备上传文件*********","_______________it is hard to commit bitmap____________");
-
-    for (File file : allColorCheckBitmapFilesInPhone) {
-        if (itemsMap.get(file.getName()) == null) {
+     使用String[]传回来的数据是,利用GSon封装为文件名列表。
+    ["20181126101602.png","20181127043739.png"]
+    wrap all bitmap into a hashset, type is String.
+*/
+    HashSet<String> commitedBitmpaFileNameSet = new Gson().fromJson(responseStringOfCommitedBitmap, new TypeToken<HashSet<String>>() {}.getType());
+    for(File file:allColorCheckBitmapFilesInPhone){
+        if(!commitedBitmpaFileNameSet.contains(file.getName())){
             RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
             RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", file.getName(), fileBody).build();
             Request request = new Request.Builder().url(uploadImage_url).post(requestBody).build();
-
             final okhttp3.OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
             OkHttpClient okHttpClient = httpBuilder.connectTimeout(60, TimeUnit.SECONDS).writeTimeout(60, TimeUnit.SECONDS).build();
             okHttpClient.newCall(request).enqueue(new Callback() {
@@ -92,19 +91,14 @@ public static void uploadMultiFile(SharedPreferences sharePreferences) throws Ex
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     System.out.println("恭喜你，上传成功");
-                    System.out.println("uploadMultiFile() response=" + response.body().string());
-                    Log.i(TAG, "uploadMultiFile() response=" + response.body().string());
+                    System.out.println("uploadColorCheckBitmaps() response=" + response.body().string());
+                    Log.i(TAG, "uploadColorCheckBitmaps() response=" + response.body().string());
                 }
             });
-//TODO　   保存上传文件的记录，待测试
-            sharePreferencesEditor.putBoolean(file.getName(), true);
-            sharePreferencesEditor.commit();
+
         }
     }
 }
-
-
-
 
     //  TODO 第二种方法：上传图片文件，待测试20181124，服务端已完成，android有待测试！！！
     //    address是网络地址？
