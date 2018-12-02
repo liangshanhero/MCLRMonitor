@@ -28,7 +28,7 @@ public class UserAsyncTask extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... strings) {
         try {
             Request request=HttpUtil.getGetRequest("User");
-            String responseString = HttpUtil.getJsonDataFromWeb(request);
+            String responseString = HttpUtil.gainJsonResultFromServer(request);
             userList = new Gson().fromJson(responseString,new TypeToken<List<User>>(){}.getType());
             return "获取数据成功";
         } catch (Exception e) {

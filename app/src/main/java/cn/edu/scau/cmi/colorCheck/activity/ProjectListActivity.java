@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
+import cn.edu.scau.cmi.colorCheck.dao.mysql.MySqlService;
 import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 
 public class ProjectListActivity extends AppCompatActivity {
@@ -38,7 +39,8 @@ public class ProjectListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //        TODO 从数据库中获取姓名，不用本地数据库
-        projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
+//        projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
+        projectAdapter = new ProjectAdapter(MySqlService.getAllProject(),flag, this);
 
 
         recyclerView.setAdapter(projectAdapter);

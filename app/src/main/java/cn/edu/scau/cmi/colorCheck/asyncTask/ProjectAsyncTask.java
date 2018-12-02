@@ -28,7 +28,7 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
     protected String doInBackground(String... strings) {
         try {
             Request request=HttpUtil.getGetRequest("Project");
-            String responseString = HttpUtil.getJsonDataFromWeb(request);
+            String responseString = HttpUtil.gainJsonResultFromServer(request);
             allProject = new Gson().fromJson(responseString,new TypeToken<List<Project>>(){}.getType());
             return "获取数据成功";
         } catch (Exception e) {

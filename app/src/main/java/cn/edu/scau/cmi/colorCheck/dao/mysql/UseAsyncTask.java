@@ -23,7 +23,7 @@ public class UseAsyncTask extends AsyncTask {
 //            String httpRequestString=HttpUtil.getGetRequest("/User").toString();
 //            Log.e("准备发送的请求是：：",httpRequestString);
 //
-//            String jsonData = HttpUtil.getJsonDataFromWeb(HttpUtil.getGetRequest("User"));
+//            String jsonData = HttpUtil.gainJsonResultFromServer(HttpUtil.getGetRequest("User"));
 //            Toast.makeText(CmiApplication.getContext(), jsonData, Toast.LENGTH_LONG).show();
 //
 //                userList = new Gson().fromJson(jsonData,new TypeToken<List<User>>(){}.getType());
