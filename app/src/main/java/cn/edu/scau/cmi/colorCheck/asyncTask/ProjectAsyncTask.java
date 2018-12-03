@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
+import cn.edu.scau.cmi.colorCheck.activity.ProjectListActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 
 
@@ -17,9 +18,14 @@ import okhttp3.Request;
 public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
     private static List<Project> allProject;
     private PictureCheckActivity pictureCheckActivity;
+    private ProjectListActivity projectListActivity;
 
     public ProjectAsyncTask(PictureCheckActivity pictureCheckActivity) {
         this.pictureCheckActivity=pictureCheckActivity;
+    }
+
+    public ProjectAsyncTask(ProjectListActivity projectListActivity) {
+        this.projectListActivity=projectListActivity;
     }
 
     public  static List<Project> getAllProject(){return  allProject;}
@@ -39,9 +45,18 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
 //TODO 利用该方法，可以更新界面的内容。
 @Override
     protected void onPostExecute(String str){
+//TODO        判断是哪个activity调用了这个类，根据不同的来源，返回到不同的节目
+    if("获取数据成功".equals(str){
+        if(pictureCheckActivity!=null){
+
+        }
+        if(projectListActivity!=null){
+//            TODO
+
+        }
+    }
 //        System.out.println("异步任务完成后所获取的所有的项目是："+allProject.toString());
 //        TextView textView=pictureCheckActivity.findViewById(R.id.picture_check_project_asyncTask_result);
 //        textView.setText("异步任务完成后所获取的所有的项目是："+allProject.toString());
     }
 }
-

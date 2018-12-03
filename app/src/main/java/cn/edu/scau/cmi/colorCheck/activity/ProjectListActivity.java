@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
+import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.dao.mysql.MySqlService;
 import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
 
@@ -42,6 +43,13 @@ public class ProjectListActivity extends AppCompatActivity {
 //        projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
 // TODO       网络获取数据，应该使用AsynaTask方法，有可能包下面的错误
 // java.lang.RuntimeException: Unable to resume activity               android.os.NetworkOnMainThreadException
+        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(ProjectListActivity.this);
+        projectAsyncTask.execute();
+
+//TODO        asyncTask执行完任务后，被赋值到这个activity。
+
+//        ProjectAsyncTask projectAsyncTask=new
+//
         projectAdapter = new ProjectAdapter(MySqlService.getAllProject(),flag, this);
 
 
