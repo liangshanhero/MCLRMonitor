@@ -40,6 +40,8 @@ public class ProjectListActivity extends AppCompatActivity {
         super.onResume();
 //        TODO 从数据库中获取姓名，不用本地数据库
 //        projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
+// TODO       网络获取数据，应该使用AsynaTask方法，有可能包下面的错误
+// java.lang.RuntimeException: Unable to resume activity               android.os.NetworkOnMainThreadException
         projectAdapter = new ProjectAdapter(MySqlService.getAllProject(),flag, this);
 
 

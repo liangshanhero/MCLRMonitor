@@ -32,7 +32,7 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            HttpUtil.uploadColorCheckBitmaps(sharePreferences);
+            HttpUtil.uploadAllBitmapInColorCheckDirectory(sharePreferences);
         } catch (Exception e) {
             e.printStackTrace();
         }
