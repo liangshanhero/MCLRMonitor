@@ -26,7 +26,6 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences) {
         this.pictureCheckActivity=pictureCheckActivity;
         this.sharePreferences=sharePreferences;
-
     }
 
     @Override

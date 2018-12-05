@@ -11,13 +11,30 @@ import android.widget.Button;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
-import cn.edu.scau.cmi.colorCheck.dao.mysql.MySqlService;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
+import cn.edu.scau.cmi.colorCheck.asyncTask.MySqlServiceAsyncTask;
 
 public class ProjectListActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    ProjectAdapter projectAdapter;
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    public void setRecyclerView(RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
+    }
+
+    private  RecyclerView recyclerView;
+
+    private  ProjectAdapter projectAdapter;
+    public ProjectAdapter getProjectAdapter() {
+        return projectAdapter;
+    }
+
+    public void setProjectAdapter(ProjectAdapter projectAdapter) {
+        this.projectAdapter = projectAdapter;
+    }
+
+
     Button delBtn;
     int flag;
     @Override
@@ -43,16 +60,12 @@ public class ProjectListActivity extends AppCompatActivity {
 //        projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
 // TODO       网络获取数据，应该使用AsynaTask方法，有可能包下面的错误
 // java.lang.RuntimeException: Unable to resume activity               android.os.NetworkOnMainThreadException
+//        TODO 暂时使用各自的Task，待优化到一个通用异步任务类
+
         ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(ProjectListActivity.this);
         projectAsyncTask.execute();
 
-//TODO        asyncTask执行完任务后，被赋值到这个activity。
-
-//        ProjectAsyncTask projectAsyncTask=new
-//
-        projectAdapter = new ProjectAdapter(MySqlService.getAllProject(),flag, this);
-
-
+//        projectAdapter = new ProjectAdapter(MySqlServiceAsyncTask.getAllProject(),flag, this);
         recyclerView.setAdapter(projectAdapter);
     }
     public void addProject(View view){

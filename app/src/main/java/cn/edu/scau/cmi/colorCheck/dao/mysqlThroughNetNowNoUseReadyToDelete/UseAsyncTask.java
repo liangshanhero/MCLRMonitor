@@ -1,7 +1,6 @@
-package cn.edu.scau.cmi.colorCheck.dao.mysql;
+package cn.edu.scau.cmi.colorCheck.dao.mysqlThroughNetNowNoUseReadyToDelete;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.util.List;
 
@@ -9,17 +8,11 @@ import cn.edu.scau.cmi.colorCheck.domain.mysql.User;
 
 public class UseAsyncTask extends AsyncTask {
     private List<User> userList;
-
     @Override
     public Object doInBackground(Object[] objects) {
         try {
-
-            Log.e("第一个用户名是：","准备调用MyHttpClient的方法getUsers()");
-            String httpRequestString="http://139.159.188.31:8080/colorCheckServer/User";
-
+          String httpRequestString="http://139.159.188.31:8080/colorCheckServer/User";
             MyHttpClient.getUsers(httpRequestString);
-            Log.e("从调用MyHttpClient的方法返回","结果待查！！！！！！");
-
 //            String httpRequestString=HttpUtil.getGetRequest("/User").toString();
 //            Log.e("准备发送的请求是：：",httpRequestString);
 //

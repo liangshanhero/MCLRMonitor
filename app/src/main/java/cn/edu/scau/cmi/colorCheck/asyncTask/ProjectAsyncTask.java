@@ -1,6 +1,7 @@
 package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.os.AsyncTask;
+import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -11,6 +12,7 @@ import cn.edu.scau.cmi.colorCheck.activity.ProjectListActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 
 
+import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Request;
@@ -46,12 +48,24 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
 @Override
     protected void onPostExecute(String str){
 //TODO        判断是哪个activity调用了这个类，根据不同的来源，返回到不同的界面
-    if("获取数据成功".equals(str){
+    if("获取数据成功".equals(str)){
         if(pictureCheckActivity!=null){
 
         }
         if(projectListActivity!=null){
-//            TODO
+//            后台异步处理界面的内容，是否可以在页面起作用呢？
+//            projectListActivity.setProjectAdapter();
+
+//            获取
+            ProjectAdapter projectAdapter = projectListActivity.getProjectAdapter();
+
+            projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
+
+
+
+
+            RecyclerView recyclerView = projectListActivity.getRecyclerView();
+//            recyclerView.setAdapter(projectAdapter);
 
         }
     }
