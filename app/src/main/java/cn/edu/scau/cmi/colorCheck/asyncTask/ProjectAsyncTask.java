@@ -45,7 +45,7 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
 //TODO 利用该方法，可以更新界面的内容。
 @Override
     protected void onPostExecute(String str){
-//TODO        判断是哪个activity调用了这个类，根据不同的来源，返回到不同的节目
+//TODO        判断是哪个activity调用了这个类，根据不同的来源，返回到不同的界面
     if("获取数据成功".equals(str){
         if(pictureCheckActivity!=null){
 
