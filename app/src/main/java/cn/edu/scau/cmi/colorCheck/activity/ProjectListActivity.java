@@ -7,11 +7,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.MySqlServiceAsyncTask;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 
 public class ProjectListActivity extends AppCompatActivity {
 
@@ -41,6 +45,27 @@ public class ProjectListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_list);
+//        项目创建的时候就从后台异步获取项目列表
+
+
+        明天再做。
+
+        new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinished(){
+
+            @Override
+            public void doSomething(List<Project> projectList) {
+                //TODO 修改listAdapter
+                Toast.makeText(ProjectListActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void doNothing() {
+
+            }
+        });
+
+
         recyclerView = findViewById(R.id.project_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         delBtn = findViewById(R.id.project_del);
@@ -62,8 +87,6 @@ public class ProjectListActivity extends AppCompatActivity {
 // java.lang.RuntimeException: Unable to resume activity               android.os.NetworkOnMainThreadException
 //        TODO 暂时使用各自的Task，待优化到一个通用异步任务类
 
-        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(ProjectListActivity.this);
-        projectAsyncTask.execute();
 
 //        projectAdapter = new ProjectAdapter(MySqlServiceAsyncTask.getAllProject(),flag, this);
         recyclerView.setAdapter(projectAdapter);
