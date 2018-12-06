@@ -18,22 +18,18 @@ import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 
 public class ProjectListActivity extends AppCompatActivity {
-
+    private  RecyclerView recyclerView;
     public RecyclerView getRecyclerView() {
         return recyclerView;
     }
-
     public void setRecyclerView(RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
     }
-
-    private  RecyclerView recyclerView;
 
     private MySqlProjectAdapter mySqlProjectAdapter;
     public MySqlProjectAdapter getMySqlProjectAdapter() {
         return mySqlProjectAdapter;
     }
-
     public void setMySqlProjectAdapter(MySqlProjectAdapter mySqlProjectAdapter) {
         this.mySqlProjectAdapter = mySqlProjectAdapter;
     }
@@ -43,10 +39,15 @@ public class ProjectListActivity extends AppCompatActivity {
     int flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        （1）界面组装
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_list);
-//        项目创建的时候就从后台异步获取项目列表
-//TODO 初始化界面的时候，从网络获取
+        recyclerView = findViewById(R.id.project_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        delBtn = findViewById(R.id.project_del);
+
+//      （2）  项目创建的时候就从后台异步获取项目列表，并获取的所有项目设置到对应的
+//TODO 初始化界面的时候，从网络获取，利用异步任务，成功获取数据。
         ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
             @Override
             public void doSomething(List<Project> projectList) {
@@ -60,16 +61,10 @@ public class ProjectListActivity extends AppCompatActivity {
             }
             @Override
             public void doNothing() {
-
             }
         });
-
         projectAsyncTask.execute();
 
-
-        recyclerView = findViewById(R.id.project_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        delBtn = findViewById(R.id.project_del);
         flag = getIntent().getIntExtra("flag",0);
         if(flag != 0){
             delBtn.setVisibility(View.GONE);
