@@ -14,7 +14,6 @@ import java.util.List;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
-import cn.edu.scau.cmi.colorCheck.asyncTask.MySqlServiceAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 
 public class ProjectListActivity extends AppCompatActivity {
@@ -48,17 +47,18 @@ public class ProjectListActivity extends AppCompatActivity {
 //        项目创建的时候就从后台异步获取项目列表
 
 
-        明天再做。
 
-        new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinished(){
 
+
+        new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
             @Override
             public void doSomething(List<Project> projectList) {
                 //TODO 修改listAdapter
+                for(Project project:projectList){
+                    System.out.println("通过网络获取的数据是："+project.getName());
+                }
                 Toast.makeText(ProjectListActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
-
             }
-
             @Override
             public void doNothing() {
 

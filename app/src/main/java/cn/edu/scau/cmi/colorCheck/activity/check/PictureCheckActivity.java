@@ -81,10 +81,10 @@ public class PictureCheckActivity extends AppCompatActivity {
 
         ruleSpinner=findViewById(R.id.picture_check_rule_spinner);
 //      后台获取所有的项目和规则数据，用户sprinner提供选项
-        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
-        projectAsyncTask.execute();
-        RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
-        ruleAsyncTask.execute();
+//        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
+//        projectAsyncTask.execute();
+//        RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
+//        ruleAsyncTask.execute();
     }
 
     private void initCamera() {

@@ -1,7 +1,6 @@
 package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
@@ -20,23 +19,23 @@ import okhttp3.Request;
 
 public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
 //    定义一个网络任务完成后的接口，在节目调用这个异步任务时，实现界面元素的值的改变！！！
-    public interface HttpFinished {
+    public interface HttpFinishedListener {
         void doSomething(List<Project> projectList);
         void doNothing();
     }
 
-    private HttpFinished httpFinishedListener;
+    private HttpFinishedListener httpFinishedListenerListener;
     private static List<Project> allProject;
     private PictureCheckActivity pictureCheckActivity;
     private ProjectListActivity projectListActivity;
     ProjectAdapter projectAdapter;
 
-    public ProjectAsyncTask(PictureCheckActivity pictureCheckActivity,HttpFinished httpFinished) {
+    public ProjectAsyncTask(PictureCheckActivity pictureCheckActivity,HttpFinishedListener httpFinishedListener) {
         this.pictureCheckActivity=pictureCheckActivity;
-        this.httpFinishedListener=httpFinishedListener;
+        this.httpFinishedListenerListener = httpFinishedListenerListener;
     }
 
-    public ProjectAsyncTask(ProjectListActivity projectListActivity,HttpFinished httpFinished) {
+    public ProjectAsyncTask(ProjectListActivity projectListActivity,HttpFinishedListener httpFinishedListener) {
         this.projectListActivity=projectListActivity;
     }
 
@@ -48,40 +47,19 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
             Request request=HttpUtil.getGetRequest("Project");
             String responseString = HttpUtil.gainJsonResultFromServer(request);
             allProject = new Gson().fromJson(responseString,new TypeToken<List<Project>>(){}.getType());
-            return "获取数据成功";
+            return "success";
         } catch (Exception e) {
-            return "错误";
+            return "exception";
         }
     }
 
 //TODO 利用该方法，可以更新界面的内容。
 @Override
-    protected void onPostExecute(String str){
-
-
-    httpFinishedListener.doSomething(allProject);
-
-
-//TODO        判断是哪个activity调用了这个类，根据不同的来源，返回到不同的界面
-    if("获取数据成功".equals(str)){
-        if(pictureCheckActivity!=null){
-        }
-        if(projectListActivity!=null){
-//            后台异步处理界面的内容，是否可以在页面起作用呢？
-//            projectListActivity.setProjectAdapter();
-//         项目适配器通过AsyncTask获取。
-//            ProjectAdapter projectAdapter = projectListActivity.getProjectAdapter();
-//            projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
-
-            RecyclerView recyclerView = projectListActivity.getRecyclerView();
-//            recyclerView.setAdapter(projectAdapter);
-
+    protected void onPostExecute(String doInBackgroundResult){
+        if(doInBackgroundResult.equals("exception")){
+            httpFinishedListenerListener.doNothing();
+        }else{
+            httpFinishedListenerListener.doSomething(allProject);
         }
     }
-//        System.out.println("异步任务完成后所获取的所有的项目是："+allProject.toString());
-//        TextView textView=pictureCheckActivity.findViewById(R.id.picture_check_project_asyncTask_result);
-//        textView.setText("异步任务完成后所获取的所有的项目是："+allProject.toString());
-    }
-
-
 }
