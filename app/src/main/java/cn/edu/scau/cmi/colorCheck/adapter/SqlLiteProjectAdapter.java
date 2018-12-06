@@ -29,12 +29,12 @@ import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
  * Created by Mr_Chen on 2018/6/6.
  */
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHolder>{
+public class SqlLiteProjectAdapter extends RecyclerView.Adapter<SqlLiteProjectAdapter.ViewHolder>{
 
     List<Project> projectList;
     Context context;
     int flag;
-    public ProjectAdapter(List<Project> projectList, int flag, Context context) {
+    public SqlLiteProjectAdapter(List<Project> projectList, int flag, Context context) {
         this.projectList = projectList;
         this.flag = flag;
         this.context = context;

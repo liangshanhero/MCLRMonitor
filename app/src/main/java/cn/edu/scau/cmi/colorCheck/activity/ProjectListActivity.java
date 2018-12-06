@@ -12,7 +12,8 @@ import android.widget.Toast;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.adapter.ProjectAdapter;
+import cn.edu.scau.cmi.colorCheck.adapter.MySqlProjectAdapter;
+import cn.edu.scau.cmi.colorCheck.adapter.SqlLiteProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 
@@ -28,13 +29,13 @@ public class ProjectListActivity extends AppCompatActivity {
 
     private  RecyclerView recyclerView;
 
-    private  ProjectAdapter projectAdapter;
-    public ProjectAdapter getProjectAdapter() {
-        return projectAdapter;
+    private MySqlProjectAdapter mySqlProjectAdapter;
+    public MySqlProjectAdapter getMySqlProjectAdapter() {
+        return mySqlProjectAdapter;
     }
 
-    public void setProjectAdapter(ProjectAdapter projectAdapter) {
-        this.projectAdapter = projectAdapter;
+    public void setMySqlProjectAdapter(MySqlProjectAdapter mySqlProjectAdapter) {
+        this.mySqlProjectAdapter = mySqlProjectAdapter;
     }
 
 
@@ -45,12 +46,8 @@ public class ProjectListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_list);
 //        项目创建的时候就从后台异步获取项目列表
-
-
-
-
-
-        new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
+//TODO 初始化界面的时候，从网络获取
+        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
             @Override
             public void doSomething(List<Project> projectList) {
                 //TODO 修改listAdapter
@@ -58,12 +55,16 @@ public class ProjectListActivity extends AppCompatActivity {
                     System.out.println("通过网络获取的数据是："+project.getName());
                 }
                 Toast.makeText(ProjectListActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
+                mySqlProjectAdapter = new MySqlProjectAdapter(projectList,1, ProjectListActivity.this);
+                recyclerView.setAdapter(mySqlProjectAdapter);
             }
             @Override
             public void doNothing() {
 
             }
         });
+
+        projectAsyncTask.execute();
 
 
         recyclerView = findViewById(R.id.project_recycler_view);
@@ -82,14 +83,14 @@ public class ProjectListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //        TODO 从数据库中获取姓名，不用本地数据库
-//        projectAdapter = new ProjectAdapter(SqlLiteService.getAllProject(),flag, this);
+//        mySqlProjectAdapter = new SqlLiteProjectAdapter(SqlLiteService.getAllProject(),flag, this);
 // TODO       网络获取数据，应该使用AsynaTask方法，有可能包下面的错误
 // java.lang.RuntimeException: Unable to resume activity               android.os.NetworkOnMainThreadException
 //        TODO 暂时使用各自的Task，待优化到一个通用异步任务类
 
 
-//        projectAdapter = new ProjectAdapter(MySqlServiceAsyncTask.getAllProject(),flag, this);
-        recyclerView.setAdapter(projectAdapter);
+//        mySqlProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllProject(),flag, this);
+        recyclerView.setAdapter(mySqlProjectAdapter);
     }
     public void addProject(View view){
         startActivity(new Intent(this, ProjectAddActivity.class));
