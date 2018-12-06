@@ -46,16 +46,10 @@ public class ProjectListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         delBtn = findViewById(R.id.project_del);
 
-//      （2）  项目创建的时候就从后台异步获取项目列表，并获取的所有项目设置到对应的
-//TODO 初始化界面的时候，从网络获取，利用异步任务，成功获取数据。
+//      （2）  项目创建的时候就从后台异步获取项目列表，并获取的所有项目设置到对应的，// 初始化界面，利用异步任务，从网络获取数据。
         ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
             @Override
             public void doSomething(List<Project> projectList) {
-                //TODO 修改listAdapter
-                for(Project project:projectList){
-                    System.out.println("通过网络获取的数据是："+project.getName());
-                }
-                Toast.makeText(ProjectListActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
                 mySqlProjectAdapter = new MySqlProjectAdapter(projectList,1, ProjectListActivity.this);
                 recyclerView.setAdapter(mySqlProjectAdapter);
             }
@@ -64,7 +58,7 @@ public class ProjectListActivity extends AppCompatActivity {
             }
         });
         projectAsyncTask.execute();
-
+// （3）工具栏上显示相关的菜单栏
         flag = getIntent().getIntExtra("flag",0);
         if(flag != 0){
             delBtn.setVisibility(View.GONE);
