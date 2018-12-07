@@ -11,8 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
@@ -30,7 +28,7 @@ public class PictureCheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
     Spinner projectSpinner;
     Spinner ruleSpinner;
-    String fileName;//当前的检测文件
+    String currentFileName;//当前的检测文件
     private static  List<Project> projectList;
     private static List<Rule> ruleList;
     private SharedPreferences sharePreferencesEditor;
@@ -116,15 +114,15 @@ public class PictureCheckActivity extends AppCompatActivity {
             @Override
             public void showPictureCheckResult(Bitmap bitmap) {
 //              (1)点击图片，等待聚焦后，将保存图片到本地,文件名称是yyyyMMddhhmmss，OK。
-                fileName=FileUtil.getFileName("PH","Check","");
+                currentFileName =FileUtil.getFileName("PH","Check","");
                 try {
-                    FileUtil.saveColorCheckBitmap(bitmap,fileName);
+                    FileUtil.saveColorCheckBitmap(bitmap, currentFileName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 //                （2）启动结果页面
                 Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
-                getAndTransationFeatureToPictureCheckResultActivity(fileName, intent);
+                getAndTransationFeatureToPictureCheckResultActivity(currentFileName, intent);
                 startActivity(intent);
             }
         });
@@ -162,15 +160,15 @@ public class PictureCheckActivity extends AppCompatActivity {
 //TODO 上传并在结果页面中显示检测结果
     public void onUploadPictureCheckBitMapAndCheck(View view){
 //        上传文件
-        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,fileName);
+        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor, currentFileName);
         photoAsyncTask.execute();
 //        获取特征值
-        FeatureAsyncTask featureAsyncTask=new FeatureAsyncTask(this,fileName);
+        FeatureAsyncTask featureAsyncTask=new FeatureAsyncTask(this, currentFileName);
         featureAsyncTask.execute();
 
 //        TODO 显示结果,to be tested
         Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
-        getAndTransationFeatureToPictureCheckResultActivity(fileName, intent);
+        getAndTransationFeatureToPictureCheckResultActivity(currentFileName, intent);
         startActivity(intent);
     }
 
