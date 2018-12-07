@@ -40,13 +40,17 @@ public class HttpUtil<T> {
         String completeUrlString= colorCheckServerSite + postfixURL;
         return  completeUrlString;
     }
-//**** 从服务器得到数据******
+//**** 从服务器得到数据，可以删除掉了******
+    @Deprecated
     public static String gainJsonResultFromServer(Request request) throws IOException {
         OkHttpClient client = new OkHttpClient();
-
-
-
         Response response = client.newCall(request).execute();//同步获取数据，但是是异步类调用
+        return response.body().string();
+    }
+    //**** 从服务器得到数据******
+    public static String gainJsonResultFromServer(String request) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        Response response = client.newCall(getGetRequest(request)).execute();//同步获取数据，但是是异步类调用
         return response.body().string();
     }
 
