@@ -8,21 +8,19 @@ import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckResultActivity;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Featureextramethod;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
-import okhttp3.Request;
 
-public class FeatureAsyncTask extends AsyncTask<Void,Void,String> {
-    private PictureCheckActivity pictureCheckActivity;
+public class CheckAsyncTask extends AsyncTask<Void,Void,String> {
+    private PictureCheckResultActivity pictureCheckResultActivity;
     private File file;
 
     private List<Featureextramethod> allFeature;
 
-    public FeatureAsyncTask(PictureCheckActivity activity,File file){
+    public CheckAsyncTask(PictureCheckResultActivity activity, File file){
         this.file =file;
-        this.pictureCheckActivity=activity;
+        this.pictureCheckResultActivity =activity;
 
     }
 

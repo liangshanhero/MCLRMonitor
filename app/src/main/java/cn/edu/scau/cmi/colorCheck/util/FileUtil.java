@@ -29,7 +29,6 @@ public class FileUtil {
         bmp.compress(Bitmap.CompressFormat.PNG, 90, outStream);
         outStream.flush();
         outStream.close();
-        Log.e("----保存的文件名是：---",file.getAbsolutePath());
     }
 
 //获取所有的指导目录下的图片，从properties文件中或者那里获取呢？
@@ -40,10 +39,8 @@ public class FileUtil {
     }
 
     public static File getCurrentFile(String projectName,String bitMapType,String result) {
-//        String fileName=new SimpleDateFormat("_yyyyMMddhhmmss_").format(new Date());
         String currentFileName=projectName+"_"+bitMapType+(new SimpleDateFormat("_yyyyMMddhhmmss_").format(new Date()))+result;
         File file = new File(colorCheckBitmapDirectory, currentFileName + ".png");
-        Log.e("----准备上传的文件名是：---",file.getAbsolutePath());
         return  file;
     }
 }

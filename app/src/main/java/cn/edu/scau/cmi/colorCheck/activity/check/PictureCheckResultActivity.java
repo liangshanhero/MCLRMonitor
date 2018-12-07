@@ -11,11 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import java.io.File;
 import java.io.Serializable;
 
 import cn.edu.scau.cmi.colorCheck.R;
+import cn.edu.scau.cmi.colorCheck.asyncTask.CheckAsyncTask;
 
-//建立一个内部类，可以让view使用Activity中的数据！！！，否则数据穿不进去！！！！！！
+//建立一个内部类，可以让view使用Activity中的数据！！！，否则数据传不进去！！！！！！
 public class PictureCheckResultActivity extends AppCompatActivity {
 
     float[] redFeature;
@@ -25,29 +27,26 @@ public class PictureCheckResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        (1) 构造界面
         super.onCreate(savedInstanceState);
-//获取前面页面传来的数据
-        Intent intent=getIntent();
-        Bundle bundle=intent.getExtras();
-        redFeature = bundle.getFloatArray("redFeature");
-        greenFeature = bundle.getFloatArray("greenFeature");
-        blueFeature = bundle.getFloatArray("blueFeature");
-        grayFeature = bundle.getFloatArray("grayFeature");
-        Serializable checkBitmap = bundle.getSerializable("checkBitmap");
-
-
         setContentView(R.layout.activity_picture_check_result);
         FrameLayout frameLayout=(FrameLayout)findViewById(R.id.frameLayoutCheckResult);
-
-
         CheckResultFigureView view = new CheckResultFigureView(PictureCheckResultActivity.this);
-//        assert redFeature != null;
-//        view.addExtraDataToAccessibilityNodeInfo(redFeature,"redFeature",bundle);
-//
         frameLayout.addView(view );//在view上画图形。数据怎么传过去呢？
 
+//      (2) 获取前面页面传来的检测标志
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        File checkBitmap = (File) bundle.getSerializable("checkBitmap");// 是否可以转换呢，需要测试
+//        (3) 异步获取检测结果
+        CheckAsyncTask checkAsyncTask=new CheckAsyncTask(this, checkBitmap);
+        checkAsyncTask.execute();
+
+//        assert redFeature != null;
+//        view.addExtraDataToAccessibilityNodeInfo(redFeature,"redFeature",bundle);
     }
 
+    //内部类，用于显示结果！！！
     class CheckResultFigureView extends View {
         PictureCheckResultActivity pictureCheckResultActivity;
         public CheckResultFigureView(Context context) {
@@ -69,17 +68,6 @@ public class PictureCheckResultActivity extends AppCompatActivity {
             Point yAxisEndPoint=new Point(50,800);
             canvas.drawLine(xAxisStartPoint.x,xAxisStartPoint.y,xAxisEndPoint.x,xAxisEndPoint.y,paint);//横坐标
             canvas.drawLine(yAxisStartPoint.x,yAxisStartPoint.y,yAxisEndPoint.x,yAxisEndPoint.y,paint);//纵坐标
-
-
-//        Array.get
-//            minusEnviroment(redPoints, 100);//好像最小的是100，没有仔细看
-//            minusEnviroment(greenPoints, 100);//好像最小的是100，没有仔细看
-//            minusEnviroment(bluePoints, 100);//好像最小的是100，没有仔细看
-//            minusEnviroment(grayPoints, 100);//好像最小的是100，没有仔细看
-
-
-
-
             getResult();//获取检测的像素点的值，目前是从文本文件中获取，下次从web中获取。
             drawRed();
 

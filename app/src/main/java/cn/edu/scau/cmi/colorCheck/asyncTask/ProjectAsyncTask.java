@@ -44,6 +44,7 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
     @Override
     protected String doInBackground(String... strings) {
         try {
+//            TODO to be tested!!!利用新的简单的方法获取 HttpUtil.gainJsonResultFromServer("Project");
             Request request=HttpUtil.getGetRequest("Project");
             String responseString = HttpUtil.gainJsonResultFromServer(request);
             allProject = new Gson().fromJson(responseString,new TypeToken<List<Project>>(){}.getType());
