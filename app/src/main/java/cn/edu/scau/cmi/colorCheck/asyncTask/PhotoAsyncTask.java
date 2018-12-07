@@ -9,6 +9,7 @@ import java.io.File;
 
 import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.util.FileUtil;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 //相片异步上传到服务器中。上传成功后在通知栏中显示消息
 
@@ -31,13 +32,16 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
         this.pictureCheckActivity=pictureCheckActivity;
         this.sharePreferences=sharePreferences;
         this.file =file;
+        System.out.println("---------传递过来的文件名称是："+file);
     }
 
     @Override
     protected String doInBackground(Void... voids) {
         try {
             if(null!= file){
-                Log.e("----准备上传的文件是：------",file.getAbsolutePath());
+//                /----准备上传的文件是：------: /PH_Check_20181207104929_
+                Log.e("----准备上传的文件是：------", file.getAbsolutePath());
+//                FileUtil.
                 HttpUtil.uploadFileToServer(file);//上传指定的文件
             }else {
                 HttpUtil.uploadAllBitmapInColorCheckDirectory(sharePreferences);//上传所有的没有上传的文件

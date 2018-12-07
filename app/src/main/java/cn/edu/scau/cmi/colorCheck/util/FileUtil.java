@@ -2,6 +2,7 @@ package cn.edu.scau.cmi.colorCheck.util;
 
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,25 +21,29 @@ public class FileUtil {
         }
     }
 
-    public static void saveColorCheckBitmap(Bitmap bmp, File picFile) throws IOException {
-
-
-        File file = new File(colorCheckBitmapDirectory, picFile + ".png");
+    public static void saveColorCheckBitmap(Bitmap bmp, File file) throws IOException {
+        if(!colorCheckBitmapDirectory.exists()){
+            colorCheckBitmapDirectory.mkdirs();
+        }
         FileOutputStream outStream = new FileOutputStream(file);
         bmp.compress(Bitmap.CompressFormat.PNG, 90, outStream);
         outStream.flush();
         outStream.close();
+        Log.e("----保存的文件名是：---",file.getAbsolutePath());
     }
 
 //获取所有的指导目录下的图片，从properties文件中或者那里获取呢？
 //    利用SharedPreferences记录已经上传的文件
-    public static File[] getAllColorCheckBitmaps(){
+    public static File[] getAllColorCheckBitmapFiles(){
         File gallery=new File(colorCheckBitmapDirectoryName);
         return gallery.listFiles();
     }
 
-    public static String getFileName(String projectName,String bitMapType,String result) {
-        String fileName=new SimpleDateFormat("_yyyyMMddhhmmss_").format(new Date());
-        return  projectName+"_"+bitMapType+fileName+result;
+    public static File getCurrentFile(String projectName,String bitMapType,String result) {
+//        String fileName=new SimpleDateFormat("_yyyyMMddhhmmss_").format(new Date());
+        String currentFileName=projectName+"_"+bitMapType+(new SimpleDateFormat("_yyyyMMddhhmmss_").format(new Date()))+result;
+        File file = new File(colorCheckBitmapDirectory, currentFileName + ".png");
+        Log.e("----准备上传的文件名是：---",file.getAbsolutePath());
+        return  file;
     }
 }

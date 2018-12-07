@@ -9,15 +9,12 @@ import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -75,7 +72,7 @@ public class HttpUtil<T> {
     ["20181126101602.png","20181127043739.png"]
     wrap all bitmap into a hashset, type is String.
 */
-    File[] allColorCheckBitmapFilesInPhone = FileUtil.getAllColorCheckBitmaps();
+    File[] allColorCheckBitmapFilesInPhone = FileUtil.getAllColorCheckBitmapFiles();
     String responseStringOfCommitedBitmap = gainJsonResultFromServer(getGetRequest(getAllCommitedColorCheckBitmaps));
     HashSet<String> commitedBitmpaFileNameSet = new Gson().fromJson(responseStringOfCommitedBitmap, new TypeToken<HashSet<String>>() {}.getType());
     for(File file:allColorCheckBitmapFilesInPhone){
@@ -128,7 +125,4 @@ public class HttpUtil<T> {
         }
         return  allProjectSet;
     }
-
-
-
 }
