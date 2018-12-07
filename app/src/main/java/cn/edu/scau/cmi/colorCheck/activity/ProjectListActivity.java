@@ -67,21 +67,32 @@ public class ProjectListActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("项目列表");
         }
     }
-
+// 界面再次返回到前端，例如，有可能是添加了项目后返回到这里
     @Override
     protected void onResume() {
         super.onResume();
-//        TODO 从数据库中获取姓名，不用本地数据库
-//        mySqlProjectAdapter = new SqlLiteProjectAdapter(SqlLiteService.getAllProject(),flag, this);
-// TODO       网络获取数据，应该使用AsynaTask方法，有可能包下面的错误
-// java.lang.RuntimeException: Unable to resume activity               android.os.NetworkOnMainThreadException
-//        TODO 暂时使用各自的Task，待优化到一个通用异步任务类
-
-
+//TODO 需要重新访问服务器，获取最新的项目列表
 //        mySqlProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllProject(),flag, this);
         recyclerView.setAdapter(mySqlProjectAdapter);
     }
     public void addProject(View view){
         startActivity(new Intent(this, ProjectAddActivity.class));
+    }
+//TODO 获取所有的项目，带后面完善直接获取
+    public void getAllProject(View view){
+        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
+            @Override
+            public void doSomething(List<Project> projectList) {
+                //TODO 修改listAdapter
+                for(Project project:projectList){
+                    System.out.println("通过网络获取的数据是："+project.getName());
+                }
+                Toast.makeText(ProjectListActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void doNothing() {
+            }
+        });
+        projectAsyncTask.execute();
     }
 }

@@ -53,7 +53,6 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
         }
     }
 
-//TODO 利用该方法，可以更新界面的内容。
 @Override
     protected void onPostExecute(String doInBackgroundResult){
 

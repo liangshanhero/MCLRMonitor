@@ -29,6 +29,7 @@ public class PictureCheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
     Spinner projectSpinner;
     Spinner ruleSpinner;
+    String fileName;//当前的检测文件
     private static  List<Project> projectList;
     private static List<Rule> ruleList;
     private SharedPreferences sharePreferencesEditor;
@@ -53,12 +54,37 @@ public class PictureCheckActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        界面绘制
         setContentView(R.layout.activity_picture_check);
-        initCamera();
-//       获取sharedPreferences
+        initCameraView();
+        initProjectSpinner();
+        initRuleSinner();
+        //       获取sharedPreferences
         sharePreferencesEditor=getSharedPreferences("colorCheckBitmaps",MODE_PRIVATE);
+    }
 
+    private void initRuleSinner() {
+        //        TODO  待完善，是否需要添加监听器呢？
+        ruleSpinner=findViewById(R.id.picture_check_rule_spinner);
 
+       /* ruleSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ruleList =RuleAsyncTask.getAllRules();
+                ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
+                ruleSpinner.setAdapter(ruleAdapter);
+
+//              得到选中的项目，测试一下看能否得到Project对象。
+                Project selectedProject = (Project) parent.getItemAtPosition(position);
+                System.out.println(selectedProject);
+
+                bundle.putString("selectedPorject",selectedProject.toString());
+            }
+
+        });*/
+    }
+
+    private void initProjectSpinner() {
         projectSpinner=findViewById(R.id.picture_check_project_spinner);
 //TODO        选择了project后应该在选择项目对应的规则，
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -78,16 +104,9 @@ public class PictureCheckActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-        ruleSpinner=findViewById(R.id.picture_check_rule_spinner);
-//      后台获取所有的项目和规则数据，用户sprinner提供选项
-//        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this);
-//        projectAsyncTask.execute();
-//        RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(this);
-//        ruleAsyncTask.execute();
     }
 
-    private void initCamera() {
+    private void initCameraView() {
         //        （1）摄像头处理
         cameraPictureSurfaceView =findViewById(R.id.picture_check_surface);
         //                在这里添加图片的显示部分，在结果界面中显示这个图表。
@@ -96,9 +115,9 @@ public class PictureCheckActivity extends AppCompatActivity {
             @Override
             public void showPictureCheckResult(Bitmap bitmap) {
 //              (1)点击图片，等待聚焦后，将保存图片到本地,文件名称是yyyyMMddhhmmss，OK。
-                String fileName=new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+                fileName=FileUtil.getFileName("Check");
                 try {
-                    FileUtil.savecolorCheckBitmap(bitmap,fileName);
+                    FileUtil.saveColorCheckBitmap(bitmap,fileName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -109,8 +128,13 @@ public class PictureCheckActivity extends AppCompatActivity {
             }
         });
     }
-//获取图片的特征值并将这些特征值传递到结果页面
+
+    //获取图片的特征值并将这些特征值传递到结果页面
     private void getAndTransationFeatureToPictureCheckResultActivity(String fileName, Intent intent) {
+
+
+
+
 
 //TODO       拍 照，特征抽取，结果显示，并显示成功。要不使用Service？？？先暂时用测试数据
         float[] redFeatureArrayList={1,140,2,140,3,140,4,140,5,140,6,141,7,141,8,141,9,141,10,141,11,141,12,141,13,142,14,142,15,142,16,142,17,142,18,142,19,142,20,142,21,142,22,142,23,142,24,142,25,142,26,142,27,142,28,142,29,142,30,142,31,142,32,142,33,142,34,142,35,142,36,142,37,142,38,144,39,144,40,144,41,144,42,144,43,144,44,144,45,144,46,144,47,144,48,144,49,144,50,144,51,144,52,144,53,144,54,144,55,145,56,145,57,145,58,145,59,144,60,144,61,144,62,144,63,143,64,142,65,141,66,141,67,140,68,141,69,142,70,143,71,144,72,144,73,144,74,145,75,145,76,145,77,147,78,147,79,147,80,146,81,146,82,146,83,146,84,147,85,147,86,147,87,147,88,147,89,147,90,147,91,147,92,147,93,147,94,147,95,147,96,147,97,147,98,147,99,147,100,147,101,147,102,147,103,147,104,147,105,147,106,147,107,148,108,148,109,148,110,148,111,147,112,147,113,147,114,147,115,149,116,149,117,149,118,149,119,149,120,149,121,149,122,149,123,149,124,149,125,149,126,149,127,149,128,149,129,149,130,149,131,149,132,149,133,149,134,149,135,149,136,149,137,149,138,149,139,149,140,149,141,149,142,149,143,149,144,149,145,149,146,149,147,149,148,149,149,149,150,149,151,149,152,149,153,150,154,151,155,150,156,150,157,150,158,150,159,150,160,150,161,150,162,150,163,150,164,150,165,150,166,150,167,150,168,150,169,150,170,150,171,151,172,150,173,150,174,150,175,150,176,150,177,150,178,150,179,150,180,150,181,150,182,150,183,150,184,150,185,150,186,150,187,150,188,150,189,150,190,150,191,152,192,151,193,151,194,151,195,151,196,151,197,151,198,151,199,151,200,151,201,151,202,151,203,151,204,151,205,151,206,151,207,151,208,151,209,151,210,151,211,151,212,151,213,151,214,151,215,151,216,151,217,151,218,151,219,151,220,151,221,151,222,151,223,150,224,150,225,150,226,150,227,150,228,150,229,151,230,151,231,150,232,150,233,150,234,150,235,150,236,149,237,149,238,148,239,146,240,146,241,144,242,143,243,141,244,139,245,137,246,134,247,130,248,128,249,125,250,121,251,121,252,120,253,118,254,117,255,116,256,115,257,115,258,114,259,112,260,111,261,110,262,109,263,107,264,106,265,105,266,104,267,104,268,103,269,104,270,106,271,110,272,113,273,117,274,119,275,122,276,128,277,136,278,142,279,147,280,148,281,148,282,148,283,149,284,151,285,152,286,153,287,153,288,153,289,153,290,153,291,152,292,152,293,152,294,152,295,152,296,152,297,152,298,152,299,152,300,152,301,152,302,152,303,152,304,152,305,152,306,153,307,153,308,153,309,153,310,153,311,154,312,154,313,154,314,153,315,154,316,154,317,154,318,154,319,154,320,154,321,153,322,153,323,153,324,153,325,153,326,153,327,153,328,153,329,153,330,153,331,153,332,153,333,153,334,153,335,153,336,153,337,153,338,153,339,153,340,153,341,153,342,153,343,153,344,153,345,151,346,151,347,151,348,151,349,150,350,150,351,151,352,151,353,151,354,151,355,151,356,151,357,151,358,151,359,151,360,151,361,151,362,151,363,150,364,150,365,150,366,150,367,150,368,150,369,150,370,150,371,150,372,150,373,150,374,150,375,150,376,150,377,150,378,150,379,150,380,150,381,150,382,150,383,148,384,148,385,148,386,147,387,147,388,147,389,147,390,147,391,147,392,147,393,147,394,147,395,147,396,147,397,147,398,147,399,147,400,147,401,147,402,147,403,147,404,147,405,147,406,146,407,146,408,146,409,146,410,146,411,146,412,146,413,146,414,146,415,146,416,146,417,146,418,146,419,145,420,145,421,145,422,144,423,144,424,144,425,144,426,144,427,143,428,143,429,143,430,143,431,143,432,143,433,143,434,143,435,143,436,143,437,143,438,143,439,143,440,143,441,143,442,143,443,143,444,143,445,142,446,142,447,142,448,142,449,142,450,142,451,142,452,142,453,142,454,142,455,142,456,142,457,142,458,142,459,142,460,140,461,140,462,140,463,140,464,140,465,140,466,140,467,140,468,140,469,140,470,140,471,140,472,139,473,139,474,139,475,139,476,139,477,139,478,139,479,139,480,139,481,139,482,139,483,139,484,139,485,139,486,139,487,139,488,139,489,139,490,139,491,139,492,138,493,138,494,138,495,138,496,138,497,138,498,137,499,137,500,136,501,136,502,136,503,136,504,136,505,136,506,136,507,136,508,136,509,136,510,136,511,136,512,136,513,136,514,136,515,135,516,135,517,135,518,135,519,135,520,135,521,135,522,135,523,135,524,135,525,135,526,135,527,135,528,135,529,135,530,134,531,134,532,134,533,135,534,134,535,135,536,133,537,133,538,133,539,133,540,133,541,132,542,133,543,132,544,132,545,132,546,132,547,132,548,132,549,132,550,132,551,132,552,132,553,132,554,132,555,132,556,132,557,132,558,132,559,132,560,132,561,132,562,132,563,132,564,131,565,131,566,131,567,131,568,131,569,131,570,131,571,131,572,131,573,131,574,129,575,129,576,129,577,129,578,129,579,129,580,129,581,129,582,129,583,129,584,128,585,128,586,128,587,128,588,128,589,128,590,128,591,128,592,128,593,128,594,128,595,128,596,128,597,128,598,128,599,128,600,128,601,128,602,128,603,128,604,128,605,128,606,128,607,128,608,128,609,128,610,128,611,128,612,126,613,126,614,126,615,126,616,126,617,126,618,126,619,126,620,126,621,126,622,126,623,125,624,125,625,125,626,125,627,125,628,125,629,125,630,125,631,125,632,125,633,125,634,125,635,125,636,125,637,125,638,125,639,125,640,125,641,124,642,124,643,124,644,124,645,124,646,124,647,124,648,124,649,124,650,124,651,122,652,122,653,122,654,122,655,122,656,122,657,122,658,122,659,122,660,121,661,121,662,121,663,120,664,120,665,120,666,119,667,119,668,119,669,118,670,86};
@@ -137,10 +161,26 @@ public class PictureCheckActivity extends AppCompatActivity {
         ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
         ruleSpinner.setAdapter(ruleAdapter);
     }
+//TODO 上传并在结果页面中显示检测结果
+    public void onUploadPictureCheckBitMapAndCheck(View view){
+//        上传文件
+        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,fileName);
+        photoAsyncTask.execute();
+//        获取特征值
 
-    //TODO 上传文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。
-    public void onPictureCheckUploadBitMap(View view){
-        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor);
+//        将特征值传递个
+
+
+
+
+
+
+
+    }
+
+    //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。
+    public void onUploadAllPictureCheckBitMap(View view){
+        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
         photoAsyncTask.execute();
     }
 

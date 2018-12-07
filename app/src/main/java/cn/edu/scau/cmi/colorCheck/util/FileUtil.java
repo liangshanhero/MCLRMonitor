@@ -8,6 +8,8 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FileUtil {
     //系统相册目录,Coolpad放置的地方是手机存储盘：/storage/emulated/0/DCIM/Camera/20181126095938.png
@@ -20,7 +22,7 @@ public class FileUtil {
         }
     }
 
-    public static void savecolorCheckBitmap(Bitmap bmp, String picName) throws IOException {
+    public static void saveColorCheckBitmap(Bitmap bmp, String picName) throws IOException {
         File file = new File(colorCheckBitmapDirectory, picName + ".png");
         FileOutputStream outStream = new FileOutputStream(file);
         bmp.compress(Bitmap.CompressFormat.PNG, 90, outStream);
@@ -34,5 +36,10 @@ public class FileUtil {
     public static File[] getAllColorCheckBitmaps(){
         File gallery=new File(colorCheckBitmapDirectory);
         return gallery.listFiles();
+    }
+
+    public static String getFileName(String bitMapType) {
+        String fileName=new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        return  fileName+bitMapType;
     }
 }

@@ -82,7 +82,7 @@ public class HttpUtil<T> {
 }
 
 //  提交文件到服务器
-    private static void uploadFileToServer(File file) throws IOException {
+    public static void uploadFileToServer(File file) throws IOException {
         RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", file.getName(), fileBody).build();
         Request request = new Request.Builder().url(getCompleteURLString(uploadImage_url)).post(requestBody).build();

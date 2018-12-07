@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import java.io.File;
+
 import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
@@ -13,6 +15,7 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     private MainActivity mainActivity;
     private PictureCheckActivity pictureCheckActivity;
     private SharedPreferences sharePreferences;
+    private String fileName;
 
 
     public PhotoAsyncTask(MainActivity mainActivity) {
@@ -23,15 +26,20 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
         this.pictureCheckActivity=pictureCheckActivity;
     }
 
-    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences) {
+    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences,String fileName) {
         this.pictureCheckActivity=pictureCheckActivity;
         this.sharePreferences=sharePreferences;
+        this.fileName=fileName;
     }
 
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            HttpUtil.uploadAllBitmapInColorCheckDirectory(sharePreferences);
+            if(null==fileName){
+                HttpUtil.uploadFileToServer(new File(fileName));//上传指定的文件
+            }else {
+                HttpUtil.uploadAllBitmapInColorCheckDirectory(sharePreferences);//上传所有的没有上传的文件
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

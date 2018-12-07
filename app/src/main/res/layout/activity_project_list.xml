@@ -11,6 +11,13 @@
     </android.support.v7.widget.RecyclerView>
 
     <Button
+        android:id="@+id/project_getAllProject"
+        android:onClick="getAllProject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取所有的检测项目"/>
+
+    <Button
         android:id="@+id/project_del"
         android:onClick="addProject"
         android:layout_width="match_parent"

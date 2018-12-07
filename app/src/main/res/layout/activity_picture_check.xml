@@ -97,8 +97,15 @@
         android:id="@+id/picture_check_upload_bitmap_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="上传检测的图片"
-        android:onClick="onPictureCheckUploadBitMap"/>
+        android:text="上传图片并检测"
+        android:onClick="onUploadPictureCheckBitMapAndCheck"/>
+
+    <Button
+        android:id="@+id/picture_check_upload_all_bitmap_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="上传本机所有的检测图片"
+        android:onClick="onUploadAllPictureCheckBitMap"/>
 
     <!--&lt;!&ndash;结果部分&ndash;&gt;
     <LinearLayout
