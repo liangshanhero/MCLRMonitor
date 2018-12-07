@@ -116,7 +116,7 @@ public class PictureCheckActivity extends AppCompatActivity {
             @Override
             public void showPictureCheckResult(Bitmap bitmap) {
 //              (1)点击图片，等待聚焦后，将保存图片到本地,文件名称是yyyyMMddhhmmss，OK。
-                fileName=FileUtil.getFileName("Check");
+                fileName=FileUtil.getFileName("PH","Check","");
                 try {
                     FileUtil.saveColorCheckBitmap(bitmap,fileName);
                 } catch (IOException e) {

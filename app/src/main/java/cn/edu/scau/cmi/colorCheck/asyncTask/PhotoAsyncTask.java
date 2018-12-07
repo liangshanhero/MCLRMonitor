@@ -35,7 +35,7 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            if(null==fileName){
+            if(null!=fileName){
                 HttpUtil.uploadFileToServer(new File(fileName));//上传指定的文件
             }else {
                 HttpUtil.uploadAllBitmapInColorCheckDirectory(sharePreferences);//上传所有的没有上传的文件

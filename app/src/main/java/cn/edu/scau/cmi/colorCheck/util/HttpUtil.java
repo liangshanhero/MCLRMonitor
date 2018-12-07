@@ -85,7 +85,7 @@ public class HttpUtil<T> {
     }
 }
 
-//  提交文件到服务器
+//  上传指定的文件到服务器
     public static void uploadFileToServer(File file) throws IOException {
         RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", file.getName(), fileBody).build();
