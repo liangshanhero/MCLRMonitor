@@ -2,6 +2,7 @@ package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -36,6 +37,7 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     protected String doInBackground(Void... voids) {
         try {
             if(null!= file){
+                Log.e("----准备上传的文件是：------",file.getAbsolutePath());
                 HttpUtil.uploadFileToServer(file);//上传指定的文件
             }else {
                 HttpUtil.uploadAllBitmapInColorCheckDirectory(sharePreferences);//上传所有的没有上传的文件

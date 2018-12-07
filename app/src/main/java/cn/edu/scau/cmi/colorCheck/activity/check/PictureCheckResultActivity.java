@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import java.io.Serializable;
+
 import cn.edu.scau.cmi.colorCheck.R;
 
 //建立一个内部类，可以让view使用Activity中的数据！！！，否则数据穿不进去！！！！！！
@@ -31,7 +33,7 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         greenFeature = bundle.getFloatArray("greenFeature");
         blueFeature = bundle.getFloatArray("blueFeature");
         grayFeature = bundle.getFloatArray("grayFeature");
-        String checkBitmap = bundle.getString("checkBitmap");
+        Serializable checkBitmap = bundle.getSerializable("checkBitmap");
 
 
         setContentView(R.layout.activity_picture_check_result);

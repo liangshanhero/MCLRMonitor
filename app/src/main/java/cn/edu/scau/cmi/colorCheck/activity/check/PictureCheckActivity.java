@@ -173,7 +173,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。
+    //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
     public void onUploadAllPictureCheckBitMap(View view){
         PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
         photoAsyncTask.execute();
