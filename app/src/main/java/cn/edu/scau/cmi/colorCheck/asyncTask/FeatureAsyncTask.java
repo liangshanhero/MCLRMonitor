@@ -2,14 +2,16 @@ package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.os.AsyncTask;
 
+import java.io.File;
+
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 
 public class FeatureAsyncTask extends AsyncTask<Void,Void,String> {
     private PictureCheckActivity pictureCheckActivity;
-    private String fileName;
+    private File file;
 
-    public FeatureAsyncTask(PictureCheckActivity activity,String fileName){
-        this.fileName=fileName;
+    public FeatureAsyncTask(PictureCheckActivity activity,File file){
+        this.file =file;
         this.pictureCheckActivity=activity;
 
     }

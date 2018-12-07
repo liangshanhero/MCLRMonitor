@@ -15,7 +15,7 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     private MainActivity mainActivity;
     private PictureCheckActivity pictureCheckActivity;
     private SharedPreferences sharePreferences;
-    private String fileName;
+    private File file;
 
 
     public PhotoAsyncTask(MainActivity mainActivity) {
@@ -26,17 +26,17 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
         this.pictureCheckActivity=pictureCheckActivity;
     }
 
-    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences,String fileName) {
+    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences,File file) {
         this.pictureCheckActivity=pictureCheckActivity;
         this.sharePreferences=sharePreferences;
-        this.fileName=fileName;
+        this.file =file;
     }
 
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            if(null!=fileName){
-                HttpUtil.uploadFileToServer(new File(fileName));//上传指定的文件
+            if(null!= file){
+                HttpUtil.uploadFileToServer(file);//上传指定的文件
             }else {
                 HttpUtil.uploadAllBitmapInColorCheckDirectory(sharePreferences);//上传所有的没有上传的文件
             }

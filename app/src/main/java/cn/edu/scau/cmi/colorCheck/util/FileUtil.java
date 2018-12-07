@@ -20,8 +20,10 @@ public class FileUtil {
         }
     }
 
-    public static void saveColorCheckBitmap(Bitmap bmp, String picName) throws IOException {
-        File file = new File(colorCheckBitmapDirectory, picName + ".png");
+    public static void saveColorCheckBitmap(Bitmap bmp, File picFile) throws IOException {
+
+
+        File file = new File(colorCheckBitmapDirectory, picFile + ".png");
         FileOutputStream outStream = new FileOutputStream(file);
         bmp.compress(Bitmap.CompressFormat.PNG, 90, outStream);
         outStream.flush();
