@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -38,7 +39,11 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
         File checkBitmap = (File) bundle.getSerializable("checkBitmap");// 是否可以转换呢，需要测试
-//        (3) 异步获取检测结果
+        Log.e("---传过来的文件名是：-----",checkBitmap.getAbsolutePath());
+
+
+
+//        (3) 图片作为检测的参数，异步获取检测结果
         CheckAsyncTask checkAsyncTask=new CheckAsyncTask(this, checkBitmap);
         checkAsyncTask.execute();
 
@@ -71,17 +76,17 @@ public class PictureCheckResultActivity extends AppCompatActivity {
             getResult();//获取检测的像素点的值，目前是从文本文件中获取，下次从web中获取。
             drawRed();
 
-            paint.setColor(Color.RED);
-            canvas.drawPoints(redFeature,paint);
-
-            paint.setColor(Color.GREEN);
-            canvas.drawPoints(greenFeature,paint);
-
-            paint.setColor(Color.BLUE );
-            canvas.drawPoints(blueFeature,paint);
-
-            paint.setColor(Color.GRAY );
-            canvas.drawPoints(grayFeature,paint);
+//            paint.setColor(Color.RED);
+//            canvas.drawPoints(redFeature,paint);
+//
+//            paint.setColor(Color.GREEN);
+//            canvas.drawPoints(greenFeature,paint);
+//
+//            paint.setColor(Color.BLUE );
+//            canvas.drawPoints(blueFeature,paint);
+//
+//            paint.setColor(Color.GRAY );
+//            canvas.drawPoints(grayFeature,paint);
 
             paint.setTextSize(36);
             canvas.drawText("华南农业大学",20,20,paint);

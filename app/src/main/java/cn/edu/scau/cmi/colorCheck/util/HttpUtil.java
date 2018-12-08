@@ -96,7 +96,7 @@ public class HttpUtil<T> {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.i(TAG, "uploadColorCheckBitmaps() response=" + response.body().string());
+                Log.e(TAG, "上传成功，uploadColorCheckBitmaps() response=" + response.body().string());
             }
         });
     }

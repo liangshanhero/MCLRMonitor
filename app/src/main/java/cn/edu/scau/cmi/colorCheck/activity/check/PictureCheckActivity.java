@@ -129,7 +129,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         });
     }
 
-    //TODO 已经没啥用了，可以删除了。获取图片的特征值并将这些特征值传递到结果页面
+    //TODO 已经没用了，可以删除了。获取图片的特征值并将这些特征值传递到结果页面
 /*    private void getAndTransiteFeatureToPictureCheckResultActivity(File file, Intent intent) {
 //(1)  获取指定文件的特征值
         FeatureAsyncTask featureAsyncTask=new FeatureAsyncTask(this,currentFile);
