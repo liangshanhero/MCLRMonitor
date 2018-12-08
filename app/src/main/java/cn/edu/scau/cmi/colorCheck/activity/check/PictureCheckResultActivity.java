@@ -20,12 +20,6 @@ import cn.edu.scau.cmi.colorCheck.asyncTask.CheckAsyncTask;
 
 //建立一个内部类，可以让view使用Activity中的数据！！！，否则数据传不进去！！！！！！
 public class PictureCheckResultActivity extends AppCompatActivity {
-
-    float[] redFeature;
-    float[] greenFeature;
-    float[] blueFeature;
-    float[] grayFeature;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        (1) 构造界面
@@ -40,7 +34,6 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         Bundle bundle=intent.getExtras();
         File checkBitmap = (File) bundle.getSerializable("checkBitmap");// 是否可以转换呢，需要测试
         Log.e("---传过来的文件名是：-----",checkBitmap.getAbsolutePath());
-
 
 
 //        (3) 图片作为检测的参数，异步获取检测结果

@@ -39,9 +39,7 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
     protected String doInBackground(Void... voids) {
         try {
             if(null!= file){
-//                /----准备上传的文件是：------: /PH_Check_20181207104929_
                 Log.e("----准备上传的文件是：------", file.getAbsolutePath());
-//                FileUtil.
                 HttpUtil.uploadFileToServer(file);//上传指定的文件
             }else {
                 HttpUtil.uploadAllBitmapInColorCheckDirectory(sharePreferences);//上传所有的没有上传的文件

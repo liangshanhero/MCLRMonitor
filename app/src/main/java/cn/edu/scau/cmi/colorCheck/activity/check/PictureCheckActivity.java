@@ -165,14 +165,14 @@ public class PictureCheckActivity extends AppCompatActivity {
     }
 //TODO 上传并在结果页面中显示检测结果
     public void onUploadPictureCheckBitMapAndCheck(View view){
-//        上传文件
+//      （1）  上传图片文件
         PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor, currentFile);
         photoAsyncTask.execute();
 //        获取特征值
         FeatureAsyncTask featureAsyncTask=new FeatureAsyncTask(this, currentFile);
         featureAsyncTask.execute();
 
-//        TODO 显示结果,to be tested
+//        TODO （2）显示结果,to be finished and tested
         Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
         bundle.putSerializable("checkBitmap",currentFile);
         intent.putExtras(bundle);
