@@ -16,11 +16,11 @@
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/resultTextView"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:layout_marginTop="400dp"
             android:background="#FFFFFF"
-            android:text="结果" />
+            android:text="@string/check_result" />
 
 
     </android.support.v7.widget.LinearLayoutCompat>

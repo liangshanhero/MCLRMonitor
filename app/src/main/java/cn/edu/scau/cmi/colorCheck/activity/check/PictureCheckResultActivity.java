@@ -11,23 +11,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
-import java.io.Serializable;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.asyncTask.CheckAsyncTask;
 
 //建立一个内部类，可以让view使用Activity中的数据！！！，否则数据传不进去！！！！！！
 public class PictureCheckResultActivity extends AppCompatActivity {
+    private CheckResultFigureView checkResultFigureView;
+    private TextView resultTextView;
+    private String[] checkResults;
+    private String testFromAsynaTask="还没有从AsyncTask中获取数据";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        (1) 构造界面
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_check_result);
+
+        resultTextView=findViewById(R.id.resultTextView);
+
         FrameLayout frameLayout=(FrameLayout)findViewById(R.id.frameLayoutCheckResult);
-        CheckResultFigureView view = new CheckResultFigureView(PictureCheckResultActivity.this);
-        frameLayout.addView(view );//在view上画图形。数据怎么传过去呢？
+
+        checkResultFigureView=new CheckResultFigureView(PictureCheckResultActivity.this);
+//        checkResultFigureView.invalidate();
+//        checkResultFigureView.
+//        setCheckResultFigureView();
+        frameLayout.addView(getCheckResultFigureView());//在view上画图形。数据怎么传过去呢？
+
+
+
 
 //      (2) 获取前面页面传来的检测标志
         Intent intent=getIntent();
@@ -41,12 +56,48 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         checkAsyncTask.execute();
 
 //        assert redFeature != null;
-//        view.addExtraDataToAccessibilityNodeInfo(redFeature,"redFeature",bundle);
+//        checkResultFigureView.addExtraDataToAccessibilityNodeInfo(redFeature,"redFeature",bundle);
+    }
+
+    public TextView getResultTextView() {
+        return resultTextView;
+    }
+
+    public void setResultTextView(TextView resultTextView) {
+        this.resultTextView = resultTextView;
+    }
+
+    public CheckResultFigureView getCheckResultFigureView() {
+        return checkResultFigureView;
+    }
+
+    public void setCheckResultFigureView(CheckResultFigureView checkResultFigureView) {
+        this.checkResultFigureView = checkResultFigureView;
+    }
+
+    public String[] getCheckResults() {
+        return checkResults;
+    }
+
+    public void setCheckResults(String[] checkResults) {
+        this.checkResults = checkResults;
+    }
+
+    public String getTestFromAsynaTask() {
+        return testFromAsynaTask;
+    }
+
+    public void setTestFromAsynaTask(String testFromAsynaTask) {
+        this.testFromAsynaTask = testFromAsynaTask;
     }
 
     //内部类，用于显示结果！！！
-    class CheckResultFigureView extends View {
-        PictureCheckResultActivity pictureCheckResultActivity;
+    public class CheckResultFigureView extends View {
+
+
+
+
+//        PictureCheckResultActivity pictureCheckResultActivity;
         public CheckResultFigureView(Context context) {
             super(context);
         }
@@ -81,8 +132,18 @@ public class PictureCheckResultActivity extends AppCompatActivity {
 //            paint.setColor(Color.GRAY );
 //            canvas.drawPoints(grayFeature,paint);
 
-            paint.setTextSize(36);
-            canvas.drawText("华南农业大学",20,20,paint);
+            paint.setTextSize(60);
+            canvas.drawText(testFromAsynaTask,50,50,paint);
+            Toast.makeText(PictureCheckResultActivity.this,"返回到PictureCheckResultActivity",Toast.LENGTH_LONG);
+//            if(null!=checkResults){
+//                canvas.drawText(checkResults.toString(),100,100,paint);
+//            }
+
+            invalidate();//重新绘制一次
+
+
+
+
         }
         //简单消除误差的方法，后面应该用真实的环境误差解决
         private void minusEnviroment(float[] points, int enviroment) {

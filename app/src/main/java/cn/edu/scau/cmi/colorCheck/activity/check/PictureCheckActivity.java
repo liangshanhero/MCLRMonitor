@@ -69,7 +69,7 @@ public class PictureCheckActivity extends AppCompatActivity {
 
        /* ruleSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View checkResultFigureView, int position, long id) {
                 ruleList =RuleAsyncTask.getAllRules();
                 ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
                 ruleSpinner.setAdapter(ruleAdapter);
@@ -186,7 +186,7 @@ public class PictureCheckActivity extends AppCompatActivity {
     }
 
 //点击图片后，显示结果界面，
-//    public void onPictureCheck(View view){
+//    public void onPictureCheck(View checkResultFigureView){
 ////      在这里将图片的检测结果作为参数在结果界面中显示这个图表。
 ////        获取图片！！！
 //        Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
