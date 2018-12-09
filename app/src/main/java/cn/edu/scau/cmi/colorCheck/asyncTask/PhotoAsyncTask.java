@@ -32,7 +32,6 @@ public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
         this.pictureCheckActivity=pictureCheckActivity;
         this.sharePreferences=sharePreferences;
         this.file =file;
-        System.out.println("---------传递过来的文件名称是："+file);
     }
 
     @Override

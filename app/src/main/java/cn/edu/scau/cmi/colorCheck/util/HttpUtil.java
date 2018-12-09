@@ -24,8 +24,8 @@ import okhttp3.Response;
 
 public class HttpUtil<T> {
 //    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
-    private static final String colorCheckServerSite = "http://139.159.188.31:8888/colorCheckServer/";
-    private static final String uploadImage_url = "springUpload";
+    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
+    private static final String uploadFileRequestString = "springUpload";
     private static final String getAllCommitedColorCheckBitmaps = "getAllCommitedColorCheckBitmaps";
     private static final String TAG = "-----HttpUtil测试消息------";
 //不要在代码里改配置，到res/alues/string.xml修改
@@ -34,7 +34,7 @@ public class HttpUtil<T> {
 
     private static String getCompleteURLString(String postfixURL){
 //        String completeUrlString=CmiApplication.getContext().getString(R.string.prefix_url) + postfixURL;
-        String completeUrlString= colorCheckServerSite + postfixURL;
+        String completeUrlString= serverContext + postfixURL;
         return  completeUrlString;
     }
 //**** 从服务器得到数据，可以删除掉了******
@@ -82,13 +82,14 @@ public class HttpUtil<T> {
     }
 }
 
-//  上传指定的文件到服务器
+//  上传指定的文件到服务器，有的是Check文件，有的是Sample图片文件
     public static void uploadFileToServer(File file) throws IOException {
         RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", file.getName(), fileBody).build();
-        Request request = new Request.Builder().url(getCompleteURLString(uploadImage_url)).post(requestBody).build();
+        Request request = new Request.Builder().url(getCompleteURLString(uploadFileRequestString)).post(requestBody).build();
         final OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
         OkHttpClient okHttpClient = httpBuilder.connectTimeout(60, TimeUnit.SECONDS).writeTimeout(60, TimeUnit.SECONDS).build();
+//        进入队列，上传文件
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -96,7 +97,7 @@ public class HttpUtil<T> {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e(TAG, "上传成功，uploadColorCheckBitmaps() response=" + response.body().string());
+                Log.e(TAG, "------上传成功------");
             }
         });
     }

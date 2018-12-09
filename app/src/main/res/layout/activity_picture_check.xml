@@ -97,14 +97,24 @@
         android:id="@+id/picture_check_upload_bitmap_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="上传图片并检测"
-        android:onClick="onUploadPictureCheckBitMapAndCheck"/>
+        android:text="上传刚才拍摄的图片"
+        android:onClick="onUploadPictureCheckBitMap"/>
+
+    <Button
+        android:id="@+id/picture_check_show_result_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示检测结果"
+        android:onClick="onShowPictureCheckResult"/>
+
+
+
 
     <Button
         android:id="@+id/picture_check_upload_all_bitmap_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="上传本机所有的检测图片"
+        android:text="上传本机所有的检测图片，用于规则学习"
         android:onClick="onUploadAllPictureCheckBitMap"/>
 
     <!--&lt;!&ndash;结果部分&ndash;&gt;

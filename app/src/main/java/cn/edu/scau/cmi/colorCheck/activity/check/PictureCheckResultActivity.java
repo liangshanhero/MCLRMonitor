@@ -18,40 +18,39 @@ import java.io.File;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.asyncTask.CheckAsyncTask;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Check;
 
 //建立一个内部类，可以让view使用Activity中的数据！！！，否则数据传不进去！！！！！！
 public class PictureCheckResultActivity extends AppCompatActivity {
     private CheckResultFigureView checkResultFigureView;
     private TextView resultTextView;
     private String[] checkResults;
-    private String testFromAsynaTask="还没有从AsyncTask中获取数据";
+    private Check check;
+
+    public Check getCheck() {
+        return check;
+    }
+
+    public void setCheck(Check check) {
+        this.check = check;
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        (1) 构造界面
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_check_result);
-
         resultTextView=findViewById(R.id.resultTextView);
-
         FrameLayout frameLayout=(FrameLayout)findViewById(R.id.frameLayoutCheckResult);
-
         checkResultFigureView=new CheckResultFigureView(PictureCheckResultActivity.this);
-//        checkResultFigureView.invalidate();
-//        checkResultFigureView.
-//        setCheckResultFigureView();
-        frameLayout.addView(getCheckResultFigureView());//在view上画图形。数据怎么传过去呢？
-
-
-
-
-//      (2) 获取前面页面传来的检测标志
+        frameLayout.addView(getCheckResultFigureView());
+//      (2) 获取PictureCheckActivity传来的检测文件
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
-        File checkBitmap = (File) bundle.getSerializable("checkBitmap");// 是否可以转换呢，需要测试
-        Log.e("---传过来的文件名是：-----",checkBitmap.getAbsolutePath());
-
-
-//        (3) 图片作为检测的参数，异步获取检测结果
+        File checkBitmap = (File) bundle.getSerializable("currentCheckBitmapFile");// 是否可以转换呢，需要测试
+//      (3) ******图片作为检测的参数，异步获取检测结果
         CheckAsyncTask checkAsyncTask=new CheckAsyncTask(this, checkBitmap);
         checkAsyncTask.execute();
 
@@ -83,21 +82,8 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         this.checkResults = checkResults;
     }
 
-    public String getTestFromAsynaTask() {
-        return testFromAsynaTask;
-    }
-
-    public void setTestFromAsynaTask(String testFromAsynaTask) {
-        this.testFromAsynaTask = testFromAsynaTask;
-    }
-
-    //内部类，用于显示结果！！！
+    //******内部类，用于显示结果！！！
     public class CheckResultFigureView extends View {
-
-
-
-
-//        PictureCheckResultActivity pictureCheckResultActivity;
         public CheckResultFigureView(Context context) {
             super(context);
         }
@@ -117,50 +103,12 @@ public class PictureCheckResultActivity extends AppCompatActivity {
             Point yAxisEndPoint=new Point(50,800);
             canvas.drawLine(xAxisStartPoint.x,xAxisStartPoint.y,xAxisEndPoint.x,xAxisEndPoint.y,paint);//横坐标
             canvas.drawLine(yAxisStartPoint.x,yAxisStartPoint.y,yAxisEndPoint.x,yAxisEndPoint.y,paint);//纵坐标
-            getResult();//获取检测的像素点的值，目前是从文本文件中获取，下次从web中获取。
-            drawRed();
-
-//            paint.setColor(Color.RED);
-//            canvas.drawPoints(redFeature,paint);
-//
-//            paint.setColor(Color.GREEN);
-//            canvas.drawPoints(greenFeature,paint);
-//
-//            paint.setColor(Color.BLUE );
-//            canvas.drawPoints(blueFeature,paint);
-//
-//            paint.setColor(Color.GRAY );
-//            canvas.drawPoints(grayFeature,paint);
 
             paint.setTextSize(60);
-            canvas.drawText(testFromAsynaTask,50,50,paint);
-            Toast.makeText(PictureCheckResultActivity.this,"返回到PictureCheckResultActivity",Toast.LENGTH_LONG);
-//            if(null!=checkResults){
-//                canvas.drawText(checkResults.toString(),100,100,paint);
-//            }
-
-            invalidate();//重新绘制一次
-
-
-
-
-        }
-        //简单消除误差的方法，后面应该用真实的环境误差解决
-        private void minusEnviroment(float[] points, int enviroment) {
-            for(int i=0;i<points.length;i++){
-                if(i%2==0){
-                    points[i]=points[i]+50;
-                }
-                else{
-                    points[i]=(points[i]-enviroment)*5;
-                }
+            canvas.drawText("检测的特征曲线：",50,50,paint);
+            if(check != null){
+                canvas.drawText(check.getName(),50,250,paint);
             }
-        }
-
-        private void getResult() {
-        }
-
-        private void drawRed() {
         }
     }
 }

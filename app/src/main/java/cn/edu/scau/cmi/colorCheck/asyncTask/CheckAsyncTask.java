@@ -33,6 +33,15 @@ public class CheckAsyncTask extends AsyncTask<Void,Void,String> {
         try {
             String responseString = HttpUtil.gainJsonResultFromServer("Check/bitmap/"+checkBitmapFile.getName());
             allCheck = new Gson().fromJson(responseString,new TypeToken<List<Check>>(){}.getType());
+
+            
+
+
+
+
+
+
+
             return "success";
         } catch (Exception e) {
             return "exception";
@@ -40,19 +49,14 @@ public class CheckAsyncTask extends AsyncTask<Void,Void,String> {
     }
     @Override
     protected void onPostExecute(String result){
-//        TODO 结果返回给PcitureCheckResultActivity显示，？？？
-        String[] test ={"1","2","3","4"};
-
-        pictureCheckResultActivity.getResultTextView().setText("还没有");
-
+        pictureCheckResultActivity.getResultTextView().setText("还没有完成功能！！！");
+        pictureCheckResultActivity.setCheck(allCheck.get(0));
 
 //        pictureCheckResultActivity.getResultTextView().setc.setchsetCheckResults(test);
-        pictureCheckResultActivity.setTestFromAsynaTask("后台传数据过来，纯粹做测试");
 
 //        PictureCheckResultActivity.CheckResultFigureView view = pictureCheckResultActivity.getCheckResultFigureView();
 //        view.onDraw();
 //
         pictureCheckResultActivity.getCheckResultFigureView().postInvalidate();//非UI线程重新绘制界面，晕死，写错了我view的名称，折腾了一个晚上。
-        Toast.makeText(pictureCheckResultActivity,"返回到首页",Toast.LENGTH_LONG);
     }
 }
