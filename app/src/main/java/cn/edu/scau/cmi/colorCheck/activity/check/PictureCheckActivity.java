@@ -12,11 +12,12 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.asyncTask.FeatureAsyncTask;
-import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
+import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.RuleAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
@@ -30,6 +31,7 @@ public class PictureCheckActivity extends AppCompatActivity {
     Spinner projectSpinner;
     Spinner ruleSpinner;
     File currentCheckBitmapFile;//当前的检测文件
+    String currentCheckBitmapFileName;
     private static  List<Project> projectList;
     private static List<Rule> ruleList;
     private SharedPreferences sharePreferencesEditor;
@@ -115,7 +117,9 @@ public class PictureCheckActivity extends AppCompatActivity {
             @Override
             public void showPictureCheckResult(Bitmap bitmap) {
 //              (1)点击图片，等待聚焦后，将保存图片到本地,文件名称是yyyyMMddhhmmss，OK。
-                currentCheckBitmapFile =FileUtil.getCurrentFile("PH","Check","");
+                currentCheckBitmapFileName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+
+                currentCheckBitmapFile =FileUtil.getCurrentFile("PH","Check",currentCheckBitmapFileName,"");
                 try {
                     FileUtil.saveColorCheckBitmap(bitmap, currentCheckBitmapFile);
                 } catch (IOException e) {
@@ -129,8 +133,6 @@ public class PictureCheckActivity extends AppCompatActivity {
         });
     }
 
-
-
     //点击初始化按钮，Spinner设置初始值
     public void onPictureCheckGainData(View view){
         projectList=ProjectAsyncTask.getAllProject();
@@ -143,30 +145,24 @@ public class PictureCheckActivity extends AppCompatActivity {
     }
     //上传当前的相片
     public void onUploadPictureCheckBitMap(View view){
-        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor, currentCheckBitmapFile);
-        photoAsyncTask.execute();
-
+        FileAsyncTask fileAsyncTask=new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor, currentCheckBitmapFile);
+        fileAsyncTask.execute();
     }
 
-    //TODO 显示检测结果
+    //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
+    public void onUploadAllPictureCheckBitMapFile(View view){
+        FileAsyncTask fileAsyncTask=new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
+        fileAsyncTask.execute();
+    }
+    // 显示检测结果
     public void onShowPictureCheckResult(View view){
         Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
-        bundle.putSerializable("currentCheckBitmapFile", currentCheckBitmapFile);
+//        bundle.putSerializable("currentCheckBitmapFile", currentCheckBitmapFile);
+//        文件的时间名称，
+        bundle.putString("currentCheckBitmapFileName",currentCheckBitmapFileName);
         intent.putExtras(bundle);
         startActivity(intent);
     }
-
-
-
-
-
-
-    //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
-    public void onUploadAllPictureCheckBitMap(View view){
-        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
-        photoAsyncTask.execute();
-    }
-
 //点击图片后，显示结果界面，
 //    public void onPictureCheck(View checkResultFigureView){
 ////      在这里将图片的检测结果作为参数在结果界面中显示这个图表。

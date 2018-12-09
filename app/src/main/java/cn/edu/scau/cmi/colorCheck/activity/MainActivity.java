@@ -9,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
@@ -17,8 +16,6 @@ import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PointCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PictureSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
-import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
-import cn.edu.scau.cmi.colorCheck.asyncTask.UserAsyncTask;
 
 public class MainActivity extends AppCompatActivity {
 

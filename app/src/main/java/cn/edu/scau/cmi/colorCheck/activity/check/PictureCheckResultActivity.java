@@ -26,15 +26,7 @@ public class PictureCheckResultActivity extends AppCompatActivity {
     private TextView resultTextView;
     private String[] checkResults;
     private Check check;
-
-    public Check getCheck() {
-        return check;
-    }
-
-    public void setCheck(Check check) {
-        this.check = check;
-    }
-
+    private String checkName;
 
 
     @Override
@@ -49,13 +41,23 @@ public class PictureCheckResultActivity extends AppCompatActivity {
 //      (2) 获取PictureCheckActivity传来的检测文件
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
-        File checkBitmap = (File) bundle.getSerializable("currentCheckBitmapFile");// 是否可以转换呢，需要测试
-//      (3) ******图片作为检测的参数，异步获取检测结果
-        CheckAsyncTask checkAsyncTask=new CheckAsyncTask(this, checkBitmap);
+        String checkName=bundle.getString("currentCheckBitmapFileName");
+
+        //      (3) ******图片作为检测的参数，异步获取检测结果
+        CheckAsyncTask checkAsyncTask=new CheckAsyncTask(this, checkName);
         checkAsyncTask.execute();
 
 //        assert redFeature != null;
 //        checkResultFigureView.addExtraDataToAccessibilityNodeInfo(redFeature,"redFeature",bundle);
+    }
+
+
+    public Check getCheck() {
+        return check;
+    }
+
+    public void setCheck(Check check) {
+        this.check = check;
     }
 
     public TextView getResultTextView() {

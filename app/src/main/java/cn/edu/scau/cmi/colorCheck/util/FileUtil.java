@@ -38,8 +38,8 @@ public class FileUtil {
         return gallery.listFiles();
     }
 
-    public static File getCurrentFile(String projectName,String bitMapType,String result) {
-        String currentFileName=projectName+"_"+bitMapType+(new SimpleDateFormat("_yyyyMMddhhmmss_").format(new Date()))+result;
+    public static File getCurrentFile(String projectName,String bitMapType,String fileName,String result) {
+        String currentFileName=projectName+"_"+bitMapType+"_"+fileName+"_"+result;
         File file = new File(colorCheckBitmapDirectory, currentFileName + ".png");
         return  file;
     }
