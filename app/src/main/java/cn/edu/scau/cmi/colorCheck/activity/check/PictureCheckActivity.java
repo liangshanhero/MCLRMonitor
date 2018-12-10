@@ -12,12 +12,11 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
+import cn.edu.scau.cmi.colorCheck.asyncTask.FeatureAsyncTask;
+import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.RuleAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
@@ -133,6 +132,8 @@ public class PictureCheckActivity extends AppCompatActivity {
         });
     }
 
+
+
     //点击初始化按钮，Spinner设置初始值
     public void onPictureCheckGainData(View view){
         projectList=ProjectAsyncTask.getAllProject();
@@ -163,6 +164,18 @@ public class PictureCheckActivity extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivity(intent);
     }
+
+
+
+
+
+
+    //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
+    public void onUploadAllPictureCheckBitMap(View view){
+        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
+        photoAsyncTask.execute();
+    }
+
 //点击图片后，显示结果界面，
 //    public void onPictureCheck(View checkResultFigureView){
 ////      在这里将图片的检测结果作为参数在结果界面中显示这个图表。

@@ -51,15 +51,6 @@ public class PictureCheckResultActivity extends AppCompatActivity {
 //        checkResultFigureView.addExtraDataToAccessibilityNodeInfo(redFeature,"redFeature",bundle);
     }
 
-
-    public Check getCheck() {
-        return check;
-    }
-
-    public void setCheck(Check check) {
-        this.check = check;
-    }
-
     public TextView getResultTextView() {
         return resultTextView;
     }
