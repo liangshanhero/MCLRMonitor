@@ -35,8 +35,6 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         this.check = check;
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        (1) 构造界面

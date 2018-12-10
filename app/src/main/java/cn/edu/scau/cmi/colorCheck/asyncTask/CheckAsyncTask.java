@@ -25,7 +25,6 @@ public class CheckAsyncTask extends AsyncTask<Void,Void,String> {
     public CheckAsyncTask(PictureCheckResultActivity activity, File file){
         this.checkBitmapFile =file;
         this.pictureCheckResultActivity =activity;
-
     }
 
     @Override
@@ -33,15 +32,6 @@ public class CheckAsyncTask extends AsyncTask<Void,Void,String> {
         try {
             String responseString = HttpUtil.gainJsonResultFromServer("Check/bitmap/"+checkBitmapFile.getName());
             allCheck = new Gson().fromJson(responseString,new TypeToken<List<Check>>(){}.getType());
-
-            
-
-
-
-
-
-
-
             return "success";
         } catch (Exception e) {
             return "exception";
