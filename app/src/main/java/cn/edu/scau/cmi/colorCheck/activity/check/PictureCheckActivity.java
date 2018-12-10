@@ -12,10 +12,13 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.asyncTask.FeatureAsyncTask;
+import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.RuleAsyncTask;
