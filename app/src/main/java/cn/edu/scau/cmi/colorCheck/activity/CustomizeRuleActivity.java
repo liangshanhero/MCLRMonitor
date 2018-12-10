@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
+import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 

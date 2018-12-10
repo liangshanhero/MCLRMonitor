@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.dao.sqlLite;
+package cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
+import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.RangeRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 

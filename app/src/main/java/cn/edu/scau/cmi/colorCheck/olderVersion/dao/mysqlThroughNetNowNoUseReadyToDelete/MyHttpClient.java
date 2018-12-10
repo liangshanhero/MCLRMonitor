@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.dao.mysqlThroughNetNowNoUseReadyToDelete;
+package cn.edu.scau.cmi.colorCheck.olderVersion.dao.mysqlThroughNetNowNoUseReadyToDelete;
 
 import android.util.Log;
 

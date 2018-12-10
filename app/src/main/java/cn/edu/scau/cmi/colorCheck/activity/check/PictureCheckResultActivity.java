@@ -25,6 +25,15 @@ public class PictureCheckResultActivity extends AppCompatActivity {
     private CheckResultFigureView checkResultFigureView;
     private TextView resultTextView;
     private String[] checkResults;
+
+    public Check getCheck() {
+        return check;
+    }
+
+    public void setCheck(Check check) {
+        this.check = check;
+    }
+
     private Check check;
     private String checkName;
 

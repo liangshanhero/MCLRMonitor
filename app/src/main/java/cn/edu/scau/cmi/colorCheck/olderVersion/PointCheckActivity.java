@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity.check;
+package cn.edu.scau.cmi.colorCheck.olderVersion;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
+import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.QuantitativeLinearRule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;

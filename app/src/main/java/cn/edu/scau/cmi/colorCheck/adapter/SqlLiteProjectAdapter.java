@@ -20,7 +20,7 @@ import cn.edu.scau.cmi.colorCheck.activity.MachineLearningRuleActivity;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.CustomizeRuleActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
-import cn.edu.scau.cmi.colorCheck.dao.sqlLite.SqlLiteService;
+import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
