@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
+import cn.edu.scau.cmi.colorCheck.adapter.MySqlProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
@@ -37,6 +39,8 @@ public class PictureCheckActivity extends AppCompatActivity {
     private static  List<Project> allProjectList;
     private static List<Rule> ruleList;
     private SharedPreferences sharePreferencesEditor;
+
+    ArrayAdapter<Project> projectArrayAdapter;
 
 
     public void setProjectList(List<Project> projectList){
@@ -70,22 +74,16 @@ public class PictureCheckActivity extends AppCompatActivity {
     private void initRuleSinner() {
         //        TODO  待完善，是否需要添加监听器呢？
         ruleSpinner=findViewById(R.id.picture_check_rule_spinner);
-
-       /* ruleSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View checkResultFigureView, int position, long id) {
-                ruleList =RuleAsyncTask.getAllRules();
-                ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
-                ruleSpinner.setAdapter(ruleAdapter);
-
-//              得到选中的项目，测试一下看能否得到Project对象。
-                Project selectedProject = (Project) parent.getItemAtPosition(position);
-                System.out.println(selectedProject);
-
-                bundle.putString("selectedPorject",selectedProject.toString());
-            }
-
-        });*/
+       ruleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               Log.e("----选择了规则----","OK---");
+           }
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+               Log.e("----什么都没有选择----","OK---");
+           }
+       });
     }
 
     private void initProjectSpinner() {
@@ -94,8 +92,8 @@ public class PictureCheckActivity extends AppCompatActivity {
         ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener() {
             @Override
             public void doSomething(List<Project> projectList) {
-               Log.e("-----获取了所有的Project",projectList.toString());
-               System.out.print("-----获取了所有的Project"+projectList.toString());
+               projectArrayAdapter = new ArrayAdapter<Project>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, projectList);
+               projectSpinner.setAdapter(projectArrayAdapter);
             }
 
             @Override
@@ -111,7 +109,8 @@ public class PictureCheckActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ruleList =RuleAsyncTask.getAllRules();
                 ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
-                ruleSpinner.setAdapter(ruleAdapter);
+//选择了项目后，一部获取规则，然后设置规则的值
+                //                ruleSpinner.setAdapter(ruleAdapter);
 
 //              得到选中的项目，测试一下看能否得到Project对象。
                 Project selectedProject = (Project) parent.getItemAtPosition(position);
