@@ -34,6 +34,8 @@ public class PictureCheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
     Spinner projectSpinner;
     Spinner ruleSpinner;
+    Project selectProject;
+    Rule selectRule;
     File currentCheckBitmapFile;//当前的检测文件
     String currentCheckBitmapFileName;
     private static  List<Project> allProjectList;
@@ -41,6 +43,7 @@ public class PictureCheckActivity extends AppCompatActivity {
     private SharedPreferences sharePreferencesEditor;
 
     ArrayAdapter<Project> projectArrayAdapter;
+    ArrayAdapter<Rule> ruleArrayAdapter;
 
 
     public void setProjectList(List<Project> projectList){
@@ -107,16 +110,23 @@ public class PictureCheckActivity extends AppCompatActivity {
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ruleList =RuleAsyncTask.getAllRules();
-                ArrayAdapter<Rule> ruleAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
-//选择了项目后，一部获取规则，然后设置规则的值
-                //                ruleSpinner.setAdapter(ruleAdapter);
-
+//              选中的项目
 //              得到选中的项目，测试一下看能否得到Project对象。
                 Project selectedProject = (Project) parent.getItemAtPosition(position);
-                System.out.println(selectedProject);
+                selectProject = (Project) projectSpinner.getSelectedItem();
+//                获取了规则后，在spinner中显示规则
+                RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(PictureCheckActivity.this, selectProject, new RuleAsyncTask.HttpFinishedListener() {
+                    @Override
+                    public void doSomething(List<Rule> ruleList) {
+                        ruleArrayAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
+                        ruleSpinner.setAdapter(ruleArrayAdapter);
+                    }
 
-                bundle.putString("selectedPorject",selectedProject.toString());
+                    @Override
+                    public void doNothing() {
+                    }
+                });
+                ruleAsyncTask.execute();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
