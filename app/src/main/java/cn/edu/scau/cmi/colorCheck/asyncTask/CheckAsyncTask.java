@@ -27,9 +27,7 @@ public class CheckAsyncTask extends AsyncTask<Void,Void,String> {
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            String postfixUrl="Check/checkName/"+checkName;
-            Request request=HttpUtil.getGetRequest(postfixUrl);
-            String responseString = HttpUtil.gainJsonResultFromServer("Check/bitmap/"+checkName);
+            String responseString = HttpUtil.gainJsonResultFromServer("Check/checkName/"+checkName);
             allCheck = new Gson().fromJson(responseString,new TypeToken<List<Check>>(){}.getType());
             return "success";
         } catch (Exception e) {

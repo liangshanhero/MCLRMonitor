@@ -5,10 +5,13 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,8 +34,8 @@ public class PictureCheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
     Spinner projectSpinner;
     Spinner ruleSpinner;
-    Project selectProject;
-    Rule selectRule;
+    Project selectedProject;
+    Rule selectedRule;
     File currentCheckBitmapFile;//当前的检测文件
     String currentCheckBitmapFileName;
     private static  List<Project> allProjectList;
@@ -41,6 +44,7 @@ public class PictureCheckActivity extends AppCompatActivity {
 
     ArrayAdapter<Project> projectArrayAdapter;
     ArrayAdapter<Rule> ruleArrayAdapter;
+    EditText sampleResultEditText;
 
 
     public void setProjectList(List<Project> projectList){
@@ -58,18 +62,22 @@ public class PictureCheckActivity extends AppCompatActivity {
         return ruleSpinner;
     }
     Bundle bundle=new Bundle();
+    String function;//使用的功能，是检测还是样本
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        界面绘制
         Intent intent=getIntent();
-        String function = intent.getExtras().getString("function");
+        function = intent.getExtras().getString("function");
 //        不同的功能显示不同的界面
        setContentView(R.layout.activity_picture_check);
-        View sampleResult = findViewById(R.id.sample_result);
+        View sampleResultLine = findViewById(R.id.sample_result);
+        sampleResultEditText=findViewById(R.id.editText_sample_result);
+
+
         if(function.equals("check")){
-            sampleResult.setVisibility(View.INVISIBLE);
+            sampleResultLine.setVisibility(View.INVISIBLE);
         }
 
         initCameraView();
@@ -84,7 +92,7 @@ public class PictureCheckActivity extends AppCompatActivity {
        ruleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               selectRule = (Rule) ruleSpinner.getSelectedItem();
+               selectedRule = (Rule) ruleSpinner.getSelectedItem();
            }
            @Override
            public void onNothingSelected(AdapterView<?> parent) {
@@ -113,9 +121,9 @@ public class PictureCheckActivity extends AppCompatActivity {
 //              选中的项目
 //              得到选中的项目，测试一下看能否得到Project对象。
                 Project selectedProject = (Project) parent.getItemAtPosition(position);
-                selectProject = (Project) projectSpinner.getSelectedItem();
+                PictureCheckActivity.this.selectedProject = (Project) projectSpinner.getSelectedItem();
 //                获取了规则后，在spinner中显示出这个项目具有的规则
-                RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(PictureCheckActivity.this, selectProject, new RuleAsyncTask.HttpFinishedListener() {
+                RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(PictureCheckActivity.this, PictureCheckActivity.this.selectedProject, new RuleAsyncTask.HttpFinishedListener() {
                     @Override
                     public void doSomething(List<Rule> ruleList) {
                         ruleArrayAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
@@ -142,15 +150,31 @@ public class PictureCheckActivity extends AppCompatActivity {
         cameraPictureSurfaceView.setTouchListener(new TouchListenerAdapter(){
             @Override
             public void showPictureCheckResult(Bitmap bitmap) {
-//              (1)点击图片，等待聚焦后，将保存图片到本地,文件名称是yyyyMMddhhmmss，OK。
                 currentCheckBitmapFileName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 
-                currentCheckBitmapFile =FileUtil.getCurrentFile("PH","Check",currentCheckBitmapFileName,"");
-                try {
-                    FileUtil.saveColorCheckBitmap(bitmap, currentCheckBitmapFile);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(selectedRule!=null){
+                    if(function.equals("sample")){
+                        if(sampleResultEditText.getText()==null){
+                            Toast.makeText(PictureCheckActivity.this,"请输入合适的结果",Toast.LENGTH_LONG);
+                        }else{//文件名是：检测项目名+功能名称（检测还是样本）+时间戳+结果
+                            currentCheckBitmapFile =FileUtil.getCurrentFile(selectedProject.getName(),function,currentCheckBitmapFileName,sampleResultEditText.getText().toString());
+                        }
+
+                    }else{//check
+                        currentCheckBitmapFile =FileUtil.getCurrentFile(selectedProject.getName(),function,currentCheckBitmapFileName,"-1");
+                    }
+                    try {
+                        FileUtil.saveColorCheckBitmap(bitmap, currentCheckBitmapFile);
+                        Toast.makeText(PictureCheckActivity.this,"文件已经保存，你可以上传文件并检查结果了。",Toast.LENGTH_LONG);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }else{
+                    Toast.makeText(PictureCheckActivity.this,"请选中合适的规则",Toast.LENGTH_LONG);
                 }
+
+
 //                （2）启动结果页面
 //                Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
 //                getAndTransiteFeatureToPictureCheckResultActivity(currentCheckBitmapFile, intent);
@@ -159,26 +183,15 @@ public class PictureCheckActivity extends AppCompatActivity {
         });
     }
 
-
-
-    //点击初始化按钮，Spinner设置初始值
-    public void onPictureCheckGainData(View view){
-        allProjectList =ProjectAsyncTask.getAllProjectList();
-        projectAdapter=new ArrayAdapter<Project>(this, android.R.layout.simple_list_item_1, allProjectList);
-        projectSpinner.setAdapter(projectAdapter);
-
-        ruleList=RuleAsyncTask.getAllRules();
-        ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
-        ruleSpinner.setAdapter(ruleAdapter);
-    }
     //上传最后一次点击的相片，还没有结果，因此结果result赋值为-1
-    public void onUploadPictureCheckBitMap(View view){
+//    如果是样本，就有结果，类型也是sample
+    public void onUploadBitMapAndResult(View view){
         FileAsyncTask fileAsyncTask=new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor, currentCheckBitmapFile);
         fileAsyncTask.execute();
     }
 
     //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
-    public void onUploadAllPictureCheckBitMapFile(View view){
+    public void onUploadAllBitMap(View view){
         FileAsyncTask fileAsyncTask=new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
         fileAsyncTask.execute();
     }

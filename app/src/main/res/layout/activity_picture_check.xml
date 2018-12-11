@@ -102,13 +102,13 @@
                 android:text="样本结果："/>
 
             <EditText
-                android:id="@+id/editText_Sample_esult"
+                android:id="@+id/editText_sample_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="请输入检测到样本的结果" />
+                android:text="" />
 
 
         </LinearLayout>
@@ -120,7 +120,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="上传刚才拍摄的图片"
-        android:onClick="onUploadPictureCheckBitMap"/>
+        android:onClick="onUploadBitMapAndResult"/>
 
     <Button
         android:id="@+id/picture_check_show_result_button"
@@ -133,7 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="上传本机所有的检测图片，用于规则学习"
-        android:onClick="onUploadAllPictureCheckBitMapFile"/>
+        android:onClick="onUploadAllBitMap"/>
 
     <!--&lt;!&ndash;结果部分&ndash;&gt;
     <LinearLayout

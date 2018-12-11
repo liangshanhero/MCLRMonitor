@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();//异步获取用户的数据测试
-
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA},1);
         }
@@ -35,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
 //        DatabaseHelper.getInstance(this,"rgb.db",null,1);
 //        DAO.insert(new CheckType("定量"));
 //        DAO.insert(new CheckType("定性"));
-    }
-
-    private void init() {
     }
 
     @Override
@@ -56,36 +51,27 @@ public class MainActivity extends AppCompatActivity {
     public void onProjectManage(View view){
         startActivity(new Intent(this, ProjectListActivity.class));
     }
-    //（2）基于像素点检测
-    public void onPointCheck(View view){
-        Intent intent = new Intent(MainActivity.this, PointCheckActivity.class);
-        startActivity(intent);
-    }
-    // （3）基于图片检测
+
+    // （2）基于图片检测
     public void onPictureCheck(View view){
         Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
         intent.putExtra("function","check");
         startActivity(intent);
     }
-//（4）基于像素点采集样本数据
-    public void onPointCollectData(View view){
-        Intent intent = new Intent(MainActivity.this, PointSampleCollectActivity.class);
-        intent.putExtra("function","collect");
-        startActivity(intent);
-    }
-    //（5）基于图片采集样本数据
+
+    //（3）基于图片采集样本数据
     public void onPictureCheckSampleCollect(View view){
         Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
-        intent.putExtra("function","collect");
+        intent.putExtra("function","sample");
         startActivity(intent);
     }
-//    (6)人工定义规则生成
+//    (4)人工定义规则生成
     public void onCustomizeRuleGenerate(View view){
         Intent intent = new Intent(MainActivity.this, CustomizeRuleActivity.class);
         intent.putExtra("flag",2);
         startActivity(intent);
     }
-    //    (7)机器学习规则生成
+    //    (5机器学习规则生成
     public void onMachineLearnRuleGenerate(View view){
         Intent intent = new Intent(MainActivity.this, MachineLearningRuleActivity.class);
         intent.putExtra("flag",2);
@@ -97,5 +83,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ManualActivity.class);
         startActivity(intent);
     }
+
+
+    //（2）基于像素点检测
+    public void onPointCheck(View view){
+        Intent intent = new Intent(MainActivity.this, PointCheckActivity.class);
+        startActivity(intent);
+    }
+
+    //（4）基于像素点采集样本数据
+    public void onPointCollectData(View view){
+        Intent intent = new Intent(MainActivity.this, PointSampleCollectActivity.class);
+        intent.putExtra("function","collect");
+        startActivity(intent);
+    }
+
 
 }
