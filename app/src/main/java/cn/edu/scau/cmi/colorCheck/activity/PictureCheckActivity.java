@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,8 +17,6 @@ import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
-import cn.edu.scau.cmi.colorCheck.adapter.MySqlProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
@@ -69,17 +66,17 @@ public class PictureCheckActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picture_check);
         initCameraView();
         initProjectSpinner();
-        initRuleSinner();
+        initRuleSpinner();
         //       获取sharedPreferences
         sharePreferencesEditor=getSharedPreferences("colorCheckBitmaps",MODE_PRIVATE);
     }
 
-    private void initRuleSinner() {
-        //        TODO  待完善，是否需要添加监听器呢？
-        ruleSpinner=findViewById(R.id.picture_check_rule_spinner);
+    private void initRuleSpinner() {
+       ruleSpinner=findViewById(R.id.picture_check_rule_spinner);
        ruleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               selectRule = (Rule) projectSpinner.getSelectedItem();
            }
            @Override
            public void onNothingSelected(AdapterView<?> parent) {
@@ -102,7 +99,6 @@ public class PictureCheckActivity extends AppCompatActivity {
         });
         projectAsyncTask.execute();
 
-//TODO        选择了project后应该在选择项目对应的规则，
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -187,11 +183,6 @@ public class PictureCheckActivity extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivity(intent);
     }
-
-
-
-
-
 
     //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
     public void onUploadAllPictureCheckBitMap(View view){
