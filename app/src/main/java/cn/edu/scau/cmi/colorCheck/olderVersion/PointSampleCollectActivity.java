@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity.collect;
+package cn.edu.scau.cmi.colorCheck.olderVersion;
 
 import android.Manifest;
 import android.annotation.TargetApi;

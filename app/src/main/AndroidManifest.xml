@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.collect.PointSampleCollectActivity" />
+        <activity android:name=".olderVersion.PointSampleCollectActivity" />
         <activity android:name=".activity.test.Main2Activity4Test" />
         <activity android:name=".olderVersion.PointCheckActivity" />
         <activity android:name=".activity.toBeDone.ProjectListActivity" />

@@ -80,11 +80,9 @@ public class PictureCheckActivity extends AppCompatActivity {
        ruleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               Log.e("----选择了规则----","OK---");
            }
            @Override
            public void onNothingSelected(AdapterView<?> parent) {
-               Log.e("----什么都没有选择----","OK---");
            }
        });
     }
@@ -98,10 +96,8 @@ public class PictureCheckActivity extends AppCompatActivity {
                projectArrayAdapter = new ArrayAdapter<Project>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, projectList);
                projectSpinner.setAdapter(projectArrayAdapter);
             }
-
             @Override
             public void doNothing() {
-                Log.e("------没有获取Project","--------");
             }
         });
         projectAsyncTask.execute();

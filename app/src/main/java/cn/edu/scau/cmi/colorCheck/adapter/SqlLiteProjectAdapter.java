@@ -19,7 +19,7 @@ import java.util.List;
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.MachineLearningRuleActivity;
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.CustomizeRuleActivity;
-import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
+import cn.edu.scau.cmi.colorCheck.olderVersion.PointSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.SqlLiteService;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Rule;

@@ -18,7 +18,7 @@ import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ManualActivity;
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
 import cn.edu.scau.cmi.colorCheck.olderVersion.PointCheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.PictureSampleCollectActivity;
-import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
+import cn.edu.scau.cmi.colorCheck.olderVersion.PointSampleCollectActivity;
 
 public class MainActivity extends AppCompatActivity {
 
