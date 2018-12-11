@@ -43,14 +43,24 @@ public class RuleAsyncTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        try {
-            String responseString = HttpUtil.gainJsonResultFromServer("Rule");
-            allRule = new Gson().fromJson(responseString,new TypeToken<List<Rule>>(){}.getType());
-            return "获取数据成功";
-        } catch (Exception e) {
-            return "错误";
+
+        String ruleRequest;
+        if(selectProject==null) {//没有项目，表示查找到所有的规则
+            ruleRequest = "Rule";
+        }else {
+            ruleRequest="Project/" + selectProject.getId() + "/rules";
         }
-    }
+
+        try {
+            String responseString = HttpUtil.gainJsonResultFromServer(ruleRequest);
+            allRule = new Gson().fromJson(responseString,new TypeToken<List<Rule>>(){}.getType());
+                return "获取数据成功";
+            } catch (Exception e) {
+                return "错误";
+            }
+        }
+
+
 
     protected void onPostExecute(String doInBackgroundResult){
         if(doInBackgroundResult.equals("exception")){

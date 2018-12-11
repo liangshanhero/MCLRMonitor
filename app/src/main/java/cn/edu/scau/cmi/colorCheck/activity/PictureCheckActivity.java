@@ -84,7 +84,7 @@ public class PictureCheckActivity extends AppCompatActivity {
        ruleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               selectRule = (Rule) projectSpinner.getSelectedItem();
+               selectRule = (Rule) ruleSpinner.getSelectedItem();
            }
            @Override
            public void onNothingSelected(AdapterView<?> parent) {
@@ -114,7 +114,7 @@ public class PictureCheckActivity extends AppCompatActivity {
 //              得到选中的项目，测试一下看能否得到Project对象。
                 Project selectedProject = (Project) parent.getItemAtPosition(position);
                 selectProject = (Project) projectSpinner.getSelectedItem();
-//                获取了规则后，在spinner中显示规则
+//                获取了规则后，在spinner中显示出这个项目具有的规则
                 RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(PictureCheckActivity.this, selectProject, new RuleAsyncTask.HttpFinishedListener() {
                     @Override
                     public void doSomething(List<Rule> ruleList) {
