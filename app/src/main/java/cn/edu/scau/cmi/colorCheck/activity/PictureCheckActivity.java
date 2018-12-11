@@ -63,14 +63,14 @@ public class PictureCheckActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        界面绘制
-//        Intent intent=getIntent();
-//        String function = intent.getExtras().getString("function");
+        Intent intent=getIntent();
+        String function = intent.getExtras().getString("function");
 //        不同的功能显示不同的界面
        setContentView(R.layout.activity_picture_check);
-//        View sampleResult = findViewById(R.id.sample_result);
-//        if(function.equals("check")){
-//            sampleResult.setVisibility(View.INVISIBLE);
-//        }
+        View sampleResult = findViewById(R.id.sample_result);
+        if(function.equals("check")){
+            sampleResult.setVisibility(View.INVISIBLE);
+        }
 
         initCameraView();
         initProjectSpinner();

@@ -80,8 +80,8 @@
 
     </LinearLayout>
 
-    <!--检测规则部分-->
-<!--    <LinearLayout
+    <!--样品，输入测试结果部分-->
+    <LinearLayout
         android:id="@+id/sample_result"
         android:background="#fff"
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                 android:text="样本结果："/>
 
             <EditText
-                android:id="@+id/editTextSampleResult"
+                android:id="@+id/editText_Sample_esult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -113,52 +113,27 @@
 
         </LinearLayout>
 
-    </LinearLayout>-->
+    </LinearLayout>
 
-
-
-
-
-
-<!--测试从后台获取数据-->
-    <!--<TextView
-        android:id="@+id/picture_check_project_asyncTask_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />-->
-<!--已经通过异步服务获取了项目和规则，现在不需要了-->
-<!--
     <Button
-        android:id="@+id/picture_check_gain_data_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="获取存在的检测项目和规则"
-        android:onClick="onPictureCheckGainData"/>
--->
-
-<!--    <Button
         android:id="@+id/picture_check_upload_bitmap_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="上传刚才拍摄的图片"
-        android:onClick="onUploadPictureCheckBitMap"/>-->
+        android:onClick="onUploadPictureCheckBitMap"/>
 
- <!--   <Button
+    <Button
         android:id="@+id/picture_check_show_result_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="显示检测结果"
-        android:onClick="onShowPictureCheckResult"/>-->
-
-
-
-
-<!--    <Button
+        android:onClick="onShowPictureCheckResult"/>
+    <Button
         android:id="@+id/picture_check_upload_all_bitmap_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="上传本机所有的检测图片，用于规则学习"
-        android:onClick="onUploadAllPictureCheckBitMapFile"/>-->
+        android:onClick="onUploadAllPictureCheckBitMapFile"/>
 
     <!--&lt;!&ndash;结果部分&ndash;&gt;
     <LinearLayout

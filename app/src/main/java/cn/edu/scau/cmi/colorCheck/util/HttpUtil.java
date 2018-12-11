@@ -24,9 +24,9 @@ import okhttp3.Response;
 
 public class HttpUtil<T> {
 //    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
-//    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
+    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
 //    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
-    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
+//    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
     private static final String uploadFileRequestString = "springUpload";
     private static final String getAllCommitedColorCheckBitmaps = "getAllCommitedColorCheckBitmaps";
     private static final String TAG = "-----HttpUtil测试消息------";

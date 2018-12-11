@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
     }
     //（5）基于图片采集样本数据
     public void onPictureCheckSampleCollect(View view){
-        Intent intent = new Intent(MainActivity.this, PictureSampleCollectActivity.class);
-        intent.putExtra("flag",1);
+        Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
+        intent.putExtra("function","collect");
         startActivity(intent);
     }
 //    (6)人工定义规则生成
