@@ -22,7 +22,6 @@ import cn.edu.scau.cmi.colorCheck.olderVersion.PointSampleCollectActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +64,13 @@ public class MainActivity extends AppCompatActivity {
     // （3）基于图片检测
     public void onPictureCheck(View view){
         Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
+        intent.putExtra("function","check");
         startActivity(intent);
     }
 //（4）基于像素点采集样本数据
     public void onPointCollectData(View view){
         Intent intent = new Intent(MainActivity.this, PointSampleCollectActivity.class);
-        intent.putExtra("flag",1);
+        intent.putExtra("function","collect");
         startActivity(intent);
     }
     //（5）基于图片采集样本数据
