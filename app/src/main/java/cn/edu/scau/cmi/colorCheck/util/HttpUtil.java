@@ -25,8 +25,8 @@ import okhttp3.Response;
 public class HttpUtil<T> {
 //    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
 //    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
-    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
-
+//    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
+    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
     private static final String uploadFileRequestString = "springUpload";
     private static final String getAllCommitedColorCheckBitmaps = "getAllCommitedColorCheckBitmaps";
     private static final String TAG = "-----HttpUtil测试消息------";
@@ -91,7 +91,8 @@ public class HttpUtil<T> {
         Request request = new Request.Builder().url(getCompleteURLString(uploadFileRequestString)).post(requestBody).build();
         final OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
         OkHttpClient okHttpClient = httpBuilder.connectTimeout(60, TimeUnit.SECONDS).writeTimeout(60, TimeUnit.SECONDS).build();
-//        进入队列，上传文件
+
+        //        进入上传文件队列
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

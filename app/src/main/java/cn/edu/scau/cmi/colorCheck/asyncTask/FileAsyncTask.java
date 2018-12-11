@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
 import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;

@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -147,7 +148,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         ruleAdapter=new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1,ruleList);
         ruleSpinner.setAdapter(ruleAdapter);
     }
-    //上传当前的相片
+    //上传最后一次点击的相片，还没有结果，因此结果result赋值为-1
     public void onUploadPictureCheckBitMap(View view){
         FileAsyncTask fileAsyncTask=new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor, currentCheckBitmapFile);
         fileAsyncTask.execute();
