@@ -1,12 +1,7 @@
 package cn.edu.scau.cmi.colorCheck.adapter;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +12,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.activity.CustomizeRuleActivity;
-import cn.edu.scau.cmi.colorCheck.activity.MachineLearningRuleActivity;
-import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 
 

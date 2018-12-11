@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Request;

@@ -7,8 +7,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.activity.ProjectListActivity;
-import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
+import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 
 
 import cn.edu.scau.cmi.colorCheck.adapter.SqlLiteProjectAdapter;
@@ -24,14 +24,14 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
     }
 
     private HttpFinishedListener httpFinishedListenerListener;
-    private static List<Project> allProject;
+    private static List<Project> allProjectList;
     private PictureCheckActivity pictureCheckActivity;
     private ProjectListActivity projectListActivity;
     SqlLiteProjectAdapter sqlLiteProjectAdapter;
 
     public ProjectAsyncTask(PictureCheckActivity pictureCheckActivity,HttpFinishedListener httpFinishedListener) {
         this.pictureCheckActivity=pictureCheckActivity;
-        this.httpFinishedListenerListener = httpFinishedListenerListener;
+        this.httpFinishedListenerListener = httpFinishedListener;
     }
 
     public ProjectAsyncTask(ProjectListActivity projectListActivity,HttpFinishedListener httpFinishedListener) {
@@ -39,7 +39,7 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
         this.httpFinishedListenerListener=httpFinishedListener;
     }
 
-    public  static List<Project> getAllProject(){return  allProject;}
+    public  static List<Project> getAllProjectList(){return allProjectList;}
 
     @Override
     protected String doInBackground(String... strings) {
@@ -47,7 +47,7 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
 //            TODO to be tested!!!利用新的简单的方法获取 HttpUtil.gainJsonResultFromServer("Project");
             Request request=HttpUtil.getGetRequest("Project");
             String responseString = HttpUtil.gainJsonResultFromServer(request);
-            allProject = new Gson().fromJson(responseString,new TypeToken<List<Project>>(){}.getType());
+            allProjectList = new Gson().fromJson(responseString,new TypeToken<List<Project>>(){}.getType());
             return "success";
         } catch (Exception e) {
             return "exception";
@@ -58,13 +58,15 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
     protected void onPostExecute(String doInBackgroundResult){
 
 
-//    sqlLiteProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllProject(),flag, this);
+//    sqlLiteProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllProjectList(),flag, this);
 //    recyclerView.setAdapter(sqlLiteProjectAdapter);
 
         if(doInBackgroundResult.equals("exception")){
             httpFinishedListenerListener.doNothing();
         }else{
-            httpFinishedListenerListener.doSomething(allProject);
+//            pictureCheckActivity.setProjectList(allProjectList);
+            httpFinishedListenerListener.doSomething(allProjectList);
+
         }
     }
 }

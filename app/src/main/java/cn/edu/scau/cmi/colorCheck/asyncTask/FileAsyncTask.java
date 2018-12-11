@@ -2,15 +2,12 @@ package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
-import java.math.BigDecimal;
 
 import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
-import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
-import cn.edu.scau.cmi.colorCheck.util.FileUtil;
+import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 //相片异步上传到服务器中，并插入到相应的表格中。
 

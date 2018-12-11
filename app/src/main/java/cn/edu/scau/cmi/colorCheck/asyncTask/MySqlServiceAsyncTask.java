@@ -2,16 +2,12 @@ package cn.edu.scau.cmi.colorCheck.asyncTask;
 //手机调用，从网络获取数据，必须使用Asynctask才能和界面交互
 import android.os.AsyncTask;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import cn.edu.scau.cmi.colorCheck.activity.ProjectListActivity;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Request;

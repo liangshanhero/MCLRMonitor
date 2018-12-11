@@ -1,10 +1,11 @@
-package cn.edu.scau.cmi.colorCheck.activity.check;
+package cn.edu.scau.cmi.colorCheck.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,13 +13,11 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.asyncTask.FeatureAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
@@ -35,13 +34,13 @@ public class PictureCheckActivity extends AppCompatActivity {
     Spinner ruleSpinner;
     File currentCheckBitmapFile;//当前的检测文件
     String currentCheckBitmapFileName;
-    private static  List<Project> projectList;
+    private static  List<Project> allProjectList;
     private static List<Rule> ruleList;
     private SharedPreferences sharePreferencesEditor;
 
 
     public void setProjectList(List<Project> projectList){
-        this.projectList=projectList;
+        this.allProjectList =projectList;
     }
     private ArrayAdapter<Project> projectAdapter;
     private ArrayAdapter<Rule> ruleAdapter;
@@ -91,6 +90,21 @@ public class PictureCheckActivity extends AppCompatActivity {
 
     private void initProjectSpinner() {
         projectSpinner=findViewById(R.id.picture_check_project_spinner);
+//        获取所有的检测项目。
+        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener() {
+            @Override
+            public void doSomething(List<Project> projectList) {
+               Log.e("-----获取了所有的Project",projectList.toString());
+               System.out.print("-----获取了所有的Project"+projectList.toString());
+            }
+
+            @Override
+            public void doNothing() {
+                Log.e("------没有获取Project","--------");
+            }
+        });
+        projectAsyncTask.execute();
+
 //TODO        选择了project后应该在选择项目对应的规则，
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -140,8 +154,8 @@ public class PictureCheckActivity extends AppCompatActivity {
 
     //点击初始化按钮，Spinner设置初始值
     public void onPictureCheckGainData(View view){
-        projectList=ProjectAsyncTask.getAllProject();
-        projectAdapter=new ArrayAdapter<Project>(this, android.R.layout.simple_list_item_1,projectList);
+        allProjectList =ProjectAsyncTask.getAllProjectList();
+        projectAdapter=new ArrayAdapter<Project>(this, android.R.layout.simple_list_item_1, allProjectList);
         projectSpinner.setAdapter(projectAdapter);
 
         ruleList=RuleAsyncTask.getAllRules();

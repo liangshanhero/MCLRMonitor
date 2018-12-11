@@ -8,8 +8,7 @@ import android.widget.Toast;
 import java.io.File;
 
 import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
-import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
-import cn.edu.scau.cmi.colorCheck.util.FileUtil;
+import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 //相片异步上传到服务器中。上传成功后在通知栏中显示消息
 

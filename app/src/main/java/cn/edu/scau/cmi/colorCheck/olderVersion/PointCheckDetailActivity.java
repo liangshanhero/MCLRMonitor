@@ -12,8 +12,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.activity.ManualActivity;
-import cn.edu.scau.cmi.colorCheck.activity.ProjectListActivity;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ManualActivity;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
 import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.DAO;
 import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.DatabaseHelper;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;

@@ -12,9 +12,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.activity.check.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.CustomizeRuleActivity;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.MachineLearningRuleActivity;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ManualActivity;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
 import cn.edu.scau.cmi.colorCheck.olderVersion.PointCheckActivity;
-import cn.edu.scau.cmi.colorCheck.olderVersion.PictureSampleCollectActivity;
+import cn.edu.scau.cmi.colorCheck.activity.toBeDone.PictureSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.activity.collect.PointSampleCollectActivity;
 
 public class MainActivity extends AppCompatActivity {

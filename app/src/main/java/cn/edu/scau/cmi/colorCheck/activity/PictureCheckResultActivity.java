@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity.check;
+package cn.edu.scau.cmi.colorCheck.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,13 +8,9 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.File;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.asyncTask.CheckAsyncTask;

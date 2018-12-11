@@ -1,10 +1,11 @@
-package cn.edu.scau.cmi.colorCheck.activity;
+package cn.edu.scau.cmi.colorCheck.activity.toBeDone;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -13,7 +14,6 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.MySqlProjectAdapter;
-import cn.edu.scau.cmi.colorCheck.adapter.SqlLiteProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 
@@ -50,6 +50,7 @@ public class ProjectListActivity extends AppCompatActivity {
         ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
             @Override
             public void doSomething(List<Project> projectList) {
+                Log.e("获取的项目是：",projectList.toString());
                 mySqlProjectAdapter = new MySqlProjectAdapter(projectList,1, ProjectListActivity.this);
                 recyclerView.setAdapter(mySqlProjectAdapter);
             }
@@ -72,7 +73,7 @@ public class ProjectListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //TODO 需要重新访问服务器，获取最新的项目列表
-//        mySqlProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllProject(),flag, this);
+//        mySqlProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllProjectList(),flag, this);
         recyclerView.setAdapter(mySqlProjectAdapter);
     }
     public void addProject(View view){

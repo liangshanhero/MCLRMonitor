@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity;
+package cn.edu.scau.cmi.colorCheck.activity.toBeDone;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

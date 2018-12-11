@@ -35,11 +35,11 @@
         <activity android:name=".activity.collect.PointSampleCollectActivity" />
         <activity android:name=".activity.test.Main2Activity4Test" />
         <activity android:name=".olderVersion.PointCheckActivity" />
-        <activity android:name=".activity.ProjectListActivity" />
-        <activity android:name=".activity.ProjectAddActivity" />
-        <activity android:name=".activity.CustomizeRuleActivity" />
-        <activity android:name=".activity.MachineLearningRuleActivity" />
-        <activity android:name=".activity.ManualActivity" />
+        <activity android:name=".activity.toBeDone.ProjectListActivity" />
+        <activity android:name=".activity.toBeDone.ProjectAddActivity" />
+        <activity android:name=".activity.toBeDone.CustomizeRuleActivity" />
+        <activity android:name=".activity.toBeDone.MachineLearningRuleActivity" />
+        <activity android:name=".activity.toBeDone.ManualActivity" />
         <activity
             android:name=".olderVersion.PointCheckDetailActivity"
             android:label="@string/title_activity_check_detail" />
@@ -48,15 +48,15 @@
             android:label="@string/title_activity_test_basic"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.check.PictureCheckActivity"
+            android:name=".activity.PictureCheckActivity"
             android:label="@string/title_activity_picture_check"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.check.PictureCheckResultActivity"
+            android:name=".activity.PictureCheckResultActivity"
             android:label="@string/title_activity_picture_check_result"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".olderVersion.PictureSampleCollectActivity"
+            android:name=".activity.toBeDone.PictureSampleCollectActivity"
             android:label="@string/title_activity_picture_sample_collect"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
