@@ -1,22 +1,17 @@
 
 package cn.edu.scau.cmi.colorCheck.domain.mysql;
 
+
+
 import java.io.Serializable;
-
-import java.lang.StringBuilder;
-
-
-public class User implements Serializable {
+import java.util.Set;
+public class Feature implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
 	Integer id;
-
-	String name;
-
-	String password;
-
-	String memo;
+	Integer point;
+	Boolean isControl;
+	Picture picture;
 
 	/**
 	 */
@@ -32,54 +27,58 @@ public class User implements Serializable {
 
 	/**
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setPoint(Integer point) {
+		this.point = point;
 	}
 
 	/**
 	 */
-	public String getName() {
-		return this.name;
+	public Integer getPoint() {
+		return this.point;
+	}
+
+	/**
+	 * �Ƿ��ǿ����ߣ�Ĭ�ϲ��ǣ�ȡֵΪ0��
+	 *
+	 */
+	public void setIsControl(Boolean isControl) {
+		this.isControl = isControl;
+	}
+
+	/**
+	 * �Ƿ��ǿ����ߣ�Ĭ�ϲ��ǣ�ȡֵΪ0��
+	 *
+	 */
+	public Boolean getIsControl() {
+		return this.isControl;
 	}
 
 	/**
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPicture(Picture picture) {
+		this.picture = picture;
 	}
 
 	/**
 	 */
-	public String getPassword() {
-		return this.password;
+	public Picture getPicture() {
+		return picture;
 	}
 
 	/**
 	 */
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
-
-	/**
-	 */
-	public String getMemo() {
-		return this.memo;
-	}
-
-	/**
-	 */
-	public User() {
+	public Feature() {
 	}
 
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
 	 */
-	public void copy(User that) {
+	public void copy(Feature that) {
 		setId(that.getId());
-		setName(that.getName());
-		setPassword(that.getPassword());
-		setMemo(that.getMemo());
+		setPoint(that.getPoint());
+		setIsControl(that.getIsControl());
+		setPicture(that.getPicture());
 	}
 
 	/**
@@ -91,9 +90,8 @@ public class User implements Serializable {
 		StringBuilder buffer = new StringBuilder();
 
 		buffer.append("id=[").append(id).append("] ");
-		buffer.append("name=[").append(name).append("] ");
-		buffer.append("password=[").append(password).append("] ");
-		buffer.append("memo=[").append(memo).append("] ");
+		buffer.append("point=[").append(point).append("] ");
+		buffer.append("isControl=[").append(isControl).append("] ");
 
 		return buffer.toString();
 	}
@@ -113,9 +111,9 @@ public class User implements Serializable {
 	public boolean equals(Object obj) {
 		if (obj == this)
 			return true;
-		if (!(obj instanceof User))
+		if (!(obj instanceof Feature))
 			return false;
-		User equalCheck = (User) obj;
+		Feature equalCheck = (Feature) obj;
 		if ((id == null && equalCheck.id != null) || (id != null && equalCheck.id == null))
 			return false;
 		if (id != null && !id.equals(equalCheck.id))

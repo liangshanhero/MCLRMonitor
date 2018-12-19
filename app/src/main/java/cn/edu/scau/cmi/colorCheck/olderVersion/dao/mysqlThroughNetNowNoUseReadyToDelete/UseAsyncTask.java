@@ -4,8 +4,6 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.domain.mysql.User;
-
 public class UseAsyncTask extends AsyncTask {
     private List<User> userList;
     @Override

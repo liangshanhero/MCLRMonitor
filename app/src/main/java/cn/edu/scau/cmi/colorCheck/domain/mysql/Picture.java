@@ -6,116 +6,189 @@ import java.io.Serializable;
 import java.lang.StringBuilder;
 
 import java.math.BigDecimal;
-
+import java.util.Calendar;
+import java.util.Set;
 
 public class Picture implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
 	Integer id;
 	String name;
-	Integer red;
-	Integer green;
-	Integer blue;
-	BigDecimal gray;
-	BigDecimal result;
-	String memo;
-	Rule rule;
-	Item item;
-	Featureextramethod featureextramethod;
+	BigDecimal customResult;
+	String path;
+	Calendar checkTime;
+	Picturetype picturetype;
+	java.util.Set<Rgb> rgbs;
+	java.util.Set<Result> results;
+	java.util.Set<Feature> features;
+
+	/**
+	 * �����
+	 *
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
-public Integer getId() {
+
+	/**
+	 * �����
+	 *
+	 */
+	public Integer getId() {
 		return this.id;
 	}
+
+	/**
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	/**
+	 */
 	public String getName() {
 		return this.name;
 	}
-	public void setRed(Integer red) {
-		this.red = red;
+
+	/**
+	 * �˹�ָ���Ľ��.
+	 *
+	 */
+	public void setCustomResult(BigDecimal customResult) {
+		this.customResult = customResult;
 	}
-	public Integer getRed() {
-		return this.red;
+
+	/**
+	 * �˹�ָ���Ľ��.
+	 *
+	 */
+	public BigDecimal getCustomResult() {
+		return this.customResult;
 	}
-	public void setGreen(Integer green) {
-		this.green = green;
+
+	/**
+	 * �洢·��
+	 *
+	 */
+	public void setPath(String path) {
+		this.path = path;
 	}
-	public Integer getGreen() {
-		return this.green;
+
+	/**
+	 * �洢·��
+	 *
+	 */
+	public String getPath() {
+		return this.path;
 	}
-	public void setBlue(Integer blue) {
-		this.blue = blue;
+
+	/**
+	 * ͼƬ����ʱ��
+	 *
+	 */
+	public void setCheckTime(Calendar checkTime) {
+		this.checkTime = checkTime;
 	}
-	public Integer getBlue() {
-		return this.blue;
+
+	/**
+	 * ͼƬ����ʱ��
+	 *
+	 */
+	public Calendar getCheckTime() {
+		return this.checkTime;
 	}
-	public void setGray(BigDecimal gray) {
-		this.gray = gray;
+
+	/**
+	 */
+	public void setPicturetype(Picturetype picturetype) {
+		this.picturetype = picturetype;
 	}
-	public BigDecimal getGray() {
-		return this.gray;
+
+	/**
+	 */
+	public Picturetype getPicturetype() {
+		return picturetype;
 	}
-	public void setResult(BigDecimal result) {
-		this.result = result;
+
+	/**
+	 */
+	public void setRgbs(Set<Rgb> rgbs) {
+		this.rgbs = rgbs;
 	}
-	public BigDecimal getResult() {
-		return this.result;
+
+	/**
+	 */
+	public Set<Rgb> getRgbs() {
+		if (rgbs == null) {
+			rgbs = new java.util.LinkedHashSet<Rgb>();
+		}
+		return rgbs;
 	}
-	public void setMemo(String memo) {
-		this.memo = memo;
+
+	/**
+	 */
+	public void setResults(Set<Result> results) {
+		this.results = results;
 	}
-	public String getMemo() {
-		return this.memo;
+
+	/**
+	 */
+	public Set<Result> getResults() {
+		if (results == null) {
+			results = new java.util.LinkedHashSet<Result>();
+		}
+		return results;
 	}
-	public void setRule(Rule rule) {
-		this.rule = rule;
+
+	/**
+	 */
+	public void setFeatures(Set<Feature> features) {
+		this.features = features;
 	}
-	public Rule getRule() {
-		return rule;
+
+	/**
+	 */
+	public Set<Feature> getFeatures() {
+		if (features == null) {
+			features = new java.util.LinkedHashSet<Feature>();
+		}
+		return features;
 	}
-	public void setItem(Item item) {
-		this.item = item;
-	}
-	public Item getItem() {
-		return item;
-	}
-	public void setFeatureextramethod(Featureextramethod featureextramethod) {
-		this.featureextramethod = featureextramethod;
-	}
-	public Featureextramethod getFeatureextramethod() {
-		return featureextramethod;
-	}
+
+	/**
+	 */
 	public Picture() {
 	}
+
+	/**
+	 * Copies the contents of the specified bean into this bean.
+	 *
+	 */
 	public void copy(Picture that) {
 		setId(that.getId());
 		setName(that.getName());
-		setRed(that.getRed());
-		setGreen(that.getGreen());
-		setBlue(that.getBlue());
-		setGray(that.getGray());
-		setResult(that.getResult());
-		setMemo(that.getMemo());
-		setRule(that.getRule());
-		setItem(that.getItem());
-		setFeatureextramethod(that.getFeatureextramethod());
+		setCustomResult(that.getCustomResult());
+		setPath(that.getPath());
+		setCheckTime(that.getCheckTime());
+		setPicturetype(that.getPicturetype());
+		setRgbs(new java.util.LinkedHashSet<Rgb>(that.getRgbs()));
+		setResults(new java.util.LinkedHashSet<Result>(that.getResults()));
+		setFeatures(new java.util.LinkedHashSet<Feature>(that.getFeatures()));
 	}
+
+	/**
+	 * Returns a textual representation of a bean.
+	 *
+	 */
 	public String toString() {
 
 		StringBuilder buffer = new StringBuilder();
 
 		buffer.append("id=[").append(id).append("] ");
 		buffer.append("name=[").append(name).append("] ");
-		buffer.append("red=[").append(red).append("] ");
-		buffer.append("green=[").append(green).append("] ");
-		buffer.append("blue=[").append(blue).append("] ");
-		buffer.append("gray=[").append(gray).append("] ");
-		buffer.append("result=[").append(result).append("] ");
-		buffer.append("memo=[").append(memo).append("] ");
+		buffer.append("customResult=[").append(customResult).append("] ");
+		buffer.append("path=[").append(path).append("] ");
+		buffer.append("checkTime=[").append(checkTime).append("] ");
 
 		return buffer.toString();
 	}
@@ -137,10 +210,10 @@ public Integer getId() {
 			return true;
 		if (!(obj instanceof Picture))
 			return false;
-		Picture equalPicture = (Picture) obj;
-		if ((id == null && equalPicture.id != null) || (id != null && equalPicture.id == null))
+		Picture equalCheck = (Picture) obj;
+		if ((id == null && equalCheck.id != null) || (id != null && equalCheck.id == null))
 			return false;
-		if (id != null && !id.equals(equalPicture.id))
+		if (id != null && !id.equals(equalCheck.id))
 			return false;
 		return true;
 	}

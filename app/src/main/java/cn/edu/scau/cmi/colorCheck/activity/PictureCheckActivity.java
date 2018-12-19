@@ -30,7 +30,7 @@ import cn.edu.scau.cmi.colorCheck.view.CameraPictureSurfaceView;
 
 public class PictureCheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
-    Spinner projectSpinner;
+    Spinner itemSpinner;
     Spinner ruleSpinner;
     Item selectedItem;
     Rule selectedRule;
@@ -40,7 +40,7 @@ public class PictureCheckActivity extends AppCompatActivity {
     private static List<Rule> ruleList;
     private SharedPreferences sharePreferencesEditor;
 
-    ArrayAdapter<Item> projectArrayAdapter;
+    ArrayAdapter<Item> itemArrayAdapter;
     ArrayAdapter<Rule> ruleArrayAdapter;
     EditText sampleResultEditText;
 
@@ -53,8 +53,8 @@ public class PictureCheckActivity extends AppCompatActivity {
     public ArrayAdapter getProjectAdapter(){
         return this.projectAdapter;
     }
-    public Spinner getProjectSpinner(){
-        return projectSpinner;
+    public Spinner getItemSpinner(){
+        return itemSpinner;
     }
     public Spinner getRuleSpinner(){
         return ruleSpinner;
@@ -79,7 +79,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         }
 
         initCameraView();
-        initProjectSpinner();
+        initItemSpinner();
         initRuleSpinner();
         //       获取sharedPreferences
         sharePreferencesEditor=getSharedPreferences("colorCheckBitmaps",MODE_PRIVATE);
@@ -98,14 +98,14 @@ public class PictureCheckActivity extends AppCompatActivity {
        });
     }
 
-    private void initProjectSpinner() {
-        projectSpinner=findViewById(R.id.picture_check_project_spinner);
-//        获取所有的检测项目。
+    private void initItemSpinner() {
+        itemSpinner =findViewById(R.id.picture_check_item_spinner);
+//        获取所有的检测项。
         ItemAsyncTask itemAsyncTask =new ItemAsyncTask(this, new ItemAsyncTask.HttpFinishedListener() {
             @Override
-            public void doSomething(List<Item> projectList) {
-               projectArrayAdapter = new ArrayAdapter<Item>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, projectList);
-               projectSpinner.setAdapter(projectArrayAdapter);
+            public void doSomething(List<Item> itemList) {
+               itemArrayAdapter = new ArrayAdapter<Item>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, itemList);
+               itemSpinner.setAdapter(itemArrayAdapter);
             }
             @Override
             public void doNothing() {
@@ -113,13 +113,13 @@ public class PictureCheckActivity extends AppCompatActivity {
         });
         itemAsyncTask.execute();
 
-        projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        itemSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //              选中的项目
-//              得到选中的项目，测试一下看能否得到Project对象。
+//              得到选中的项目，测试一下看能否得到Item对象。
                 Item selectedItem = (Item) parent.getItemAtPosition(position);
-                PictureCheckActivity.this.selectedItem = (Item) projectSpinner.getSelectedItem();
+                PictureCheckActivity.this.selectedItem = (Item) itemSpinner.getSelectedItem();
 //                获取了规则后，在spinner中显示出这个项目具有的规则
                 RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(PictureCheckActivity.this, PictureCheckActivity.this.selectedItem, new RuleAsyncTask.HttpFinishedListener() {
                     @Override

@@ -9,24 +9,22 @@ import java.math.BigDecimal;
 
 import java.util.Set;
 
-
-
-
 public class Rule implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
 	Integer id;
 	String name;
-	Boolean type;
+	Integer distance;
+	Integer deleta;
 	BigDecimal redCoefficient;
 	BigDecimal greenCoefficient;
 	BigDecimal blueCoefficient;
+	BigDecimal grayCoefficient;
 	BigDecimal correct;
 	String memo;
-Item item;
-	Featureextramethod featureextramethod;
-	java.util.Set<Picture> pictures;
+	Ruletype ruletype;
+	Item item;
+	java.util.Set<Result> results;
 
 	/**
 	 */
@@ -53,28 +51,48 @@ Item item;
 	}
 
 	/**
+	 * �����Ŀ������ߵľ���
+	 *
 	 */
-	public void setType(Boolean type) {
-		this.type = type;
+	public void setDistance(Integer distance) {
+		this.distance = distance;
 	}
 
 	/**
+	 * �����Ŀ������ߵľ���
+	 *
 	 */
-	public Boolean getType() {
-		return this.type;
+	public Integer getDistance() {
+		return this.distance;
 	}
 
 	/**
-	* ��ɫ����
-	* 
+	 * ��Ϊ��ȡ�������������ƫ���ˣ���һ������+ƫ���������������
+	 *
+	 */
+	public void setDeleta(Integer deleta) {
+		this.deleta = deleta;
+	}
+
+	/**
+	 * ��Ϊ��ȡ�������������ƫ���ˣ���һ������+ƫ���������������
+	 *
+	 */
+	public Integer getDeleta() {
+		return this.deleta;
+	}
+
+	/**
+	 * ��ɫ����
+	 *
 	 */
 	public void setRedCoefficient(BigDecimal redCoefficient) {
 		this.redCoefficient = redCoefficient;
 	}
 
 	/**
-	* ��ɫ����
-	* 
+	 * ��ɫ����
+	 *
 	 */
 	public BigDecimal getRedCoefficient() {
 		return this.redCoefficient;
@@ -105,35 +123,59 @@ Item item;
 	}
 
 	/**
-	* ����
-	* 
+	 */
+	public void setGrayCoefficient(BigDecimal grayCoefficient) {
+		this.grayCoefficient = grayCoefficient;
+	}
+
+	/**
+	 */
+	public BigDecimal getGrayCoefficient() {
+		return this.grayCoefficient;
+	}
+
+	/**
+	 * ����ƫ��
+	 *
 	 */
 	public void setCorrect(BigDecimal correct) {
 		this.correct = correct;
 	}
 
 	/**
-	* ����
-	* 
+	 * ����ƫ��
+	 *
 	 */
 	public BigDecimal getCorrect() {
 		return this.correct;
 	}
 
 	/**
-	* ÿһ�������Ŀ�����ʹ�ò�ͬ�ĳ�ȡ���ݵķ�ʽ������Ӧ�ò�һ��������
-	* 
+	 * ÿһ�������Ŀ�����ʹ�ò�ͬ�ĳ�ȡ���ݵķ�ʽ������Ӧ�ò�һ��������
+	 *
 	 */
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
 
 	/**
-	* ÿһ�������Ŀ�����ʹ�ò�ͬ�ĳ�ȡ���ݵķ�ʽ������Ӧ�ò�һ��������
-	* 
+	 * ÿһ�������Ŀ�����ʹ�ò�ͬ�ĳ�ȡ���ݵķ�ʽ������Ӧ�ò�һ��������
+	 *
 	 */
 	public String getMemo() {
 		return this.memo;
+	}
+
+	/**
+	 */
+	public void setRuletype(Ruletype ruletype) {
+		this.ruletype = ruletype;
+	}
+
+	/**
+	 */
+	public Ruletype getRuletype() {
+		return ruletype;
 	}
 
 	/**
@@ -144,38 +186,23 @@ Item item;
 
 	/**
 	 */
-
 	public Item getItem() {
 		return item;
 	}
 
 	/**
 	 */
-	public void setFeatureextramethod(Featureextramethod featureextramethod) {
-		this.featureextramethod = featureextramethod;
+	public void setResults(Set<Result> results) {
+		this.results = results;
 	}
 
 	/**
 	 */
-
-	public Featureextramethod getFeatureextramethod() {
-		return featureextramethod;
-	}
-
-	/**
-	 */
-	public void setPictures(Set<Picture> pictures) {
-		this.pictures = pictures;
-	}
-
-	/**
-	 */
-
-	public Set<Picture> getPictures() {
-		if (pictures == null) {
-			pictures = new java.util.LinkedHashSet<Picture>();
+	public Set<Result> getResults() {
+		if (results == null) {
+			results = new java.util.LinkedHashSet<Result>();
 		}
-		return pictures;
+		return results;
 	}
 
 	/**
@@ -190,15 +217,17 @@ Item item;
 	public void copy(Rule that) {
 		setId(that.getId());
 		setName(that.getName());
-		setType(that.getType());
+		setDistance(that.getDistance());
+		setDeleta(that.getDeleta());
 		setRedCoefficient(that.getRedCoefficient());
 		setGreenCoefficient(that.getGreenCoefficient());
 		setBlueCoefficient(that.getBlueCoefficient());
+		setGrayCoefficient(that.getGrayCoefficient());
 		setCorrect(that.getCorrect());
 		setMemo(that.getMemo());
+		setRuletype(that.getRuletype());
 		setItem(that.getItem());
-		setFeatureextramethod(that.getFeatureextramethod());
-		setPictures(new java.util.LinkedHashSet<Picture>(that.getPictures()));
+		setResults(new java.util.LinkedHashSet<Result>(that.getResults()));
 	}
 
 	/**
@@ -211,10 +240,12 @@ Item item;
 
 		buffer.append("id=[").append(id).append("] ");
 		buffer.append("name=[").append(name).append("] ");
-		buffer.append("type=[").append(type).append("] ");
+		buffer.append("distance=[").append(distance).append("] ");
+		buffer.append("deleta=[").append(deleta).append("] ");
 		buffer.append("redCoefficient=[").append(redCoefficient).append("] ");
 		buffer.append("greenCoefficient=[").append(greenCoefficient).append("] ");
 		buffer.append("blueCoefficient=[").append(blueCoefficient).append("] ");
+		buffer.append("grayCoefficient=[").append(grayCoefficient).append("] ");
 		buffer.append("correct=[").append(correct).append("] ");
 		buffer.append("memo=[").append(memo).append("] ");
 
