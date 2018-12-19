@@ -7,12 +7,8 @@ import java.lang.StringBuilder;
 
 import java.math.BigDecimal;
 
-import java.util.Set;
 
-
-
-
-public class Check implements Serializable {
+public class Picture implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
@@ -25,7 +21,7 @@ public class Check implements Serializable {
 	BigDecimal result;
 	String memo;
 	Rule rule;
-	Project project;
+	Item item;
 	Featureextramethod featureextramethod;
 	public void setId(Integer id) {
 		this.id = id;
@@ -81,11 +77,11 @@ public Integer getId() {
 	public Rule getRule() {
 		return rule;
 	}
-	public void setProject(Project project) {
-		this.project = project;
+	public void setItem(Item item) {
+		this.item = item;
 	}
-	public Project getProject() {
-		return project;
+	public Item getItem() {
+		return item;
 	}
 	public void setFeatureextramethod(Featureextramethod featureextramethod) {
 		this.featureextramethod = featureextramethod;
@@ -93,9 +89,9 @@ public Integer getId() {
 	public Featureextramethod getFeatureextramethod() {
 		return featureextramethod;
 	}
-	public Check() {
+	public Picture() {
 	}
-	public void copy(Check that) {
+	public void copy(Picture that) {
 		setId(that.getId());
 		setName(that.getName());
 		setRed(that.getRed());
@@ -105,7 +101,7 @@ public Integer getId() {
 		setResult(that.getResult());
 		setMemo(that.getMemo());
 		setRule(that.getRule());
-		setProject(that.getProject());
+		setItem(that.getItem());
 		setFeatureextramethod(that.getFeatureextramethod());
 	}
 	public String toString() {
@@ -139,12 +135,12 @@ public Integer getId() {
 	public boolean equals(Object obj) {
 		if (obj == this)
 			return true;
-		if (!(obj instanceof Check))
+		if (!(obj instanceof Picture))
 			return false;
-		Check equalCheck = (Check) obj;
-		if ((id == null && equalCheck.id != null) || (id != null && equalCheck.id == null))
+		Picture equalPicture = (Picture) obj;
+		if ((id == null && equalPicture.id != null) || (id != null && equalPicture.id == null))
 			return false;
-		if (id != null && !id.equals(equalCheck.id))
+		if (id != null && !id.equals(equalPicture.id))
 			return false;
 		return true;
 	}

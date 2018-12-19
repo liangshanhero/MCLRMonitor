@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 
 
 /**
@@ -21,11 +21,11 @@ import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
 
 public class MySqlProjectAdapter extends RecyclerView.Adapter<MySqlProjectAdapter.ViewHolder>{
 
-    List<Project> projectList;
+    List<Item> itemList;
     Context context;
     int flag;
-    public MySqlProjectAdapter(List<Project> projectList, int flag, Context context) {
-        this.projectList = projectList;
+    public MySqlProjectAdapter(List<Item> itemList, int flag, Context context) {
+        this.itemList = itemList;
         this.flag = flag;
         this.context = context;
     }
@@ -61,14 +61,14 @@ public class MySqlProjectAdapter extends RecyclerView.Adapter<MySqlProjectAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final Project project = projectList.get(position);
-        holder.project.setText(project.getName());
-        holder.memo.setText(project.getMemo());
-//        String type = SqlLiteService.getCheckType(project.type_id);
+        final Item item = itemList.get(position);
+        holder.project.setText(item.getName());
+        holder.memo.setText(item.getMemo());
+//        String type = SqlLiteService.getCheckType(item.type_id);
 //        if("定性".equals(type)){
 //            type += "：";
-//            List<Target> list =  SqlLiteService.getProjectTarget(project);
-//            for(Target target : SqlLiteService.getProjectTarget(project)){
+//            List<Target> list =  SqlLiteService.getProjectTarget(item);
+//            for(Target target : SqlLiteService.getProjectTarget(item)){
 //                type += target.name+" ";
 //            }
 //            holder.dataDB.setText(type);
@@ -80,8 +80,8 @@ public class MySqlProjectAdapter extends RecyclerView.Adapter<MySqlProjectAdapte
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               projectList.remove(position);
-//               SqlLiteService.deleteProject(project);
+               itemList.remove(position);
+//               SqlLiteService.deleteProject(item);
                notifyDataSetChanged();
             }
         });
@@ -97,7 +97,7 @@ public class MySqlProjectAdapter extends RecyclerView.Adapter<MySqlProjectAdapte
 //                RecyclerView recyclerView = new RecyclerView(context);
 //                recyclerView.setLayoutManager(new LinearLayoutManager(context));
 //                //TODO
-//                List<Rule> list = SqlLiteService.getRulesOfProject(project);
+//                List<Rule> list = SqlLiteService.getRulesOfProject(item);
 //                RuleAdapter adapterRule = new RuleAdapter(list,context);
 //                recyclerView.setAdapter(adapterRule);
 //                AlertDialog alertDialog = new AlertDialog.Builder(context)
@@ -108,7 +108,7 @@ public class MySqlProjectAdapter extends RecyclerView.Adapter<MySqlProjectAdapte
 //                            public void onClick(DialogInterface dialog, int which) {
 //                                if(holder.dataDB.getText().toString().equals("定量")){
 //                                    Intent intent = new Intent(context, CustomizeRuleActivity.class);
-//                                    intent.putExtra("projectId", projectList.get(position).id);
+//                                    intent.putExtra("projectId", itemList.get(position).id);
 //                                    context.startActivity(intent);
 //                                }
 //                            }
@@ -125,9 +125,9 @@ public class MySqlProjectAdapter extends RecyclerView.Adapter<MySqlProjectAdapte
 //                @Override
 //                public void onClick(View v) {
 //                    Intent intent = new Intent(context,PointSampleCollectActivity.class);
-//                    intent.putExtra("projectId",project.id);
-//                    intent.putExtra("projectName",project.name+"_样本采集");
-//                    intent.putExtra("type",SqlLiteService.getCheckType(project.type_id));
+//                    intent.putExtra("projectId",item.id);
+//                    intent.putExtra("projectName",item.name+"_样本采集");
+//                    intent.putExtra("type",SqlLiteService.getCheckType(item.type_id));
 //                    context.startActivity(intent);
 //                    ((Activity)context).finish();
 //                }
@@ -139,9 +139,9 @@ public class MySqlProjectAdapter extends RecyclerView.Adapter<MySqlProjectAdapte
 //                @Override
 //                public void onClick(View v) {
 //                    Intent intent = new Intent(context,MachineLearningRuleActivity.class);
-//                    intent.putExtra("projectName",project.name);
-//                    intent.putExtra("projectId",project.id);
-//                    intent.putExtra("type",SqlLiteService.getCheckType(project.type_id));
+//                    intent.putExtra("projectName",item.name);
+//                    intent.putExtra("projectId",item.id);
+//                    intent.putExtra("type",SqlLiteService.getCheckType(item.type_id));
 //                    context.startActivity(intent);
 //                    ((Activity)context).finish();
 //                }
@@ -151,6 +151,6 @@ public class MySqlProjectAdapter extends RecyclerView.Adapter<MySqlProjectAdapte
 
     @Override
     public int getItemCount() {
-        return projectList.size();
+        return itemList.size();
     }
 }

@@ -15,7 +15,7 @@ public class Featureextramethod implements Serializable {
 	Integer id;
 	String name;
 	String memo;
-Set<Check> checks;
+Set<Picture> pictures;
 	java.util.Set<Rule> rules;
 	java.util.Set<Samplefeature> samplefeatures;
 
@@ -57,18 +57,18 @@ Set<Check> checks;
 
 	/**
 	 */
-	public void setChecks(Set<Check> checks) {
-		this.checks = checks;
+	public void setPictures(Set<Picture> pictures) {
+		this.pictures = pictures;
 	}
 
 	/**
 	 */
 
-	public Set<Check> getChecks() {
-		if (checks == null) {
-			checks = new java.util.LinkedHashSet<Check>();
+	public Set<Picture> getPictures() {
+		if (pictures == null) {
+			pictures = new java.util.LinkedHashSet<Picture>();
 		}
-		return checks;
+		return pictures;
 	}
 
 	/**
@@ -116,7 +116,7 @@ Set<Check> checks;
 		setId(that.getId());
 		setName(that.getName());
 		setMemo(that.getMemo());
-		setChecks(new java.util.LinkedHashSet<Check>(that.getChecks()));
+		setPictures(new java.util.LinkedHashSet<Picture>(that.getPictures()));
 		setRules(new java.util.LinkedHashSet<Rule>(that.getRules()));
 		setSamplefeatures(new java.util.LinkedHashSet<Samplefeature>(that.getSamplefeatures()));
 	}

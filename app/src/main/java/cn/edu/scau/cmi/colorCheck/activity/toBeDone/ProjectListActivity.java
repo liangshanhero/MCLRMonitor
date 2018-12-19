@@ -14,8 +14,8 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.adapter.MySqlProjectAdapter;
-import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
+import cn.edu.scau.cmi.colorCheck.asyncTask.ItemAsyncTask;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 
 public class ProjectListActivity extends AppCompatActivity {
     private  RecyclerView recyclerView;
@@ -47,9 +47,9 @@ public class ProjectListActivity extends AppCompatActivity {
         delBtn = findViewById(R.id.project_del);
 
 //      （2）  项目创建的时候就从后台异步获取项目列表，并获取的所有项目设置到对应的，// 初始化界面，利用异步任务，从网络获取数据。
-        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
+        ItemAsyncTask itemAsyncTask =new ItemAsyncTask(this, new ItemAsyncTask.HttpFinishedListener(){
             @Override
-            public void doSomething(List<Project> projectList) {
+            public void doSomething(List<Item> projectList) {
                 Log.e("获取的项目是：",projectList.toString());
                 mySqlProjectAdapter = new MySqlProjectAdapter(projectList,1, ProjectListActivity.this);
                 recyclerView.setAdapter(mySqlProjectAdapter);
@@ -58,7 +58,7 @@ public class ProjectListActivity extends AppCompatActivity {
             public void doNothing() {
             }
         });
-        projectAsyncTask.execute();
+        itemAsyncTask.execute();
 // （3）工具栏上显示相关的菜单栏
         flag = getIntent().getIntExtra("flag",0);
         if(flag != 0){
@@ -73,7 +73,7 @@ public class ProjectListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //TODO 需要重新访问服务器，获取最新的项目列表
-//        mySqlProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllProjectList(),flag, this);
+//        mySqlProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllItemList(),flag, this);
         recyclerView.setAdapter(mySqlProjectAdapter);
     }
     public void addProject(View view){
@@ -81,11 +81,11 @@ public class ProjectListActivity extends AppCompatActivity {
     }
 //TODO 获取所有的项目，带后面完善直接获取
     public void getAllProject(View view){
-        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener(){
+        ItemAsyncTask itemAsyncTask =new ItemAsyncTask(this, new ItemAsyncTask.HttpFinishedListener(){
             @Override
-            public void doSomething(List<Project> projectList) {
+            public void doSomething(List<Item> projectList) {
                 //TODO 修改listAdapter
-                for(Project project:projectList){
+                for(Item project:projectList){
                     System.out.println("通过网络获取的数据是："+project.getName());
                 }
                 Toast.makeText(ProjectListActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
@@ -94,6 +94,6 @@ public class ProjectListActivity extends AppCompatActivity {
             public void doNothing() {
             }
         });
-        projectAsyncTask.execute();
+        itemAsyncTask.execute();
     }
 }

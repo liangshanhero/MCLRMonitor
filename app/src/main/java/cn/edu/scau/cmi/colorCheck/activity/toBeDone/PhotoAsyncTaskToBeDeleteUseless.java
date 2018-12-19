@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.asyncTask;
+package cn.edu.scau.cmi.colorCheck.activity.toBeDone;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -12,22 +12,22 @@ import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 //相片异步上传到服务器中。上传成功后在通知栏中显示消息
 
-public class PhotoAsyncTask extends AsyncTask  <Void,Void,String>{
+public class PhotoAsyncTaskToBeDeleteUseless extends AsyncTask  <Void,Void,String>{
     private MainActivity mainActivity;
     private PictureCheckActivity pictureCheckActivity;
     private SharedPreferences sharePreferences;
     private File file;
 
 
-    public PhotoAsyncTask(MainActivity mainActivity) {
+    public PhotoAsyncTaskToBeDeleteUseless(MainActivity mainActivity) {
         this.mainActivity =mainActivity;
     }
 
-    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity) {
+    public PhotoAsyncTaskToBeDeleteUseless(PictureCheckActivity pictureCheckActivity) {
         this.pictureCheckActivity=pictureCheckActivity;
     }
 
-    public PhotoAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences,File file) {
+    public PhotoAsyncTaskToBeDeleteUseless(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences, File file) {
         this.pictureCheckActivity=pictureCheckActivity;
         this.sharePreferences=sharePreferences;
         this.file =file;

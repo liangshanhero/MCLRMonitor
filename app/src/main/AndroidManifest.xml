@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".olderVersion.PointSampleCollectActivity" />
-        <activity android:name=".activity.test.Main2Activity4Test" />
+        <activity android:name=".activity.toBeDone.Main2Activity4Test" />
         <activity android:name=".olderVersion.PointCheckActivity" />
         <activity android:name=".activity.toBeDone.ProjectListActivity" />
         <activity android:name=".activity.toBeDone.ProjectAddActivity" />
@@ -44,7 +44,7 @@
             android:name=".olderVersion.PointCheckDetailActivity"
             android:label="@string/title_activity_check_detail" />
         <activity
-            android:name=".activity.test.TestBasicActivity"
+            android:name=".activity.toBeDone.TestBasicActivity"
             android:label="@string/title_activity_test_basic"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

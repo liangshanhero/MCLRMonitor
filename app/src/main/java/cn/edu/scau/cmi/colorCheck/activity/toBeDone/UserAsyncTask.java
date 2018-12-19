@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.asyncTask;
+package cn.edu.scau.cmi.colorCheck.activity.toBeDone;
 //异步获取后台数据，
 import android.os.AsyncTask;
 

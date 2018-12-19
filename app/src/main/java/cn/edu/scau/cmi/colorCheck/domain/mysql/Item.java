@@ -4,7 +4,7 @@ package cn.edu.scau.cmi.colorCheck.domain.mysql;
 import java.io.Serializable;
 import java.util.Set;
 
-public class Project implements Serializable {
+public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	Integer id;
@@ -13,7 +13,7 @@ public class Project implements Serializable {
 
 	java.util.Set<Sample2project> sample2projects;
 	java.util.Set<Samplefeature> samplefeatures;
-	java.util.Set<Check> checks;
+	java.util.Set<Picture> pictures;
 	java.util.Set<Rule> rules;
 
 	/**
@@ -86,18 +86,18 @@ public class Project implements Serializable {
 
 	/**
 	 */
-	public void setChecks(Set<Check> checks) {
-		this.checks = checks;
+	public void setPictures(Set<Picture> pictures) {
+		this.pictures = pictures;
 	}
 
 	/**
 	 */
 
-	public Set<Check> getChecks() {
-		if (checks == null) {
-			checks = new java.util.LinkedHashSet<Check>();
+	public Set<Picture> getPictures() {
+		if (pictures == null) {
+			pictures = new java.util.LinkedHashSet<Picture>();
 		}
-		return checks;
+		return pictures;
 	}
 
 	/**
@@ -118,20 +118,20 @@ public class Project implements Serializable {
 
 	/**
 	 */
-	public Project() {
+	public Item() {
 	}
 
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
 	 */
-	public void copy(Project that) {
+	public void copy(Item that) {
 		setId(that.getId());
 		setName(that.getName());
 		setMemo(that.getMemo());
 		setSample2projects(new java.util.LinkedHashSet<Sample2project>(that.getSample2projects()));
 		setSamplefeatures(new java.util.LinkedHashSet<Samplefeature>(that.getSamplefeatures()));
-		setChecks(new java.util.LinkedHashSet<Check>(that.getChecks()));
+		setPictures(new java.util.LinkedHashSet<Picture>(that.getPictures()));
 		setRules(new java.util.LinkedHashSet<Rule>(that.getRules()));
 	}
 
@@ -165,9 +165,9 @@ public class Project implements Serializable {
 	public boolean equals(Object obj) {
 		if (obj == this)
 			return true;
-		if (!(obj instanceof Project))
+		if (!(obj instanceof Item))
 			return false;
-		Project equalCheck = (Project) obj;
+		Item equalCheck = (Item) obj;
 		if ((id == null && equalCheck.id != null) || (id != null && equalCheck.id == null))
 			return false;
 		if (id != null && !id.equals(equalCheck.id))

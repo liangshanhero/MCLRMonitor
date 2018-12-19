@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.asyncTask;
+package cn.edu.scau.cmi.colorCheck.activity.toBeDone;
 //手机调用，从网络获取数据，必须使用Asynctask才能和界面交互
 import android.os.AsyncTask;
 
@@ -22,7 +22,7 @@ public class MySqlServiceAsyncTask<T> extends AsyncTask<Void,Void,String> {
 //TODO 测试泛型方法成功后，删除该方法
     public static List<Project> getAllProject() {
 //        HttpUtil httpUtil=new HttpUtil();
-        Set<Project> allProjectSet=HttpUtil.getAllProjectData("Project");
+        Set<Project> allProjectSet=HttpUtil.getAllProjectData("Item");
         List<Project> allProjectList=new ArrayList<Project>();
         allProjectList.addAll(allProjectSet);
         return  allProjectList;
@@ -45,7 +45,7 @@ public class MySqlServiceAsyncTask<T> extends AsyncTask<Void,Void,String> {
 //        获取数据请求的
 
 
-        Request request=HttpUtil.getGetRequest("Project");
+        Request request=HttpUtil.getGetRequest("Item");
         String responseString = null;
         try {
             responseString = HttpUtil.gainJsonResultFromServer(request);

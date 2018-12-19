@@ -38,7 +38,7 @@ public class Samplefeature implements Serializable {
 
 	Featureextramethod featureextramethod;
 
-	Project project;
+	Item item;
 
 	Sample sample;
 
@@ -173,15 +173,15 @@ public class Samplefeature implements Serializable {
 
 	/**
 	 */
-	public void setProject(Project project) {
-		this.project = project;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	/**
 	 */
 
-	public Project getProject() {
-		return project;
+	public Item getItem() {
+		return item;
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class Samplefeature implements Serializable {
 		setGray(that.getGray());
 		setMemo(that.getMemo());
 		setFeatureextramethod(that.getFeatureextramethod());
-		setProject(that.getProject());
+		setItem(that.getItem());
 		setSample(that.getSample());
 	}
 

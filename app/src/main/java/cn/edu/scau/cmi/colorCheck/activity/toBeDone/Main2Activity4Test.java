@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity.test;
+package cn.edu.scau.cmi.colorCheck.activity.toBeDone;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

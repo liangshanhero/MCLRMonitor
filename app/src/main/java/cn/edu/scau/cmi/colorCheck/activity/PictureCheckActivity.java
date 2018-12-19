@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,10 +20,9 @@ import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
-import cn.edu.scau.cmi.colorCheck.asyncTask.PhotoAsyncTask;
-import cn.edu.scau.cmi.colorCheck.asyncTask.ProjectAsyncTask;
+import cn.edu.scau.cmi.colorCheck.asyncTask.ItemAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.RuleAsyncTask;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 import cn.edu.scau.cmi.colorCheck.util.FileUtil;
@@ -34,23 +32,23 @@ public class PictureCheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
     Spinner projectSpinner;
     Spinner ruleSpinner;
-    Project selectedProject;
+    Item selectedItem;
     Rule selectedRule;
     File currentCheckBitmapFile;//当前的检测文件
     String currentCheckBitmapFileName;
-    private static  List<Project> allProjectList;
+    private static  List<Item> allItemList;
     private static List<Rule> ruleList;
     private SharedPreferences sharePreferencesEditor;
 
-    ArrayAdapter<Project> projectArrayAdapter;
+    ArrayAdapter<Item> projectArrayAdapter;
     ArrayAdapter<Rule> ruleArrayAdapter;
     EditText sampleResultEditText;
 
 
-    public void setProjectList(List<Project> projectList){
-        this.allProjectList =projectList;
+    public void setProjectList(List<Item> itemList){
+        this.allItemList = itemList;
     }
-    private ArrayAdapter<Project> projectAdapter;
+    private ArrayAdapter<Item> projectAdapter;
     private ArrayAdapter<Rule> ruleAdapter;
     public ArrayAdapter getProjectAdapter(){
         return this.projectAdapter;
@@ -103,27 +101,27 @@ public class PictureCheckActivity extends AppCompatActivity {
     private void initProjectSpinner() {
         projectSpinner=findViewById(R.id.picture_check_project_spinner);
 //        获取所有的检测项目。
-        ProjectAsyncTask projectAsyncTask=new ProjectAsyncTask(this, new ProjectAsyncTask.HttpFinishedListener() {
+        ItemAsyncTask itemAsyncTask =new ItemAsyncTask(this, new ItemAsyncTask.HttpFinishedListener() {
             @Override
-            public void doSomething(List<Project> projectList) {
-               projectArrayAdapter = new ArrayAdapter<Project>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, projectList);
+            public void doSomething(List<Item> projectList) {
+               projectArrayAdapter = new ArrayAdapter<Item>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, projectList);
                projectSpinner.setAdapter(projectArrayAdapter);
             }
             @Override
             public void doNothing() {
             }
         });
-        projectAsyncTask.execute();
+        itemAsyncTask.execute();
 
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //              选中的项目
 //              得到选中的项目，测试一下看能否得到Project对象。
-                Project selectedProject = (Project) parent.getItemAtPosition(position);
-                PictureCheckActivity.this.selectedProject = (Project) projectSpinner.getSelectedItem();
+                Item selectedItem = (Item) parent.getItemAtPosition(position);
+                PictureCheckActivity.this.selectedItem = (Item) projectSpinner.getSelectedItem();
 //                获取了规则后，在spinner中显示出这个项目具有的规则
-                RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(PictureCheckActivity.this, PictureCheckActivity.this.selectedProject, new RuleAsyncTask.HttpFinishedListener() {
+                RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(PictureCheckActivity.this, PictureCheckActivity.this.selectedItem, new RuleAsyncTask.HttpFinishedListener() {
                     @Override
                     public void doSomething(List<Rule> ruleList) {
                         ruleArrayAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
@@ -157,11 +155,11 @@ public class PictureCheckActivity extends AppCompatActivity {
                         if(sampleResultEditText.getText()==null){
                             Toast.makeText(PictureCheckActivity.this,"请输入合适的结果",Toast.LENGTH_LONG);
                         }else{//文件名是：检测项目名+功能名称（检测还是样本）+时间戳+结果
-                            currentCheckBitmapFile =FileUtil.getCurrentFile(selectedProject.getName(),function,currentCheckBitmapFileName,sampleResultEditText.getText().toString());
+                            currentCheckBitmapFile =FileUtil.getCurrentFile(selectedItem.getName(),function,currentCheckBitmapFileName,sampleResultEditText.getText().toString());
                         }
 
                     }else{//check
-                        currentCheckBitmapFile =FileUtil.getCurrentFile(selectedProject.getName(),function,currentCheckBitmapFileName,"-1");
+                        currentCheckBitmapFile =FileUtil.getCurrentFile(selectedItem.getName(),function,currentCheckBitmapFileName,"-1");
                     }
                     try {
                         FileUtil.saveColorCheckBitmap(bitmap, currentCheckBitmapFile);
@@ -207,8 +205,8 @@ public class PictureCheckActivity extends AppCompatActivity {
 
     //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
     public void onUploadAllPictureCheckBitMap(View view){
-        PhotoAsyncTask photoAsyncTask=new PhotoAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
-        photoAsyncTask.execute();
+        FileAsyncTask fileAsyncTask =new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
+        fileAsyncTask.execute();
     }
 
 //点击图片后，显示结果界面，

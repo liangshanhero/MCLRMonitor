@@ -13,8 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.asyncTask.CheckAsyncTask;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Check;
+import cn.edu.scau.cmi.colorCheck.asyncTask.PictureAsyncTask;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Picture;
 
 //建立一个内部类，可以让view使用Activity中的数据！！！，否则数据传不进去！！！！！！
 public class PictureCheckResultActivity extends AppCompatActivity {
@@ -22,15 +22,15 @@ public class PictureCheckResultActivity extends AppCompatActivity {
     private TextView resultTextView;
     private String[] checkResults;
 
-    public Check getCheck() {
-        return check;
+    public Picture getPicture() {
+        return picture;
     }
 
-    public void setCheck(Check check) {
-        this.check = check;
+    public void setPicture(Picture picture) {
+        this.picture = picture;
     }
 
-    private Check check;
+    private Picture picture;
     private String checkName;
 
 
@@ -49,8 +49,8 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         String checkName=bundle.getString("currentCheckBitmapFileName");
 
         //      (3) ******图片作为检测的参数，异步获取检测结果
-        CheckAsyncTask checkAsyncTask=new CheckAsyncTask(this, checkName);
-        checkAsyncTask.execute();
+        PictureAsyncTask pictureAsyncTask =new PictureAsyncTask(this, checkName);
+        pictureAsyncTask.execute();
 
 //        assert redFeature != null;
 //        checkResultFigureView.addExtraDataToAccessibilityNodeInfo(redFeature,"redFeature",bundle);
@@ -104,8 +104,8 @@ public class PictureCheckResultActivity extends AppCompatActivity {
 
             paint.setTextSize(60);
             canvas.drawText("检测的特征曲线：",50,50,paint);
-            if(check != null){
-                canvas.drawText(check.getName(),50,250,paint);
+            if(picture != null){
+                canvas.drawText(picture.getName(),50,250,paint);
             }
         }
     }

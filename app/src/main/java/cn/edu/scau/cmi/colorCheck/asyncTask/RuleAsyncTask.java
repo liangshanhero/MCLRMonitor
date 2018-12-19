@@ -8,16 +8,15 @@ import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
-import okhttp3.Request;
 
 
 public class RuleAsyncTask extends AsyncTask<String,Void,String> {
     private static List<Rule> allRule;
     private PictureCheckActivity pictureCheckActivity;
-    private Project selectProject;
+    private Item selectItem;
     private HttpFinishedListener httpFinishedListener;
 
     public interface HttpFinishedListener {
@@ -30,12 +29,10 @@ public class RuleAsyncTask extends AsyncTask<String,Void,String> {
     }
 
 
-    public RuleAsyncTask(PictureCheckActivity pictureCheckActivity,Project selectProject,HttpFinishedListener httpFinishedListener) {
+    public RuleAsyncTask(PictureCheckActivity pictureCheckActivity, Item selectItem, HttpFinishedListener httpFinishedListener) {
         this.pictureCheckActivity=pictureCheckActivity;
-        this.selectProject=selectProject;
+        this.selectItem = selectItem;
         this.httpFinishedListener=httpFinishedListener;
-
-
     }
 
 
@@ -45,10 +42,10 @@ public class RuleAsyncTask extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... strings) {
 
         String ruleRequest;
-        if(selectProject==null) {//没有项目，表示查找到所有的规则
+        if(selectItem ==null) {//没有项目，表示查找到所有的规则
             ruleRequest = "Rule";
         }else {
-            ruleRequest="Project/" + selectProject.getId() + "/rules";
+            ruleRequest="Item/" + selectItem.getId() + "/rules";
         }
 
         try {

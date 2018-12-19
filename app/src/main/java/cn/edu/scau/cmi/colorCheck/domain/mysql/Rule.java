@@ -24,9 +24,9 @@ public class Rule implements Serializable {
 	BigDecimal blueCoefficient;
 	BigDecimal correct;
 	String memo;
-Project project;
+Item item;
 	Featureextramethod featureextramethod;
-	java.util.Set<Check> checks;
+	java.util.Set<Picture> pictures;
 
 	/**
 	 */
@@ -138,15 +138,15 @@ Project project;
 
 	/**
 	 */
-	public void setProject(Project project) {
-		this.project = project;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	/**
 	 */
 
-	public Project getProject() {
-		return project;
+	public Item getItem() {
+		return item;
 	}
 
 	/**
@@ -164,18 +164,18 @@ Project project;
 
 	/**
 	 */
-	public void setChecks(Set<Check> checks) {
-		this.checks = checks;
+	public void setPictures(Set<Picture> pictures) {
+		this.pictures = pictures;
 	}
 
 	/**
 	 */
 
-	public Set<Check> getChecks() {
-		if (checks == null) {
-			checks = new java.util.LinkedHashSet<Check>();
+	public Set<Picture> getPictures() {
+		if (pictures == null) {
+			pictures = new java.util.LinkedHashSet<Picture>();
 		}
-		return checks;
+		return pictures;
 	}
 
 	/**
@@ -196,9 +196,9 @@ Project project;
 		setBlueCoefficient(that.getBlueCoefficient());
 		setCorrect(that.getCorrect());
 		setMemo(that.getMemo());
-		setProject(that.getProject());
+		setItem(that.getItem());
 		setFeatureextramethod(that.getFeatureextramethod());
-		setChecks(new java.util.LinkedHashSet<Check>(that.getChecks()));
+		setPictures(new java.util.LinkedHashSet<Picture>(that.getPictures()));
 	}
 
 	/**

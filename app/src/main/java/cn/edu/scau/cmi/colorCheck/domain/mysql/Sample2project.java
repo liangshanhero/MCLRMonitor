@@ -19,7 +19,7 @@ public class Sample2project implements Serializable {
 	BigDecimal result;
 
 
-	Project project;
+	Item item;
 
 	Sample sample;
 
@@ -65,15 +65,15 @@ public class Sample2project implements Serializable {
 
 	/**
 	 */
-	public void setProject(Project project) {
-		this.project = project;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	/**
 	 */
 
-	public Project getProject() {
-		return project;
+	public Item getItem() {
+		return item;
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class Sample2project implements Serializable {
 		setSampleField(that.getSampleField());
 		setProjectField(that.getProjectField());
 		setResult(that.getResult());
-		setProject(that.getProject());
+		setItem(that.getItem());
 		setSample(that.getSample());
 	}
 

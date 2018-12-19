@@ -107,7 +107,7 @@ public class PointCheckActivity extends AppCompatActivity {
 
             @Override
             public void showPictureCheckResult(byte[] data) {
-//                Toast.makeText(PointCheckActivity.this, "Check", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PointCheckActivity.this, "Picture", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(PointCheckActivity.this,Main2Activity4Test.class);
 //                intent.putExtra("pic",data);
 //                startActivity(intent);

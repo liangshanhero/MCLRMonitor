@@ -12,42 +12,42 @@ import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 
 
 import cn.edu.scau.cmi.colorCheck.adapter.SqlLiteProjectAdapter;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Project;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Request;
 
-public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
+public class ItemAsyncTask extends AsyncTask <String,Void,String>{
 //    定义一个网络任务完成后的接口，在节目调用这个异步任务时，实现界面元素的值的改变！！！
     public interface HttpFinishedListener {
-        void doSomething(List<Project> projectList);
+        void doSomething(List<Item> itemList);
         void doNothing();
     }
 
     private HttpFinishedListener httpFinishedListenerListener;
-    private static List<Project> allProjectList;
+    private static List<Item> allItemList;
     private PictureCheckActivity pictureCheckActivity;
     private ProjectListActivity projectListActivity;
     SqlLiteProjectAdapter sqlLiteProjectAdapter;
 
-    public ProjectAsyncTask(PictureCheckActivity pictureCheckActivity,HttpFinishedListener httpFinishedListener) {
+    public ItemAsyncTask(PictureCheckActivity pictureCheckActivity, HttpFinishedListener httpFinishedListener) {
         this.pictureCheckActivity=pictureCheckActivity;
         this.httpFinishedListenerListener = httpFinishedListener;
     }
 
-    public ProjectAsyncTask(ProjectListActivity projectListActivity,HttpFinishedListener httpFinishedListener) {
+    public ItemAsyncTask(ProjectListActivity projectListActivity, HttpFinishedListener httpFinishedListener) {
         this.projectListActivity=projectListActivity;
         this.httpFinishedListenerListener=httpFinishedListener;
     }
 
-    public  static List<Project> getAllProjectList(){return allProjectList;}
+    public  static List<Item> getAllItemList(){return allItemList;}
 
     @Override
     protected String doInBackground(String... strings) {
         try {
-//            TODO to be tested!!!利用新的简单的方法获取 HttpUtil.gainJsonResultFromServer("Project");
-            Request request=HttpUtil.getGetRequest("Project");
+//            TODO to be tested!!!利用新的简单的方法获取 HttpUtil.gainJsonResultFromServer("Item");
+            Request request=HttpUtil.getGetRequest("Item");
             String responseString = HttpUtil.gainJsonResultFromServer(request);
-            allProjectList = new Gson().fromJson(responseString,new TypeToken<List<Project>>(){}.getType());
+            allItemList = new Gson().fromJson(responseString,new TypeToken<List<Item>>(){}.getType());
             return "success";
         } catch (Exception e) {
             return "exception";
@@ -58,14 +58,14 @@ public class ProjectAsyncTask extends AsyncTask <String,Void,String>{
     protected void onPostExecute(String doInBackgroundResult){
 
 
-//    sqlLiteProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllProjectList(),flag, this);
+//    sqlLiteProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllItemList(),flag, this);
 //    recyclerView.setAdapter(sqlLiteProjectAdapter);
 
         if(doInBackgroundResult.equals("exception")){
             httpFinishedListenerListener.doNothing();
         }else{
-//            pictureCheckActivity.setProjectList(allProjectList);
-            httpFinishedListenerListener.doSomething(allProjectList);
+//            pictureCheckActivity.setProjectList(allItemList);
+            httpFinishedListenerListener.doSomething(allItemList);
 
         }
     }
