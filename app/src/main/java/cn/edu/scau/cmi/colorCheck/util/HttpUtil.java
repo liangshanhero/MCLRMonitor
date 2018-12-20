@@ -25,9 +25,9 @@ import okhttp3.Response;
 public class HttpUtil<T> {
 //    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
 //    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
-//    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
+//    R2700X的IP地址
+    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
 //    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
-    private static final String serverContext = "http://r2700x:8080/colorCheckServer/";
 
     private static final String uploadFileRequestString = "springUpload";
     private static final String getAllCommitedColorCheckBitmaps = "getAllCommitedColorCheckBitmaps";
@@ -48,11 +48,12 @@ public class HttpUtil<T> {
         Response response = client.newCall(request).execute();//同步获取数据，但是是异步类调用
         return response.body().string();
     }
-    //**** 从服务器得到数据******
+    //**** 新的方法，从服务器得到数据******
     public static String gainJsonResultFromServer(String request) throws IOException {
         OkHttpClient client = new OkHttpClient();
-        Response response = client.newCall(getGetRequest(request)).execute();//同步获取数据，但是是异步类调用
-        return response.body().string();
+        String result = client.newCall(getGetRequest(request)).execute().body().string();//同步获取数据，但是是异步类调用
+        System.out.println("在TttpUtil中使用新的获取数据的数据是："+result);
+        return result;
     }
 
     public static Request getParamsPostRequest(String postURL, String params){
@@ -66,6 +67,7 @@ public class HttpUtil<T> {
     }
 
     public static Request getGetRequest(String postfixURL){
+        System.out.println("完整的网络请求是："+getCompleteURLString(postfixURL));
         return  new Request.Builder().url(getCompleteURLString(postfixURL)).build();
     }
 //上传所有的图片
@@ -109,10 +111,9 @@ public class HttpUtil<T> {
 
 //TODO  有待测试 获取所有的项目集合，使用泛型，不能用静态方法，需要使用实例方法。
     public Set<T> getAllRequiredTypeData(String jsonResultRequest) {
-        Request request = getGetRequest(jsonResultRequest);
         Set<T> allProjectSet=new HashSet<>();
         try {
-            String result = gainJsonResultFromServer(request);
+            String result = gainJsonResultFromServer(jsonResultRequest);
             allProjectSet = new Gson().fromJson(result, new TypeToken<HashSet<T>>() {}.getType());
         } catch (IOException e) {
             e.printStackTrace();
@@ -121,10 +122,9 @@ public class HttpUtil<T> {
     }
 
     public static Set<Project> getAllProjectData(String jsonResultRequest) {
-        Request request = getGetRequest(jsonResultRequest);
         Set<Project> allProjectSet=new HashSet<Project>();
         try {
-            String result = gainJsonResultFromServer(request);
+            String result = gainJsonResultFromServer(jsonResultRequest);
             allProjectSet = new Gson().fromJson(result, new TypeToken<HashSet<Project>>() {}.getType());
         } catch (IOException e) {
             e.printStackTrace();

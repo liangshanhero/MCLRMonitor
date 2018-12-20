@@ -1,10 +1,12 @@
 package cn.edu.scau.cmi.colorCheck.asyncTask;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
@@ -44,9 +46,7 @@ public class ItemAsyncTask extends AsyncTask <String,Void,String>{
     @Override
     protected String doInBackground(String... strings) {
         try {
-//            TODO to be tested!!!利用新的简单的方法获取 HttpUtil.gainJsonResultFromServer("Item");
-            Request request=HttpUtil.getGetRequest("Item");
-            String responseString = HttpUtil.gainJsonResultFromServer(request);
+            String responseString = HttpUtil.gainJsonResultFromServer("Item");
             allItemList = new Gson().fromJson(responseString,new TypeToken<List<Item>>(){}.getType());
             return "success";
         } catch (Exception e) {
@@ -56,17 +56,10 @@ public class ItemAsyncTask extends AsyncTask <String,Void,String>{
 
 @Override
     protected void onPostExecute(String doInBackgroundResult){
-
-
-//    sqlLiteProjectAdapter = new SqlLiteProjectAdapter(MySqlServiceAsyncTask.getAllItemList(),flag, this);
-//    recyclerView.setAdapter(sqlLiteProjectAdapter);
-
         if(doInBackgroundResult.equals("exception")){
             httpFinishedListenerListener.doNothing();
         }else{
-//            pictureCheckActivity.setProjectList(allItemList);
             httpFinishedListenerListener.doSomething(allItemList);
-
         }
     }
 }
