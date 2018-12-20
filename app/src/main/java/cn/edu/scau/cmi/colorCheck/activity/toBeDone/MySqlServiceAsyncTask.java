@@ -27,11 +27,11 @@ public class MySqlServiceAsyncTask<T> extends AsyncTask<Void,Void,String> {
         allProjectList.addAll(allProjectSet);
         return  allProjectList;
     }
-    //    TODO ***使用泛型得到所有的基本数据
+    //    TODO ***使用泛型得到所有的基本数据，准备取代上面的方法
     // 例如：如果需要的是Project数据，就用Project
     //
     // ***
-    public  List<T> getAllDate(T requiredDataType) {
+    public  List<T> getAllData(T requiredDataType) {
         HttpUtil httpUtil=new HttpUtil();
         Set<T> allRequiredTypeDataSet=httpUtil.getAllRequiredTypeData(requiredDataType.getClass().getName());
         List<T> allRequiredTypeDataList=new ArrayList<T>();

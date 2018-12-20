@@ -24,11 +24,11 @@ import okhttp3.Response;
 
 public class HttpUtil<T> {
 //    R2700X的IP地址
-//    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
+    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
 //    阿里云服务器地址、
 //    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
 //    E31230V3地址
-    private static final String serverContext = "http://172.18.94.140:8080/colorCheckServer/";
+//    private static final String serverContext = "http://172.18.94.140:8080/colorCheckServer/";
 //    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
 
     private static final String uploadFileRequestString = "springUpload";
@@ -111,11 +111,11 @@ public class HttpUtil<T> {
         });
     }
 
-//TODO  有待测试 获取所有的项目集合，使用泛型，不能用静态方法，需要使用实例方法。
-    public Set<T> getAllRequiredTypeData(String jsonResultRequest) {
+//TODO  更好的办法：有待测试 获取所有的实体项集合，使用泛型，不能用静态方法，需要使用实例方法。
+    public Set<T> getAllRequiredTypeData(String jsonResultRequestString) {
         Set<T> allProjectSet=new HashSet<>();
         try {
-            String result = gainJsonResultFromServer(jsonResultRequest);
+            String result = gainJsonResultFromServer(jsonResultRequestString);
             allProjectSet = new Gson().fromJson(result, new TypeToken<HashSet<T>>() {}.getType());
         } catch (IOException e) {
             e.printStackTrace();

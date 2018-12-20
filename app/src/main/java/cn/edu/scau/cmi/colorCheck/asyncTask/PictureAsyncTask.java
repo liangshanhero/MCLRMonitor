@@ -13,12 +13,12 @@ import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 
 public class PictureAsyncTask extends AsyncTask<Void,Void,String> {
     private PictureCheckResultActivity pictureCheckResultActivity;
-    private String  checkName;
+    private String pictureName;
 
     private List<Picture> allPicture;
 
     public PictureAsyncTask(PictureCheckResultActivity activity, String checkName){
-        this.checkName =checkName;
+        this.pictureName =checkName;
         this.pictureCheckResultActivity =activity;
 
     }
@@ -26,7 +26,8 @@ public class PictureAsyncTask extends AsyncTask<Void,Void,String> {
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            String responseString = HttpUtil.gainJsonResultFromServer("Picture/checkName/"+checkName);
+//TODO TODO TODO            检测结果，获取检测区域的值，特征值和最终的结果
+            String responseString = HttpUtil.gainJsonResultFromServer("Result/pictureName/"+ pictureName);
             allPicture = new Gson().fromJson(responseString,new TypeToken<List<Picture>>(){}.getType());
             return "success";
         } catch (Exception e) {

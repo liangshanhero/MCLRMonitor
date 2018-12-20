@@ -31,7 +31,7 @@ public class PictureCheckResultActivity extends AppCompatActivity {
     }
 
     private Picture picture;
-    private String checkName;
+    private String pictureName;
 
 
     @Override
@@ -46,10 +46,11 @@ public class PictureCheckResultActivity extends AppCompatActivity {
 //      (2) 获取PictureCheckActivity传来的检测文件
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
-        String checkName=bundle.getString("currentCheckBitmapFileName");
+        pictureName =bundle.getString("currentCheckBitmapFileName");
+        System.out.println("检测的文件名字是："+ pictureName);
 
         //      (3) ******图片作为检测的参数，异步获取检测结果
-        PictureAsyncTask pictureAsyncTask =new PictureAsyncTask(this, checkName);
+        PictureAsyncTask pictureAsyncTask =new PictureAsyncTask(this, pictureName);
         pictureAsyncTask.execute();
 
 //        assert redFeature != null;
