@@ -6,6 +6,7 @@
     <string name="user">root</string>
     <string name="pass">root</string>
     <string name="prefix_url">http://139.159.188.31:8080/colorCheckServer/</string>
+    <string name="server_context">http://172.18.94.140:8080/colorCheckServer/</string>
     <string name="uploadImage_url">springUpload</string>
 
     <string name="title_activity_check_detail">CheckDetailActivity</string>

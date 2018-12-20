@@ -23,10 +23,12 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpUtil<T> {
-//    TODO 测试的时候暂时固定，待以后在修复,不能正常获取URI
-//    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
 //    R2700X的IP地址
-    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
+//    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
+//    阿里云服务器地址、
+//    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
+//    E31230V3地址
+    private static final String serverContext = "http://172.18.94.140:8080/colorCheckServer/";
 //    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
 
     private static final String uploadFileRequestString = "springUpload";
@@ -100,7 +102,7 @@ public class HttpUtil<T> {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println("很遗憾地告诉你，没有上传成功");
+                System.out.println(TAG+"很遗憾地告诉你，没有上传成功");
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
