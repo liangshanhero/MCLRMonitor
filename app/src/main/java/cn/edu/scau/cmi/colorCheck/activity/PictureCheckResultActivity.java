@@ -28,6 +28,7 @@ public class PictureCheckResultActivity extends AppCompatActivity {
     private TextView resultTextView;
     private String[] checkResults;
     private String pictureName;
+    private List<Result> results;
     //    result elements for display on activity
     public Picture getPicture() {
         return picture;
@@ -66,7 +67,6 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         this.results = results;
     }
 
-    private List<Result> results;
 
 
     @Override
@@ -83,8 +83,7 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         Bundle bundle=intent.getExtras();
         pictureName =bundle.getString("currentCheckBitmapFileName");
         System.out.println("检测的文件名字是："+ pictureName);
-
-        //      (3) ******图片作为检测的参数，异步获取检测结果
+//      (3) ******图片作为检测的参数，异步获取检测结果
         ResultAsyncTask resultAsyncTask =new ResultAsyncTask(this, pictureName);
         resultAsyncTask.execute();
 

@@ -33,7 +33,7 @@ public class HttpUtil<T> {
 //    private static final String serverContext = "http://192.168.253.11:8080/colorCheckServer/";
 //    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
 
-    private static final String uploadFileRequestString = "springUpload";
+    private static final String uploadFileRequestString = "uploadFile";
     private static final String getAllCommitedColorCheckBitmaps = "getAllCommitedColorCheckBitmaps";
     private static final String TAG = "-----HttpUtil测试消息------";
 //不要在代码里改配置，到res/alues/string.xml修改
