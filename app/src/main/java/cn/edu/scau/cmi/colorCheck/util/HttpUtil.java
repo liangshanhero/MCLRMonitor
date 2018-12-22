@@ -25,10 +25,13 @@ import okhttp3.Response;
 public class HttpUtil<T> {
 //    R2700X的IP地址
 //    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
+
+//     E31230V3地址
+    private static final String serverContext = "http://192.168.31.16:8080/colorCheckServer/";
 //    阿里云服务器地址
 //    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
-//    E31230V3地址
-    private static final String serverContext = "http://172.18.94.140:8080/colorCheckServer/";
+//    4790K地址
+//    private static final String serverContext = "http://172.18.94.140:8080/colorCheckServer/";
     //    Dell server
 //    private static final String serverContext = "http://192.168.253.11:8080/colorCheckServer/";
 //    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
