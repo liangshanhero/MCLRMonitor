@@ -127,7 +127,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="显示检测结果"
-        android:onClick="onShowPictureCheckResult"/>
+        android:onClick="onShowResult"/>
     <Button
         android:id="@+id/picture_check_upload_all_bitmap_button"
         android:layout_width="match_parent"

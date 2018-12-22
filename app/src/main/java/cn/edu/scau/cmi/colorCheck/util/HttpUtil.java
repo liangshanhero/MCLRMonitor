@@ -24,11 +24,13 @@ import okhttp3.Response;
 
 public class HttpUtil<T> {
 //    R2700X的IP地址
-    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
-//    阿里云服务器地址、
+//    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
+//    阿里云服务器地址
 //    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
 //    E31230V3地址
-//    private static final String serverContext = "http://172.18.94.140:8080/colorCheckServer/";
+    private static final String serverContext = "http://172.18.94.140:8080/colorCheckServer/";
+    //    Dell server
+//    private static final String serverContext = "http://192.168.253.11:8080/colorCheckServer/";
 //    private static final String serverContext = "http://192.168.253.1:8080/colorCheckServer/";
 
     private static final String uploadFileRequestString = "springUpload";
@@ -54,7 +56,7 @@ public class HttpUtil<T> {
     public static String gainJsonResultFromServer(String request) throws IOException {
         OkHttpClient client = new OkHttpClient();
         String result = client.newCall(getGetRequest(request)).execute().body().string();//同步获取数据，但是是异步类调用
-        System.out.println("在TttpUtil中使用新的获取数据的数据是："+result);
+        System.out.println("在HttpUtil中使用新的获取数据的数据是："+result);
         return result;
     }
 
@@ -102,11 +104,11 @@ public class HttpUtil<T> {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println(TAG+"很遗憾地告诉你，没有上传成功");
+                System.out.println(TAG+"------文件没有上传成功------");
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e(TAG, "------上传成功------");
+                Log.e(TAG, "------文件上传成功------");
             }
         });
     }

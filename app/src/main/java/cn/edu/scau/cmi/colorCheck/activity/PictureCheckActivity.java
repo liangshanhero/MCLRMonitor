@@ -22,7 +22,11 @@ import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ItemAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.RuleAsyncTask;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Feature;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Picture;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Result;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Rgb;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 import cn.edu.scau.cmi.colorCheck.util.FileUtil;
@@ -30,6 +34,7 @@ import cn.edu.scau.cmi.colorCheck.view.CameraPictureSurfaceView;
 
 public class PictureCheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
+//    UI elements
     Spinner itemSpinner;
     Spinner ruleSpinner;
     Item selectedItem;
@@ -43,6 +48,9 @@ public class PictureCheckActivity extends AppCompatActivity {
     ArrayAdapter<Item> itemArrayAdapter;
     ArrayAdapter<Rule> ruleArrayAdapter;
     EditText sampleResultEditText;
+
+
+
 
 
     public void setProjectList(List<Item> itemList){
@@ -194,7 +202,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         fileAsyncTask.execute();
     }
     // 显示检测结果
-    public void onShowPictureCheckResult(View view){
+    public void onShowResult(View view){
         Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
 //        bundle.putSerializable("currentCheckBitmapFile", currentCheckBitmapFile);
 //        文件的时间名称，

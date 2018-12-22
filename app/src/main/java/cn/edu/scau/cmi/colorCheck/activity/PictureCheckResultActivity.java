@@ -12,16 +12,23 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.edu.scau.cmi.colorCheck.R;
-import cn.edu.scau.cmi.colorCheck.asyncTask.PictureAsyncTask;
+import cn.edu.scau.cmi.colorCheck.asyncTask.ResultAsyncTask;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Feature;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Picture;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Result;
+import cn.edu.scau.cmi.colorCheck.domain.mysql.Rgb;
 
 //建立一个内部类，可以让view使用Activity中的数据！！！，否则数据传不进去！！！！！！
 public class PictureCheckResultActivity extends AppCompatActivity {
     private CheckResultFigureView checkResultFigureView;
     private TextView resultTextView;
     private String[] checkResults;
-
+    private String pictureName;
+    //    result elements for display on activity
     public Picture getPicture() {
         return picture;
     }
@@ -29,9 +36,37 @@ public class PictureCheckResultActivity extends AppCompatActivity {
     public void setPicture(Picture picture) {
         this.picture = picture;
     }
-
     private Picture picture;
-    private String pictureName;
+
+    public List<Rgb> getRgbs() {
+        return rgbs;
+    }
+
+    public void setRgbs(List<Rgb> rgbs) {
+        this.rgbs = rgbs;
+    }
+
+    private List<Rgb> rgbs;
+
+    public List<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
+    private List<Feature> features;
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
+
+    private List<Result> results;
 
 
     @Override
@@ -50,8 +85,8 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         System.out.println("检测的文件名字是："+ pictureName);
 
         //      (3) ******图片作为检测的参数，异步获取检测结果
-        PictureAsyncTask pictureAsyncTask =new PictureAsyncTask(this, pictureName);
-        pictureAsyncTask.execute();
+        ResultAsyncTask resultAsyncTask =new ResultAsyncTask(this, pictureName);
+        resultAsyncTask.execute();
 
 //        assert redFeature != null;
 //        checkResultFigureView.addExtraDataToAccessibilityNodeInfo(redFeature,"redFeature",bundle);
@@ -105,8 +140,16 @@ public class PictureCheckResultActivity extends AppCompatActivity {
 
             paint.setTextSize(60);
             canvas.drawText("检测的特征曲线：",50,50,paint);
-            if(picture != null){
-                canvas.drawText(picture.getName(),50,250,paint);
+
+//          后台的数据应该先判断是否存在才能显示，
+            if(features != null){
+                canvas.drawText("Feature值的大小是"+String.valueOf(features.size()),50,150,paint);
+            }
+            if(rgbs != null){
+                canvas.drawText("Rgb值的大小是"+String.valueOf(rgbs.size()),50,250,paint);
+            }
+            if(results != null){
+                canvas.drawText("结果值的大小是"+String.valueOf(results.size()),50,350,paint);
             }
         }
     }
