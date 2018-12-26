@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
 // 使用说明
     public void manual(View view){
         Intent intent = new Intent(MainActivity.this, ManualActivity.class);
