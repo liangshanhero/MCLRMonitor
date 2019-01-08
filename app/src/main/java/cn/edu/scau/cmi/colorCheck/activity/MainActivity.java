@@ -52,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
     // （2）基于图片检测
     public void onPictureCheck(View view){
-        Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
+        Intent intent = new Intent(MainActivity.this, CheckActivity.class);
         intent.putExtra("function","check");
         startActivity(intent);
     }
 
     //（3）基于图片采集样本数据
     public void onPictureCheckSampleCollect(View view){
-        Intent intent = new Intent(MainActivity.this, PictureCheckActivity.class);
+        Intent intent = new Intent(MainActivity.this, CheckActivity.class);
         intent.putExtra("function","sample");
         startActivity(intent);
     }

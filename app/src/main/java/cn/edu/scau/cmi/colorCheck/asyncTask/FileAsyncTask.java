@@ -6,14 +6,14 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import cn.edu.scau.cmi.colorCheck.activity.CheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
-import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 //相片异步上传到服务器中，并插入到相应的表格中。
 
 public class FileAsyncTask extends AsyncTask  <Void,Void,String>{
     private MainActivity mainActivity;
-    private PictureCheckActivity pictureCheckActivity;
+    private CheckActivity checkActivity;
     private SharedPreferences sharePreferences;
     private File file;
 
@@ -22,12 +22,12 @@ public class FileAsyncTask extends AsyncTask  <Void,Void,String>{
         this.mainActivity =mainActivity;
     }
 
-    public FileAsyncTask(PictureCheckActivity pictureCheckActivity) {
-        this.pictureCheckActivity=pictureCheckActivity;
+    public FileAsyncTask(CheckActivity checkActivity) {
+        this.checkActivity = checkActivity;
     }
 
-    public FileAsyncTask(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences, File file) {
-        this.pictureCheckActivity=pictureCheckActivity;
+    public FileAsyncTask(CheckActivity checkActivity, SharedPreferences sharePreferences, File file) {
+        this.checkActivity = checkActivity;
         this.sharePreferences=sharePreferences;
         this.file =file;
     }
@@ -50,7 +50,7 @@ public class FileAsyncTask extends AsyncTask  <Void,Void,String>{
     @Override
     protected void onPostExecute(String result){
         if(null==mainActivity){
-            Toast.makeText(pictureCheckActivity, result, Toast.LENGTH_SHORT).show();
+            Toast.makeText(checkActivity, result, Toast.LENGTH_SHORT).show();
         }
         else{
             Toast.makeText(mainActivity, result, Toast.LENGTH_SHORT).show();

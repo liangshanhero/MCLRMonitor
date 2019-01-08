@@ -22,17 +22,13 @@ import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.asyncTask.FileAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ItemAsyncTask;
 import cn.edu.scau.cmi.colorCheck.asyncTask.RuleAsyncTask;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Feature;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Picture;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Result;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Rgb;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.listener.TouchListenerAdapter;
 import cn.edu.scau.cmi.colorCheck.util.FileUtil;
 import cn.edu.scau.cmi.colorCheck.view.CameraPictureSurfaceView;
 
-public class PictureCheckActivity extends AppCompatActivity {
+public class CheckActivity extends AppCompatActivity {
     CameraPictureSurfaceView cameraPictureSurfaceView;
 //    UI elements
     Spinner itemSpinner;
@@ -112,7 +108,7 @@ public class PictureCheckActivity extends AppCompatActivity {
         ItemAsyncTask itemAsyncTask =new ItemAsyncTask(this, new ItemAsyncTask.HttpFinishedListener() {
             @Override
             public void doSomething(List<Item> itemList) {
-               itemArrayAdapter = new ArrayAdapter<Item>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, itemList);
+               itemArrayAdapter = new ArrayAdapter<Item>(CheckActivity.this, android.R.layout.simple_list_item_1, itemList);
                itemSpinner.setAdapter(itemArrayAdapter);
             }
             @Override
@@ -127,12 +123,12 @@ public class PictureCheckActivity extends AppCompatActivity {
 //              选中的项目
 //              得到选中的项目，测试一下看能否得到Item对象。
                 Item selectedItem = (Item) parent.getItemAtPosition(position);
-                PictureCheckActivity.this.selectedItem = (Item) itemSpinner.getSelectedItem();
+                CheckActivity.this.selectedItem = (Item) itemSpinner.getSelectedItem();
 //                获取了规则后，在spinner中显示出这个项目具有的规则
-                RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(PictureCheckActivity.this, PictureCheckActivity.this.selectedItem, new RuleAsyncTask.HttpFinishedListener() {
+                RuleAsyncTask ruleAsyncTask=new RuleAsyncTask(CheckActivity.this, CheckActivity.this.selectedItem, new RuleAsyncTask.HttpFinishedListener() {
                     @Override
                     public void doSomething(List<Rule> ruleList) {
-                        ruleArrayAdapter = new ArrayAdapter<Rule>(PictureCheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
+                        ruleArrayAdapter = new ArrayAdapter<Rule>(CheckActivity.this, android.R.layout.simple_list_item_1, ruleList);
                         ruleSpinner.setAdapter(ruleArrayAdapter);
                     }
 
@@ -161,7 +157,7 @@ public class PictureCheckActivity extends AppCompatActivity {
                 if(selectedRule!=null){
                     if(function.equals("sample")){
                         if(sampleResultEditText.getText()==null){
-                            Toast.makeText(PictureCheckActivity.this,"请输入合适的结果",Toast.LENGTH_LONG);
+                            Toast.makeText(CheckActivity.this,"请输入合适的结果",Toast.LENGTH_LONG);
                         }else{//文件名是：检测项目名+功能名称（检测还是样本）+时间戳+结果
                             currentCheckBitmapFile =FileUtil.getCurrentFile(selectedItem.getName(),function,currentCheckBitmapFileName,sampleResultEditText.getText().toString());
                         }
@@ -171,18 +167,18 @@ public class PictureCheckActivity extends AppCompatActivity {
                     }
                     try {
                         FileUtil.saveColorCheckBitmap(bitmap, currentCheckBitmapFile);
-                        Toast.makeText(PictureCheckActivity.this,"文件已经保存，你可以上传文件并检查结果了。",Toast.LENGTH_LONG);
+                        Toast.makeText(CheckActivity.this,"文件已经保存，你可以上传文件并检查结果了。",Toast.LENGTH_LONG);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
                 }else{
-                    Toast.makeText(PictureCheckActivity.this,"请选中合适的规则",Toast.LENGTH_LONG);
+                    Toast.makeText(CheckActivity.this,"请选中合适的规则",Toast.LENGTH_LONG);
                 }
 
 
 //                （2）启动结果页面
-//                Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
+//                Intent intent=new Intent(CheckActivity.this, CheckResultActivity.class);
 //                getAndTransiteFeatureToPictureCheckResultActivity(currentCheckBitmapFile, intent);
 //                startActivity(intent);
             }
@@ -192,18 +188,18 @@ public class PictureCheckActivity extends AppCompatActivity {
     //上传最后一次点击的相片，还没有结果，因此结果result赋值为-1
 //    如果是样本，就有结果，类型也是sample
     public void onUploadBitMapAndResult(View view){
-        FileAsyncTask fileAsyncTask=new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor, currentCheckBitmapFile);
+        FileAsyncTask fileAsyncTask=new FileAsyncTask(CheckActivity.this,sharePreferencesEditor, currentCheckBitmapFile);
         fileAsyncTask.execute();
     }
 
     //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
     public void onUploadAllBitMap(View view){
-        FileAsyncTask fileAsyncTask=new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
+        FileAsyncTask fileAsyncTask=new FileAsyncTask(CheckActivity.this,sharePreferencesEditor,null);
         fileAsyncTask.execute();
     }
     // 显示检测结果
     public void onShowResult(View view){
-        Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
+        Intent intent=new Intent(CheckActivity.this, CheckResultActivity.class);
 //        bundle.putSerializable("currentCheckBitmapFile", currentCheckBitmapFile);
 //        文件的时间名称，
         bundle.putString("currentCheckBitmapFileName",currentCheckBitmapFileName);
@@ -213,7 +209,7 @@ public class PictureCheckActivity extends AppCompatActivity {
 
     //上传所有的没上传的图片文件，调用PhotoAsyncTask，PhotoAsyncTask调用HttpUtil完成图像上传工作。OK
     public void onUploadAllPictureCheckBitMap(View view){
-        FileAsyncTask fileAsyncTask =new FileAsyncTask(PictureCheckActivity.this,sharePreferencesEditor,null);
+        FileAsyncTask fileAsyncTask =new FileAsyncTask(CheckActivity.this,sharePreferencesEditor,null);
         fileAsyncTask.execute();
     }
 
@@ -221,7 +217,7 @@ public class PictureCheckActivity extends AppCompatActivity {
 //    public void onPictureCheck(View checkResultFigureView){
 ////      在这里将图片的检测结果作为参数在结果界面中显示这个图表。
 ////        获取图片！！！
-//        Intent intent=new Intent(PictureCheckActivity.this, PictureCheckResultActivity.class);
+//        Intent intent=new Intent(CheckActivity.this, CheckResultActivity.class);
 ////        将选中的项目和规则以及图片传到后台
 //
 //        startActivity(intent);

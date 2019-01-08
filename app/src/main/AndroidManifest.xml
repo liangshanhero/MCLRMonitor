@@ -48,11 +48,11 @@
             android:label="@string/title_activity_test_basic"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.PictureCheckActivity"
+            android:name=".activity.CheckActivity"
             android:label="@string/title_activity_picture_check"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.PictureCheckResultActivity"
+            android:name=".activity.CheckResultActivity"
             android:label="@string/title_activity_picture_check_result"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -7,14 +7,14 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import cn.edu.scau.cmi.colorCheck.activity.CheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.MainActivity;
-import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 //相片异步上传到服务器中。上传成功后在通知栏中显示消息
 
 public class PhotoAsyncTaskToBeDeleteUseless extends AsyncTask  <Void,Void,String>{
     private MainActivity mainActivity;
-    private PictureCheckActivity pictureCheckActivity;
+    private CheckActivity checkActivity;
     private SharedPreferences sharePreferences;
     private File file;
 
@@ -23,12 +23,12 @@ public class PhotoAsyncTaskToBeDeleteUseless extends AsyncTask  <Void,Void,Strin
         this.mainActivity =mainActivity;
     }
 
-    public PhotoAsyncTaskToBeDeleteUseless(PictureCheckActivity pictureCheckActivity) {
-        this.pictureCheckActivity=pictureCheckActivity;
+    public PhotoAsyncTaskToBeDeleteUseless(CheckActivity checkActivity) {
+        this.checkActivity = checkActivity;
     }
 
-    public PhotoAsyncTaskToBeDeleteUseless(PictureCheckActivity pictureCheckActivity, SharedPreferences sharePreferences, File file) {
-        this.pictureCheckActivity=pictureCheckActivity;
+    public PhotoAsyncTaskToBeDeleteUseless(CheckActivity checkActivity, SharedPreferences sharePreferences, File file) {
+        this.checkActivity = checkActivity;
         this.sharePreferences=sharePreferences;
         this.file =file;
     }
@@ -51,7 +51,7 @@ public class PhotoAsyncTaskToBeDeleteUseless extends AsyncTask  <Void,Void,Strin
     @Override
     protected void onPostExecute(String result){
         if(null==mainActivity){
-            Toast.makeText(pictureCheckActivity, result, Toast.LENGTH_SHORT).show();
+            Toast.makeText(checkActivity, result, Toast.LENGTH_SHORT).show();
         }
         else{
             Toast.makeText(mainActivity, result, Toast.LENGTH_SHORT).show();

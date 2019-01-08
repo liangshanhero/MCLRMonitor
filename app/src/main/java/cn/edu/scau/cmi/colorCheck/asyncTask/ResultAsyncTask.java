@@ -7,16 +7,15 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.activity.PictureCheckResultActivity;
+import cn.edu.scau.cmi.colorCheck.activity.CheckResultActivity;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Feature;
-import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Picture;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Result;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rgb;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 
 public class ResultAsyncTask extends AsyncTask<Void,Void,String> {
-    private PictureCheckResultActivity pictureCheckResultActivity;
+    private CheckResultActivity checkResultActivity;
 
     private String pictureName;
     private List<Picture> pictures;
@@ -25,9 +24,9 @@ public class ResultAsyncTask extends AsyncTask<Void,Void,String> {
     private List<Feature> features;
     private List<Result> results;
 
-    public ResultAsyncTask(PictureCheckResultActivity activity, String pictureName){
+    public ResultAsyncTask(CheckResultActivity activity, String pictureName){
         this.pictureName =pictureName;
-        this.pictureCheckResultActivity =activity;
+        this.checkResultActivity =activity;
 
     }
 
@@ -59,12 +58,12 @@ public class ResultAsyncTask extends AsyncTask<Void,Void,String> {
 //        Picture picture = pictures.get(0);
 //        picture=pictures.get(0);
 //        TODO 20181219 结果的处理方式
-//        pictureCheckResultActivity.getResultTextView().setText(picture.getResults().getResult().toString());//如果没有检测，这个值就是默认的输入的-1.
-//        pictureCheckResultActivity.setPicture(picture);
-        pictureCheckResultActivity.setRgbs(rgbs);
-        pictureCheckResultActivity.setFeatures(features);
-        pictureCheckResultActivity.setResults(results);
+//        checkResultActivity.getResultTextView().setText(picture.getResults().getResult().toString());//如果没有检测，这个值就是默认的输入的-1.
+//        checkResultActivity.setPicture(picture);
+        checkResultActivity.setRgbs(rgbs);
+        checkResultActivity.setFeatures(features);
+        checkResultActivity.setResults(results);
         //非UI线程重新绘制界面，晕死，写错了我view的名称，折腾了一个晚上。
-        pictureCheckResultActivity.getCheckResultFigureView().postInvalidate();
+        checkResultActivity.getCheckResultFigureView().postInvalidate();
     }
 }

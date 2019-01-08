@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
+import cn.edu.scau.cmi.colorCheck.activity.CheckActivity;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rule;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
@@ -15,7 +15,7 @@ import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 
 public class RuleAsyncTask extends AsyncTask<String,Void,String> {
     private static List<Rule> allRule;
-    private PictureCheckActivity pictureCheckActivity;
+    private CheckActivity checkActivity;
     private Item selectItem;
     private HttpFinishedListener httpFinishedListener;
 
@@ -24,13 +24,13 @@ public class RuleAsyncTask extends AsyncTask<String,Void,String> {
         void doNothing();
     }
 
-    public RuleAsyncTask(PictureCheckActivity pictureCheckActivity) {
-        this.pictureCheckActivity=pictureCheckActivity;
+    public RuleAsyncTask(CheckActivity checkActivity) {
+        this.checkActivity = checkActivity;
     }
 
 
-    public RuleAsyncTask(PictureCheckActivity pictureCheckActivity, Item selectItem, HttpFinishedListener httpFinishedListener) {
-        this.pictureCheckActivity=pictureCheckActivity;
+    public RuleAsyncTask(CheckActivity checkActivity, Item selectItem, HttpFinishedListener httpFinishedListener) {
+        this.checkActivity = checkActivity;
         this.selectItem = selectItem;
         this.httpFinishedListener=httpFinishedListener;
     }

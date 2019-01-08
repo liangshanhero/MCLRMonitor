@@ -7,8 +7,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
+import cn.edu.scau.cmi.colorCheck.activity.CheckActivity;
 import cn.edu.scau.cmi.colorCheck.activity.ItemActivity;
-import cn.edu.scau.cmi.colorCheck.activity.PictureCheckActivity;
 
 
 import cn.edu.scau.cmi.colorCheck.adapter.SqlLiteProjectAdapter;
@@ -24,12 +24,12 @@ public class ItemAsyncTask extends AsyncTask <String,Void,String>{
 
     private HttpFinishedListener httpFinishedListenerListener;
     private static List<Item> allItemList;
-    private PictureCheckActivity pictureCheckActivity;
+    private CheckActivity checkActivity;
     private ItemActivity itemActivity;
     SqlLiteProjectAdapter sqlLiteProjectAdapter;
 
-    public ItemAsyncTask(PictureCheckActivity pictureCheckActivity, HttpFinishedListener httpFinishedListener) {
-        this.pictureCheckActivity=pictureCheckActivity;
+    public ItemAsyncTask(CheckActivity checkActivity, HttpFinishedListener httpFinishedListener) {
+        this.checkActivity = checkActivity;
         this.httpFinishedListenerListener = httpFinishedListener;
     }
 

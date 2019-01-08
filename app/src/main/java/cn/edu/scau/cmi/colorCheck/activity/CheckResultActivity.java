@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.scau.cmi.colorCheck.R;
@@ -23,7 +22,7 @@ import cn.edu.scau.cmi.colorCheck.domain.mysql.Result;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Rgb;
 
 //建立一个内部类，可以让view使用Activity中的数据！！！，否则数据传不进去！！！！！！
-public class PictureCheckResultActivity extends AppCompatActivity {
+public class CheckResultActivity extends AppCompatActivity {
     private CheckResultFigureView checkResultFigureView;
     private TextView resultTextView;
     private String[] checkResults;
@@ -76,7 +75,7 @@ public class PictureCheckResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picture_check_result);
         resultTextView=findViewById(R.id.resultTextView);
         FrameLayout frameLayout=(FrameLayout)findViewById(R.id.frameLayoutCheckResult);
-        checkResultFigureView=new CheckResultFigureView(PictureCheckResultActivity.this);
+        checkResultFigureView=new CheckResultFigureView(CheckResultActivity.this);
         frameLayout.addView(getCheckResultFigureView());
 //      (2) 获取PictureCheckActivity传来的检测文件
         Intent intent=getIntent();
