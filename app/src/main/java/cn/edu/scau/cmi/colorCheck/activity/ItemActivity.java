@@ -17,7 +17,7 @@ import cn.edu.scau.cmi.colorCheck.adapter.MySqlProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ItemAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 
-public class ProjectActivity extends AppCompatActivity {
+public class ItemActivity extends AppCompatActivity {
     private  RecyclerView recyclerView;
     public RecyclerView getRecyclerView() {
         return recyclerView;
@@ -51,7 +51,7 @@ public class ProjectActivity extends AppCompatActivity {
             @Override
             public void doSomething(List<Item> projectList) {
                 Log.e("获取的项目是：",projectList.toString());
-                mySqlProjectAdapter = new MySqlProjectAdapter(projectList,1, ProjectActivity.this);
+                mySqlProjectAdapter = new MySqlProjectAdapter(projectList,1, ItemActivity.this);
                 recyclerView.setAdapter(mySqlProjectAdapter);
             }
             @Override
@@ -77,7 +77,7 @@ public class ProjectActivity extends AppCompatActivity {
         recyclerView.setAdapter(mySqlProjectAdapter);
     }
     public void addProject(View view){
-        startActivity(new Intent(this, ProjectAddActivity.class));
+        startActivity(new Intent(this, ItemAddActivity.class));
     }
 //TODO 获取所有的项目，带后面完善直接获取
     public void getAllProject(View view){
@@ -88,7 +88,7 @@ public class ProjectActivity extends AppCompatActivity {
                 for(Item project:projectList){
                     System.out.println("通过网络获取的数据是："+project.getName());
                 }
-                Toast.makeText(ProjectActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ItemActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void doNothing() {

@@ -21,7 +21,7 @@ import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Target;
 import cn.edu.scau.cmi.colorCheck.layout.RangeLinearLayout;
 
-public class ProjectAddActivity extends AppCompatActivity {
+public class ItemAddActivity extends AppCompatActivity {
 
     EditText name;
     EditText memo;
@@ -51,7 +51,7 @@ public class ProjectAddActivity extends AppCompatActivity {
                     ranges.clear();
                 }else{
                     range.setVisibility(View.VISIBLE);
-                    RangeLinearLayout rangeLinearLayout = new RangeLinearLayout(ProjectAddActivity.this, new RangeLinearLayout.DeleteListener() {
+                    RangeLinearLayout rangeLinearLayout = new RangeLinearLayout(ItemAddActivity.this, new RangeLinearLayout.DeleteListener() {
                         @Override
                         public void deleteRange(RangeLinearLayout layout) {
                             range.removeView(layout);
@@ -73,7 +73,7 @@ public class ProjectAddActivity extends AppCompatActivity {
         addRange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RangeLinearLayout rangeLinearLayout = new RangeLinearLayout(ProjectAddActivity.this, new RangeLinearLayout.DeleteListener() {
+                RangeLinearLayout rangeLinearLayout = new RangeLinearLayout(ItemAddActivity.this, new RangeLinearLayout.DeleteListener() {
                     @Override
                     public void deleteRange(RangeLinearLayout layout) {
                         range.removeView(layout);

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ManualActivity;
-import cn.edu.scau.cmi.colorCheck.activity.ProjectActivity;
+import cn.edu.scau.cmi.colorCheck.activity.ItemActivity;
 import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.DAO;
 import cn.edu.scau.cmi.colorCheck.olderVersion.dao.sqlLite.DatabaseHelper;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.CheckType;
@@ -47,13 +47,13 @@ public class PointCheckDetailActivity extends AppCompatActivity {
     }
 
     public void collectData(View view){
-        Intent intent = new Intent(PointCheckDetailActivity.this, ProjectActivity.class);
+        Intent intent = new Intent(PointCheckDetailActivity.this, ItemActivity.class);
         intent.putExtra("flag",1);
         startActivity(intent);
     }
 
     public void machineStudy(View view){
-        Intent intent = new Intent(PointCheckDetailActivity.this, ProjectActivity.class);
+        Intent intent = new Intent(PointCheckDetailActivity.this, ItemActivity.class);
         intent.putExtra("flag",2);
         startActivity(intent);
     }
@@ -66,6 +66,6 @@ public class PointCheckDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void seeProject(View view){
-        startActivity(new Intent(this, ProjectActivity.class));
+        startActivity(new Intent(this, ItemActivity.class));
     }
 }
