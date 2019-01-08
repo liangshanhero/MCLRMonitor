@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.colorCheck.activity.toBeDone;
+package cn.edu.scau.cmi.colorCheck.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +17,7 @@ import cn.edu.scau.cmi.colorCheck.adapter.MySqlProjectAdapter;
 import cn.edu.scau.cmi.colorCheck.asyncTask.ItemAsyncTask;
 import cn.edu.scau.cmi.colorCheck.domain.mysql.Item;
 
-public class ProjectListActivity extends AppCompatActivity {
+public class ProjectActivity extends AppCompatActivity {
     private  RecyclerView recyclerView;
     public RecyclerView getRecyclerView() {
         return recyclerView;
@@ -51,7 +51,7 @@ public class ProjectListActivity extends AppCompatActivity {
             @Override
             public void doSomething(List<Item> projectList) {
                 Log.e("获取的项目是：",projectList.toString());
-                mySqlProjectAdapter = new MySqlProjectAdapter(projectList,1, ProjectListActivity.this);
+                mySqlProjectAdapter = new MySqlProjectAdapter(projectList,1, ProjectActivity.this);
                 recyclerView.setAdapter(mySqlProjectAdapter);
             }
             @Override
@@ -88,7 +88,7 @@ public class ProjectListActivity extends AppCompatActivity {
                 for(Item project:projectList){
                     System.out.println("通过网络获取的数据是："+project.getName());
                 }
-                Toast.makeText(ProjectListActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProjectActivity.this, "返回到了ProjectListActivity", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void doNothing() {

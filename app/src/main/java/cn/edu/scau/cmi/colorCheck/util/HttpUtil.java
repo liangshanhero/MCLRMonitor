@@ -27,9 +27,9 @@ public class HttpUtil<T> {
 //    private static final String serverContext = "http://192.168.31.83:8080/colorCheckServer/";
 
 //     E31230V3地址
-    private static final String serverContext = "http://192.168.31.16:8080/colorCheckServer/";
+//    private static final String serverContext = "http://192.168.31.16:8080/colorCheckServer/";
 //    阿里云服务器地址
-//    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
+    private static final String serverContext = "http://139.159.188.31:8888/colorCheckServer/";
 //    4790K地址
 //    private static final String serverContext = "http://172.18.94.140:8080/colorCheckServer/";
     //    Dell server

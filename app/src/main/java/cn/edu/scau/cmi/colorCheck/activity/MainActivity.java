@@ -15,9 +15,7 @@ import cn.edu.scau.cmi.colorCheck.R;
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.CustomizeRuleActivity;
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.MachineLearningRuleActivity;
 import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ManualActivity;
-import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
 import cn.edu.scau.cmi.colorCheck.olderVersion.PointCheckActivity;
-import cn.edu.scau.cmi.colorCheck.activity.toBeDone.PictureSampleCollectActivity;
 import cn.edu.scau.cmi.colorCheck.olderVersion.PointSampleCollectActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 //    （1）查看并管理所有的项目
     public void onProjectManage(View view){
-        startActivity(new Intent(this, ProjectListActivity.class));
+        startActivity(new Intent(this, ProjectActivity.class));
     }
 
     // （2）基于图片检测

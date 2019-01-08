@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import cn.edu.scau.cmi.colorCheck.activity.toBeDone.ProjectListActivity;
+import cn.edu.scau.cmi.colorCheck.activity.ProjectActivity;
 import cn.edu.scau.cmi.colorCheck.domain.sqlLite.Project;
 import cn.edu.scau.cmi.colorCheck.util.HttpUtil;
 import okhttp3.Request;
 
 public class MySqlServiceAsyncTask<T> extends AsyncTask<Void,Void,String> {
-    private ProjectListActivity projectListActivity;
+    private ProjectActivity projectActivity;
 
-    public MySqlServiceAsyncTask(ProjectListActivity projectListActivity){this.projectListActivity=projectListActivity;
+    public MySqlServiceAsyncTask(ProjectActivity projectActivity){this.projectActivity = projectActivity;
     }
 
 
