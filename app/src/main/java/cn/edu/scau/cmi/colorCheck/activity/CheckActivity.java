@@ -45,10 +45,6 @@ public class CheckActivity extends AppCompatActivity {
     ArrayAdapter<Rule> ruleArrayAdapter;
     EditText sampleResultEditText;
 
-
-
-
-
     public void setProjectList(List<Item> itemList){
         this.allItemList = itemList;
     }
@@ -144,11 +140,12 @@ public class CheckActivity extends AppCompatActivity {
         });
     }
 
+
     private void initCameraView() {
         //        （1）摄像头处理
         cameraPictureSurfaceView =findViewById(R.id.picture_check_surface);
-        //                在这里添加图片的显示部分，在结果界面中显示这个图表。
-//                保持图片文件，如过不能保存图片，需要在手机中设置读取权限
+        //                在这里添加图片的显示部分，在结果界面中显示这个图表。保持图片文件，如过不能保存图片，需要在手机中设置读取权限,
+//        如果没有选择检测项和规则，就不能拍照片，拍了照片后弹出一个下显示框，提示拍摄宝成成功。
         cameraPictureSurfaceView.setTouchListener(new TouchListenerAdapter(){
             @Override
             public void showPictureCheckResult(Bitmap bitmap) {
